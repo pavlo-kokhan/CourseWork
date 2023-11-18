@@ -67,6 +67,9 @@
     <Compile Include="VideoFile\VideoFile.cs" />
     <Compile Include="VideoFile\VideoFileSerializer.cs" />
     <Compile Include="VideoFile\VideoFileSorter.cs" />
+    <EmbeddedResource Include="Forms\AddNewObjectForm.resx">
+      <DependentUpon>AddNewObjectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +98,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Img\Apply.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\Remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\Cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\Apply2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

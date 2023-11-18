@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Enums;
 using VideoFileClass;
 using SecondaryClasses;
+using CourseWork.Forms;
 
 namespace CourseWork
 {
@@ -21,6 +22,22 @@ namespace CourseWork
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+
+            //AddNewObjectForm anof = new AddNewObjectForm();
+
+            //DialogResult dialogResult = anof.ShowDialog();
+
+            //if (dialogResult == DialogResult.OK)
+            //{
+            //    try
+            //    {
+            //        var result = anof.GetResultVideoFile();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);   
+            //    }
+            //}
         }
     }
 }
