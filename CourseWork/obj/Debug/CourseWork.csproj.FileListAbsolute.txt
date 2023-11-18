@@ -1,0 +1,43 @@
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.AssemblyReference.cache
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\obj\Debug\CourseWork.Properties.Resources.resources
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.GenerateResource.cache
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.CoreCompileInputs.cache
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\CourseWork.exe.config
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\CourseWork.exe
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\CourseWork.pdb
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\obj\Debug\CourseWork.exe
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\obj\Debug\CourseWork.pdb
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\System.Memory.dll
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\System.Text.Json.dll
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\System.Numerics.Vectors.dll
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\System.Buffers.dll
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\System.ValueTuple.dll
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\System.Text.Encodings.Web.dll
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.SuggestedBindingRedirects.cache
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\obj\Debug\CourseWork.exe.config
+C:\Pavlo\lpnu\MyFolder\sem3\Курсова ООП\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.CopyComplete
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\CourseWork.exe.config
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\CourseWork.exe
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\CourseWork.pdb
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\System.Memory.dll
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\System.Text.Json.dll
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\System.Numerics.Vectors.dll
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\System.Buffers.dll
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\System.ValueTuple.dll
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\System.Text.Encodings.Web.dll
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.AssemblyReference.cache
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.SuggestedBindingRedirects.cache
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.exe.config
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.MainForm.resources
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.Properties.Resources.resources
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.GenerateResource.cache
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.CoreCompileInputs.cache
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.CopyComplete
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.exe
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.pdb
