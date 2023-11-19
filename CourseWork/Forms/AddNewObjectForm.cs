@@ -23,52 +23,42 @@ namespace CourseWork.Forms
             InitializeComponent();
         }
 
-        private void HoursTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
             {
                 e.Handled = true;
             }
+        }
+
+        private void HoursTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericTextBox_KeyPress(sender, e);
         }
 
         private void MinutesTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+            NumericTextBox_KeyPress(sender, e);
         }
 
         private void SecondsTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+            NumericTextBox_KeyPress(sender, e);
         }
 
         private void GBTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+            NumericTextBox_KeyPress(sender, e);
         }
 
         private void MBTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+            NumericTextBox_KeyPress(sender, e);
         }
 
         private void KBTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
-            {
-                e.Handled = true;
-            }
+            NumericTextBox_KeyPress(sender, e);
         }
 
         private bool TryParseTextBoxes()
