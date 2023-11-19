@@ -1,5 +1,6 @@
 ﻿using CourseWork.Forms;
 using Enums;
+using SecondaryClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,20 +47,15 @@ namespace CourseWork
             return objects[ObjectsListView.Items.IndexOf(item)];
         }
 
-        private void AddObjectToListView(VideoFile obj)
-        {
-            ListViewItem item = ConvertToListViewItem(obj);
-
-            ObjectsListView.Items.Add(item);
-
-            objects.Add(obj);
-        }
-
         private void UpdateListView(List<VideoFile> list)
         {
+            ObjectsListView.Items.Clear(); 
+
             foreach (var obj in list)
             {
-                AddObjectToListView(obj);
+                ListViewItem item = ConvertToListViewItem(obj);
+
+                ObjectsListView.Items.Add(item);
             }
         }
 
@@ -75,7 +71,9 @@ namespace CourseWork
             {
                 newObject = childForm.GetResultObject();
 
-                AddObjectToListView(newObject);
+                ListViewItem item = ConvertToListViewItem(newObject);
+                ObjectsListView.Items.Add(item);
+                objects.Add(newObject);
             }
         }
 
@@ -106,33 +104,92 @@ namespace CourseWork
             {
                 var property = childForm.GetResultProperty();
 
-                //if (property is string specificProperty1)
-                //{
-                //    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty1);
-                //}
-                //else if (property is VideoFormat specificProperty2)
-                //{
-                //    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty2);
-                //}
-                //else if (property is TimeSpan specificProperty3)
-                //{
-                //    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty3);
-                //}
-                //else if (property is VideoCodec specificProperty4)
-                //{
-                //    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty4);
-                //}
-                //else if (property is AudioCodec specificProperty5)
-                //{
-                //    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty5);
-                //}
-                //else if (property is bool specificProperty6)
-                //{
-                //    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty6);
-                //}
-            }
+                if (property is string specificProperty1)
+                {
+                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty1);
+                }
+                else if (property is VideoFormat specificProperty2)
+                {
+                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty2);
+                }
+                else if (property is TimeSpan specificProperty3)
+                {
+                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty3);
+                }
+                else if (property is VideoCodec specificProperty4)
+                {
+                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty4);
+                }
+                else if (property is AudioCodec specificProperty5)
+                {
+                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty5);
+                }
+                else if (property is bool specificProperty6)
+                {
+                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty6);
+                }
 
-            // update list view
+                UpdateListView(objects);
+            }
+        }
+
+        private void OpenMenuStripButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                ofd.FilterIndex = 1;
+                ofd.RestoreDirectory = true;
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = ofd.FileName;
+
+                    try
+                    {
+                        objects = VideoFileSerializer.DeserializeXml(filePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        return;
+                    }
+
+                    UpdateListView(objects);
+                }
+            }
+        }
+
+        private void SaveMenuStripButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                ofd.FilterIndex = 1;
+                ofd.RestoreDirectory = true;
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = ofd.FileName;
+
+                    try
+                    {
+                        VideoFileSerializer.SerializeXml(objects, filePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            objects.Clear();
+
+            ObjectsListView.Clear();
         }
     }
 }

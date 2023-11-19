@@ -99,6 +99,7 @@
             this.SaveMenuStripButton.Name = "SaveMenuStripButton";
             this.SaveMenuStripButton.Size = new System.Drawing.Size(180, 24);
             this.SaveMenuStripButton.Text = "Save";
+            this.SaveMenuStripButton.Click += new System.EventHandler(this.SaveMenuStripButton_Click);
             // 
             // HelpMenuStrip
             // 
@@ -131,6 +132,7 @@
             this.OpenMenuStripButton.Name = "OpenMenuStripButton";
             this.OpenMenuStripButton.Size = new System.Drawing.Size(180, 24);
             this.OpenMenuStripButton.Text = "Open";
+            this.OpenMenuStripButton.Click += new System.EventHandler(this.OpenMenuStripButton_Click);
             // 
             // RemoveButton
             // 
@@ -170,6 +172,7 @@
             this.ClearButton.TabIndex = 3;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // ObjectsListView
             // 

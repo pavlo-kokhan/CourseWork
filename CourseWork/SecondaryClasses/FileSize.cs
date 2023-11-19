@@ -77,14 +77,14 @@ namespace SecondaryClasses
 
             string[] parts = sizeString.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (parts.Length != 5 || parts[1] != "-" || parts[3] != "-")
+            if (parts.Length != 3)
             {
                 throw new FormatException("Invalid size string format.");
             }
 
             if (!uint.TryParse(parts[0], out uint gb) ||
-                !uint.TryParse(parts[2], out uint mb) ||
-                !uint.TryParse(parts[4], out uint kb))
+                !uint.TryParse(parts[1], out uint mb) ||
+                !uint.TryParse(parts[2], out uint kb))
             {
                 throw new FormatException("Invalid size values.");
             }
@@ -103,14 +103,14 @@ namespace SecondaryClasses
 
             string[] parts = sizeString.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (parts.Length != 5 || parts[1] != "-" || parts[3] != "-")
+            if (parts.Length != 3)
             {
                 return false;
             }
 
             if (!uint.TryParse(parts[0], out uint gb) ||
-                !uint.TryParse(parts[2], out uint mb) ||
-                !uint.TryParse(parts[4], out uint kb))
+                !uint.TryParse(parts[1], out uint mb) ||
+                !uint.TryParse(parts[2], out uint kb))
             {
                 return false;
             }
