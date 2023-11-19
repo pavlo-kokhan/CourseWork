@@ -124,6 +124,7 @@
             this.FilterButton.TabIndex = 2;
             this.FilterButton.Text = "Filter";
             this.FilterButton.UseVisualStyleBackColor = true;
+            this.FilterButton.Click += new System.EventHandler(this.FilterButton_Click);
             // 
             // OpenMenuStripButton
             // 
@@ -143,6 +144,7 @@
             this.RemoveButton.TabIndex = 1;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = false;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // AddButton
             // 
@@ -185,6 +187,7 @@
             this.SubtitlesAvaliabilityHeader,
             this.SizeHeader,
             this.PlayerHeader});
+            this.ObjectsListView.FullRowSelect = true;
             this.ObjectsListView.HideSelection = false;
             this.ObjectsListView.Location = new System.Drawing.Point(106, 33);
             this.ObjectsListView.Name = "ObjectsListView";

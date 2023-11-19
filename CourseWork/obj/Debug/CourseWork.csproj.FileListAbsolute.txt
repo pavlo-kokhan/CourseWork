@@ -42,3 +42,4 @@ C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWor
 C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.exe
 C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.pdb
 C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.Forms.AddNewObjectForm.resources
+C:\Pavlo\lpnu\MyFolder\sem3\CourseWork\CourseWork\CourseWork\obj\Debug\CourseWork.Forms.FilterForm.resources

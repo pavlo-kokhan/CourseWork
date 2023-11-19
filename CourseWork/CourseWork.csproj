@@ -54,6 +54,12 @@
     <Compile Include="Forms\AddNewObjectForm.Designer.cs">
       <DependentUpon>AddNewObjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FilterForm.Designer.cs">
+      <DependentUpon>FilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SecondaryClasses\Enums.cs" />
     <Compile Include="SecondaryClasses\FileSize.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -69,6 +75,9 @@
     <Compile Include="VideoFile\VideoFileSorter.cs" />
     <EmbeddedResource Include="Forms\AddNewObjectForm.resx">
       <DependentUpon>AddNewObjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FilterForm.resx">
+      <DependentUpon>FilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
