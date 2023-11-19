@@ -65,7 +65,7 @@ namespace SecondaryClasses
 
         public override string ToString()
         {
-            return Convert.ToString(GB) + " (GB) " + Convert.ToString(MB) + " (MB) " + Convert.ToString(KB) + " (KB)";
+            return Convert.ToString(GB) + "-" + Convert.ToString(MB) + "-" + Convert.ToString(KB);
         }
 
         public static FileSize Parse(string sizeString)
@@ -75,9 +75,9 @@ namespace SecondaryClasses
                 throw new ArgumentException("Size string is empty or null.");
             }
 
-            string[] parts = sizeString.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = sizeString.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (parts.Length != 6 || parts[1] != "(GB)" || parts[3] != "(MB)" || parts[5] != "(KB)")
+            if (parts.Length != 5 || parts[1] != "-" || parts[3] != "-")
             {
                 throw new FormatException("Invalid size string format.");
             }
@@ -101,9 +101,9 @@ namespace SecondaryClasses
                 return false;
             }
 
-            string[] parts = sizeString.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = sizeString.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (parts.Length != 6 || parts[1] != "(GB)" || parts[3] != "(MB)" || parts[5] != "(KB)")
+            if (parts.Length != 5 || parts[1] != "-" || parts[3] != "-")
             {
                 return false;
             }

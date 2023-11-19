@@ -71,10 +71,15 @@ namespace CourseWork.Forms
             }
         }
 
-        private void CreateResultVideoFile()
+        private bool TryParseTextBoxes()
         {
             try
             {
+                if (NameTextBox.Text == string.Empty || LocationTextBox.Text == string.Empty)
+                {
+                    throw new Exception();
+                }
+
                 string Name = NameTextBox.Text;
 
                 string Location = LocationTextBox.Text;
@@ -101,11 +106,15 @@ namespace CourseWork.Forms
 
                 var SubtitlesAvaliability = SubtitlesAvaliabilityCheckBox.Checked;
 
-                resultObject = new VideoFile(Name, Location, Format, Duration, ACodec, VCodec, SubtitlesAvaliability, Size, Player);
+                resultObject =  new VideoFile(Name, Location, Format, Duration, ACodec, VCodec, SubtitlesAvaliability, Size, Player);
+
+                return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                MessageBox.Show("Dont leave empty properties. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
             }
         }
 
@@ -118,14 +127,15 @@ namespace CourseWork.Forms
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
+            if (TryParseTextBoxes())
+            {
+                DialogResult = DialogResult.OK;
 
-            CreateResultVideoFile();
-
-            Close();
+                Close();
+            }
         }
 
-        public VideoFile GetResultVideoFile()
+        public VideoFile GetResultObject()
         {
             return resultObject;
         }

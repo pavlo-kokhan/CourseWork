@@ -98,6 +98,11 @@ namespace VideoFileClass
             this.Player = Other.Player;
         }
 
+        public TimeSpan GetDuration()
+        {
+            return Duration;
+        }
+
         // Пошук даних за розміщенням на диску
         public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, string targetLocation)
         {
@@ -176,10 +181,10 @@ namespace VideoFileClass
         }
 
         [XmlElement("Format")]
-        public VideoFormat FormatString
+        public string FormatString
         {
-            get { return Format; }
-            set { Format = value; }
+            get { return Format.ToString(); }
+            set { Format = (VideoFormat)Enum.Parse(typeof(VideoFormat), value); }
         }
 
         [XmlElement("Duration")]
@@ -190,38 +195,38 @@ namespace VideoFileClass
         }
 
         [XmlElement("ACodec")]
-        public AudioCodec ACodecString
+        public string ACodecString
         {
-            get { return ACodec; }
-            set { ACodec = value; }
+            get { return ACodec.ToString(); }
+            set { ACodec = (AudioCodec)Enum.Parse(typeof(AudioCodec), value); }
         }
 
         [XmlElement("VCodec")]
-        public VideoCodec VCodecString
+        public string VCodecString
         {
-            get { return VCodec; }
-            set { VCodec = value; }
+            get { return VCodec.ToString(); }
+            set { VCodec = (VideoCodec)Enum.Parse(typeof(VideoCodec), value); }
         }
 
         [XmlElement("SubtitlesAvaliability")]
-        public bool SubtitlesAvaliabilityString
+        public string SubtitlesAvaliabilityString
         {
-            get { return SubtitlesAvaliability; }
-            set { SubtitlesAvaliability = value; }
+            get { return XmlConvert.ToString(SubtitlesAvaliability); }
+            set { SubtitlesAvaliability = XmlConvert.ToBoolean(value); }
         }
 
         [XmlElement("Size")]
-        public FileSize SizeString
+        public string SizeString
         {
-            get { return Size; }
-            set { Size = value; }
+            get { return Size.ToString(); }
+            set { Size = FileSize.Parse(value); }
         }
 
         [XmlElement("Player")]
-        public VideoPlayer PlayerString
+        public string PlayerString
         {
-            get { return Player; }
-            set { Player = value; }
+            get { return Player.ToString(); }
+            set { Player = (VideoPlayer)Enum.Parse(typeof(VideoPlayer), value); }
         }
     }
 }
