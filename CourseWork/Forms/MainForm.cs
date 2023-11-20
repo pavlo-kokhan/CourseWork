@@ -10,7 +10,13 @@ namespace CourseWork
 {
     public partial class MainForm : Form
     {
-        List<VideoFile> objects = new List<VideoFile>();
+        List<VideoFile> videoFiles = new List<VideoFile>();
+
+        // Зберігає індекс стовпця, який був вибраний користувачем, як критерій для сортування
+        private int lastSortedColumn = -1;
+
+        // Зберігає значення, яке відповідає за порядок сортування
+        private bool ascendingOrder = true;
 
         public MainForm()
         {
@@ -19,12 +25,12 @@ namespace CourseWork
 
         private ListViewItem ConvertToListViewItem(VideoFile obj)
         {
-            ListViewItem item = new ListViewItem(obj.NameString);
+            ListViewItem item = new ListViewItem(obj.Name);
 
             var duration = obj.GetDuration();
             string durationFormatted = $"{duration.Hours:D2}:{duration.Minutes:D2}:{duration.Seconds:D2}";
 
-            item.SubItems.Add(obj.LocationString);
+            item.SubItems.Add(obj.Location);
             item.SubItems.Add(obj.FormatString);
             item.SubItems.Add(durationFormatted);
             item.SubItems.Add(obj.VCodecString);
@@ -38,19 +44,31 @@ namespace CourseWork
 
         private VideoFile ConvertToVideoFile(ListViewItem item)
         {
-            return objects[ObjectsListView.Items.IndexOf(item)];
+            return videoFiles[VideoFilesListView.Items.IndexOf(item)];
         }
 
         private void UpdateListView(List<VideoFile> list)
         {
-            ObjectsListView.Items.Clear(); 
+            VideoFilesListView.Items.Clear(); 
 
             foreach (var obj in list)
             {
                 ListViewItem item = ConvertToListViewItem(obj);
 
-                ObjectsListView.Items.Add(item);
+                VideoFilesListView.Items.Add(item);
             }
+        }
+
+        private void SortVideoFilesAndUpdate(Comparison<VideoFile> comparison, bool ascending)
+        {
+            videoFiles.Sort(comparison);
+
+            if (!ascending)
+            {
+                videoFiles.Reverse();
+            }
+
+            UpdateListView(videoFiles);
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -66,20 +84,20 @@ namespace CourseWork
                 newObject = childForm.GetResultObject();
 
                 ListViewItem item = ConvertToListViewItem(newObject);
-                ObjectsListView.Items.Add(item);
-                objects.Add(newObject);
+                VideoFilesListView.Items.Add(item);
+                videoFiles.Add(newObject);
             }
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            if (ObjectsListView.SelectedItems.Count > 0)
+            if (VideoFilesListView.SelectedItems.Count > 0)
             {
-                foreach (ListViewItem item in ObjectsListView.SelectedItems)
+                foreach (ListViewItem item in VideoFilesListView.SelectedItems)
                 {
                     VideoFile obj = ConvertToVideoFile(item);
-                    objects.Remove(obj);
-                    ObjectsListView.Items.Remove(item);
+                    videoFiles.Remove(obj);
+                    VideoFilesListView.Items.Remove(item);
                 }
             }
             else
@@ -100,31 +118,53 @@ namespace CourseWork
 
                 if (property is string specificProperty1)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty1);
+                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty1);
                 }
                 else if (property is VideoFormat specificProperty2)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty2);
+                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty2);
                 }
                 else if (property is TimeSpan specificProperty3)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty3);
+                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty3);
                 }
                 else if (property is VideoCodec specificProperty4)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty4);
+                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty4);
                 }
                 else if (property is AudioCodec specificProperty5)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty5);
+                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty5);
                 }
                 else if (property is bool specificProperty6)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty6);
+                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty6);
                 }
 
-                UpdateListView(objects);
+                UpdateListView(videoFiles);
             }
+        }
+
+        private void VideoFilesListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            string columnName = VideoFilesListView.Columns[e.Column].Text;
+
+            ascendingOrder = e.Column != lastSortedColumn ? true : !ascendingOrder;
+
+            if (columnName == "Duration")
+            {
+                SortVideoFilesAndUpdate((obj1, obj2) => obj1.Duration.CompareTo(obj2.Duration), ascendingOrder);
+            }
+            else if (columnName == "Name")
+            {
+                SortVideoFilesAndUpdate((obj1, obj2) => obj1.Name.CompareTo(obj2.Name), ascendingOrder);
+            }
+            else if (columnName == "Size")
+            {
+                SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Kilobytes.CompareTo(obj2.Size.Kilobytes), ascendingOrder);
+            }
+
+            lastSortedColumn = e.Column;
         }
 
         private void OpenMenuStripButton_Click(object sender, EventArgs e)
@@ -141,7 +181,7 @@ namespace CourseWork
 
                     try
                     {
-                        objects = VideoFileSerializer.DeserializeXml(filePath);
+                        videoFiles = VideoFileSerializer.DeserializeXml(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -150,7 +190,7 @@ namespace CourseWork
                         return;
                     }
 
-                    UpdateListView(objects);
+                    UpdateListView(videoFiles);
                 }
             }
         }
@@ -169,7 +209,7 @@ namespace CourseWork
 
                     try
                     {
-                        VideoFileSerializer.SerializeXml(objects, filePath);
+                        VideoFileSerializer.SerializeXml(videoFiles, filePath);
                     }
                     catch (Exception ex)
                     {
@@ -181,9 +221,9 @@ namespace CourseWork
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            objects.Clear();
+            videoFiles.Clear();
 
-            UpdateListView(objects);
+            UpdateListView(videoFiles);
         }
 
         private void AboutMenuStripButton_Click(object sender, EventArgs e)

@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Xml;
-using Microsoft.SqlServer.Server;
 using System.Xml.Serialization;
-using System.Xml.Linq;
 
 using Enums;
 using SecondaryClasses;
-using static System.Windows.Forms.DataFormats;
-using System.Drawing;
 
 //Створити клас «VideoFile» для запису мультимедійної інформації про відео файл:
 //1) Розміщення файлу на диску; 2) Формат файлу; 3) Тривалість; 4) Кодек відео; 5) Кодек аудіо;
@@ -148,37 +139,26 @@ namespace VideoFileClass
             return left.Duration > right.Duration;
         }
 
-        [XmlIgnore] private string Name { get; set; }
-
-        [XmlIgnore] private string Location { get; set; }
-
-        [XmlIgnore] private VideoFormat Format { get; set; }
-
-        [XmlIgnore] private TimeSpan Duration { get; set; }
-
-        [XmlIgnore] private AudioCodec ACodec { get; set; }
-
-        [XmlIgnore] private VideoCodec VCodec { get; set; }
-
-        [XmlIgnore] private bool SubtitlesAvaliability { get; set; }
-
-        [XmlIgnore] private FileSize Size { get; set; }
-
-        [XmlIgnore] private VideoPlayer Player { get; set; }
-
         [XmlElement("Name")]
-        public string NameString
-        {
-            get { return Name; }
-            set { Name = value; }
-        }
+        public string Name { get; set; }
 
         [XmlElement("Location")]
-        public string LocationString
-        {
-            get { return Location; }
-            set { Location = value; }
-        }
+        public string Location { get; set; }
+            
+        [XmlIgnore] public VideoFormat Format { get; set; }
+
+        [XmlIgnore] public TimeSpan Duration { get; set; }
+
+        [XmlIgnore] public AudioCodec ACodec { get; set; }
+
+        [XmlIgnore] public VideoCodec VCodec { get; set; }
+
+        [XmlIgnore] public bool SubtitlesAvaliability { get; set; }
+
+        [XmlIgnore] public FileSize Size { get; set; }
+
+        [XmlIgnore] public VideoPlayer Player { get; set; }
+
 
         [XmlElement("Format")]
         public string FormatString

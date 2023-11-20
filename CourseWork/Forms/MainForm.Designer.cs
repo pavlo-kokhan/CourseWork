@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.FilterButton = new System.Windows.Forms.Button();
+            this.RemoveButton = new System.Windows.Forms.Button();
+            this.AddButton = new System.Windows.Forms.Button();
             this.HeadMenuStrip = new System.Windows.Forms.MenuStrip();
             this.FileMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.FilterButton = new System.Windows.Forms.Button();
-            this.OpenMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.RemoveButton = new System.Windows.Forms.Button();
-            this.AddButton = new System.Windows.Forms.Button();
-            this.ClearButton = new System.Windows.Forms.Button();
-            this.ObjectsListView = new System.Windows.Forms.ListView();
+            this.VideoFilesListView = new System.Windows.Forms.ListView();
             this.NameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LocationHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FormatHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -70,51 +70,17 @@
             this.ButtonsPanel.Size = new System.Drawing.Size(88, 415);
             this.ButtonsPanel.TabIndex = 1;
             // 
-            // HeadMenuStrip
+            // ClearButton
             // 
-            this.HeadMenuStrip.BackColor = System.Drawing.Color.LightSlateGray;
-            this.HeadMenuStrip.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.HeadMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.FileMenuStrip,
-            this.HelpMenuStrip});
-            this.HeadMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.HeadMenuStrip.Name = "HeadMenuStrip";
-            this.HeadMenuStrip.Padding = new System.Windows.Forms.Padding(6, 3, 0, 3);
-            this.HeadMenuStrip.Size = new System.Drawing.Size(884, 29);
-            this.HeadMenuStrip.TabIndex = 2;
-            this.HeadMenuStrip.Text = "MenuStrip";
-            // 
-            // FileMenuStrip
-            // 
-            this.FileMenuStrip.BackColor = System.Drawing.Color.LightSlateGray;
-            this.FileMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenMenuStripButton,
-            this.SaveMenuStripButton});
-            this.FileMenuStrip.Name = "FileMenuStrip";
-            this.FileMenuStrip.Size = new System.Drawing.Size(40, 23);
-            this.FileMenuStrip.Text = "File";
-            // 
-            // SaveMenuStripButton
-            // 
-            this.SaveMenuStripButton.Name = "SaveMenuStripButton";
-            this.SaveMenuStripButton.Size = new System.Drawing.Size(180, 24);
-            this.SaveMenuStripButton.Text = "Save";
-            this.SaveMenuStripButton.Click += new System.EventHandler(this.SaveMenuStripButton_Click);
-            // 
-            // HelpMenuStrip
-            // 
-            this.HelpMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutMenuStripButton});
-            this.HelpMenuStrip.Name = "HelpMenuStrip";
-            this.HelpMenuStrip.Size = new System.Drawing.Size(44, 23);
-            this.HelpMenuStrip.Text = "Help";
-            // 
-            // AboutMenuStripButton
-            // 
-            this.AboutMenuStripButton.Name = "AboutMenuStripButton";
-            this.AboutMenuStripButton.Size = new System.Drawing.Size(180, 24);
-            this.AboutMenuStripButton.Text = "About";
-            this.AboutMenuStripButton.Click += new System.EventHandler(this.AboutMenuStripButton_Click);
+            this.ClearButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ClearButton.Location = new System.Drawing.Point(3, 112);
+            this.ClearButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(80, 28);
+            this.ClearButton.TabIndex = 3;
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // FilterButton
             // 
@@ -127,13 +93,6 @@
             this.FilterButton.Text = "Filter";
             this.FilterButton.UseVisualStyleBackColor = true;
             this.FilterButton.Click += new System.EventHandler(this.FilterButton_Click);
-            // 
-            // OpenMenuStripButton
-            // 
-            this.OpenMenuStripButton.Name = "OpenMenuStripButton";
-            this.OpenMenuStripButton.Size = new System.Drawing.Size(180, 24);
-            this.OpenMenuStripButton.Text = "Open";
-            this.OpenMenuStripButton.Click += new System.EventHandler(this.OpenMenuStripButton_Click);
             // 
             // RemoveButton
             // 
@@ -163,25 +122,66 @@
             this.AddButton.UseVisualStyleBackColor = false;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // ClearButton
+            // HeadMenuStrip
             // 
-            this.ClearButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ClearButton.Location = new System.Drawing.Point(3, 112);
-            this.ClearButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(80, 28);
-            this.ClearButton.TabIndex = 3;
-            this.ClearButton.Text = "Clear";
-            this.ClearButton.UseVisualStyleBackColor = true;
-            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            this.HeadMenuStrip.BackColor = System.Drawing.Color.LightSlateGray;
+            this.HeadMenuStrip.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HeadMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileMenuStrip,
+            this.HelpMenuStrip});
+            this.HeadMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.HeadMenuStrip.Name = "HeadMenuStrip";
+            this.HeadMenuStrip.Padding = new System.Windows.Forms.Padding(6, 3, 0, 3);
+            this.HeadMenuStrip.Size = new System.Drawing.Size(884, 29);
+            this.HeadMenuStrip.TabIndex = 2;
+            this.HeadMenuStrip.Text = "MenuStrip";
             // 
-            // ObjectsListView
+            // FileMenuStrip
             // 
-            this.ObjectsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.FileMenuStrip.BackColor = System.Drawing.Color.LightSlateGray;
+            this.FileMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenMenuStripButton,
+            this.SaveMenuStripButton});
+            this.FileMenuStrip.Name = "FileMenuStrip";
+            this.FileMenuStrip.Size = new System.Drawing.Size(40, 23);
+            this.FileMenuStrip.Text = "File";
+            // 
+            // OpenMenuStripButton
+            // 
+            this.OpenMenuStripButton.Name = "OpenMenuStripButton";
+            this.OpenMenuStripButton.Size = new System.Drawing.Size(104, 24);
+            this.OpenMenuStripButton.Text = "Open";
+            this.OpenMenuStripButton.Click += new System.EventHandler(this.OpenMenuStripButton_Click);
+            // 
+            // SaveMenuStripButton
+            // 
+            this.SaveMenuStripButton.Name = "SaveMenuStripButton";
+            this.SaveMenuStripButton.Size = new System.Drawing.Size(104, 24);
+            this.SaveMenuStripButton.Text = "Save";
+            this.SaveMenuStripButton.Click += new System.EventHandler(this.SaveMenuStripButton_Click);
+            // 
+            // HelpMenuStrip
+            // 
+            this.HelpMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutMenuStripButton});
+            this.HelpMenuStrip.Name = "HelpMenuStrip";
+            this.HelpMenuStrip.Size = new System.Drawing.Size(44, 23);
+            this.HelpMenuStrip.Text = "Help";
+            // 
+            // AboutMenuStripButton
+            // 
+            this.AboutMenuStripButton.Name = "AboutMenuStripButton";
+            this.AboutMenuStripButton.Size = new System.Drawing.Size(108, 24);
+            this.AboutMenuStripButton.Text = "About";
+            this.AboutMenuStripButton.Click += new System.EventHandler(this.AboutMenuStripButton_Click);
+            // 
+            // VideoFilesListView
+            // 
+            this.VideoFilesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ObjectsListView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ObjectsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.VideoFilesListView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.VideoFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.NameHeader,
             this.LocationHeader,
             this.FormatHeader,
@@ -191,14 +191,15 @@
             this.SubtitlesAvaliabilityHeader,
             this.SizeHeader,
             this.PlayerHeader});
-            this.ObjectsListView.FullRowSelect = true;
-            this.ObjectsListView.HideSelection = false;
-            this.ObjectsListView.Location = new System.Drawing.Point(106, 33);
-            this.ObjectsListView.Name = "ObjectsListView";
-            this.ObjectsListView.Size = new System.Drawing.Size(766, 416);
-            this.ObjectsListView.TabIndex = 3;
-            this.ObjectsListView.UseCompatibleStateImageBehavior = false;
-            this.ObjectsListView.View = System.Windows.Forms.View.Details;
+            this.VideoFilesListView.FullRowSelect = true;
+            this.VideoFilesListView.HideSelection = false;
+            this.VideoFilesListView.Location = new System.Drawing.Point(106, 33);
+            this.VideoFilesListView.Name = "VideoFilesListView";
+            this.VideoFilesListView.Size = new System.Drawing.Size(766, 416);
+            this.VideoFilesListView.TabIndex = 3;
+            this.VideoFilesListView.UseCompatibleStateImageBehavior = false;
+            this.VideoFilesListView.View = System.Windows.Forms.View.Details;
+            this.VideoFilesListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.VideoFilesListView_ColumnClick);
             // 
             // NameHeader
             // 
@@ -252,7 +253,7 @@
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(884, 461);
-            this.Controls.Add(this.ObjectsListView);
+            this.Controls.Add(this.VideoFilesListView);
             this.Controls.Add(this.ButtonsPanel);
             this.Controls.Add(this.HeadMenuStrip);
             this.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -283,7 +284,7 @@
         private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.ToolStripMenuItem OpenMenuStripButton;
         private System.Windows.Forms.Button ClearButton;
-        private System.Windows.Forms.ListView ObjectsListView;
+        private System.Windows.Forms.ListView VideoFilesListView;
         private System.Windows.Forms.ColumnHeader NameHeader;
         private System.Windows.Forms.ColumnHeader LocationHeader;
         private System.Windows.Forms.ColumnHeader FormatHeader;

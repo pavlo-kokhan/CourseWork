@@ -16,11 +16,6 @@ namespace SecondaryClasses
             Kilobytes = kilobytes;
         }
 
-        public FileSize(uint kilobytes, uint megabytes)
-        {
-            Kilobytes = kilobytes + megabytes * 1024;
-        }
-
         public FileSize(uint kilobytes, uint megabytes, uint gigabytes)
         {
             Kilobytes = kilobytes + megabytes * 1024 + gigabytes * 1024 * 1024;
