@@ -4,11 +4,11 @@ using SecondaryClasses;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using VideoFileClass;
 
 namespace CourseWork
 {
     using System.Linq;
+    using Video;
 
     public partial class MainForm : Form
     {
@@ -43,11 +43,11 @@ namespace CourseWork
             return _videoFiles[ObjectsListView.Items.IndexOf(item)];
         }
 
-        private void UpdateListView(List<VideoFile> list)
+        private void UpdateListView()
         {
             ObjectsListView.Items.Clear();
 
-            foreach (var item in list.Select(ConvertToListViewItem))
+            foreach (var item in _videoFiles.Select(ConvertToListViewItem))
             {
                 ObjectsListView.Items.Add(item);
             }
@@ -93,31 +93,31 @@ namespace CourseWork
             if (result != DialogResult.OK)
                 return;
 
-            var property = childForm.GetResultProperty();
+            var filter = childForm.Filter;
+            _videoFiles = GetFilteredVideoFiles(filter);
 
-            switch (property)
+            UpdateListView();
+        }
+
+        private List<VideoFile> GetFilteredVideoFiles(object filter)
+        {
+            switch (filter)
             {
                 case string specificProperty1:
-                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty1);
-                    break;
+                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty1);
                 case VideoFormat specificProperty2:
-                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty2);
-                    break;
+                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty2);
                 case TimeSpan specificProperty3:
-                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty3);
-                    break;
+                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty3);
                 case VideoCodec specificProperty4:
-                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty4);
-                    break;
+                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty4);
                 case AudioCodec specificProperty5:
-                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty5);
-                    break;
+                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty5);
                 case bool specificProperty6:
-                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty6);
-                    break;
+                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty6);
             }
 
-            UpdateListView(_videoFiles);
+            return new List<VideoFile>();
         }
 
         private void OpenMenuStripButton_Click(object sender, EventArgs e)
@@ -144,7 +144,7 @@ namespace CourseWork
                     return;
                 }
 
-                UpdateListView(_videoFiles);
+                UpdateListView();
             }
         }
 

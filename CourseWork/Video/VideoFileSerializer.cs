@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
-
-using VideoFileClass;
 
 namespace SecondaryClasses
 {
+    using CourseWork.Video;
+
     public static class VideoFileSerializer
     {
         public static void SerializeXml(List<VideoFile> objects, string filename)

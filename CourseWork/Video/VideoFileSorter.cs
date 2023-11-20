@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using VideoFileClass;
+﻿using System.Collections.Generic;
 
 namespace SecondaryClasses
 {
+    using CourseWork.Video;
+
     internal class VideoFileSorter
     {
         private static void Merge(List<VideoFile> leftList, List<VideoFile> rightList, List<VideoFile> list)

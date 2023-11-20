@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
-using Enums;
-using SecondaryClasses;
+﻿
 
 //Створити клас «VideoFile» для запису мультимедійної інформації про відео файл:
 //1) Розміщення файлу на диску; 2) Формат файлу; 3) Тривалість; 4) Кодек відео; 5) Кодек аудіо;
@@ -34,8 +29,15 @@ using SecondaryClasses;
 //програмування.
  
 
-namespace VideoFileClass
+namespace CourseWork.Video
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Xml.Serialization;
+    using global::Enums;
+    using SecondaryClasses;
+
     [Serializable]
     public class VideoFile
     {

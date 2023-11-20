@@ -1,53 +1,42 @@
 ﻿using Enums;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CourseWork.Forms
 {
     public partial class FilterForm : Form
     {
-        private object resultProperty;
-
         public FilterForm()
         {
             InitializeComponent();
         }
+        
+        public object Filter { get; private set; }
 
-        private void SetResultAndClose(object result, DialogResult dialogResult)
+        private void SetFilterAndClose(object result, DialogResult dialogResult)
         {
-            resultProperty = result;
-
+            Filter = result;
             DialogResult = dialogResult;
-
             Close();
         }
 
         private void LocationButton_Click(object sender, EventArgs e)
         {
-            if (LocationTextBox.Text != string.Empty)
+            if (string.IsNullOrWhiteSpace(LocationTextBox.Text))
             {
-                SetResultAndClose(LocationTextBox.Text, DialogResult.OK);
+                MessageBox.Show("Invalid or empty location property", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Invalid or empty location property", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SetFilterAndClose(LocationTextBox.Text, DialogResult.OK);
             }
         }
 
         private void FormatButton_Click(object sender, EventArgs e)
         {
-            VideoFormat format;
-
-            if (Enum.TryParse<VideoFormat>(FormatListBox.Text, out format))
+            if (Enum.TryParse<VideoFormat>(FormatListBox.Text, out var format))
             {
-                SetResultAndClose(format, DialogResult.OK);
+                SetFilterAndClose(format, DialogResult.OK);
             }
             else
             {
@@ -57,29 +46,27 @@ namespace CourseWork.Forms
 
         private void VideoCodecButton_Click(object sender, EventArgs e)
         {
-            VideoCodec vcodec;
 
-            if (Enum.TryParse<VideoCodec>(VCodecListBox.Text, out vcodec))
+            if (!Enum.TryParse<VideoCodec>(VCodecListBox.Text, out var vCodec))
             {
-                SetResultAndClose(vcodec, DialogResult.OK);
+                MessageBox.Show("Invalid or empty video codec property", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Invalid or empty video codec property", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SetFilterAndClose(vCodec, DialogResult.OK);
             }
         }
 
         private void AudioCodecButton_Click(object sender, EventArgs e)
         {
-            AudioCodec acodec;
 
-            if (Enum.TryParse<AudioCodec>(ACodecListBox.Text, out acodec))
+            if (!Enum.TryParse<AudioCodec>(ACodecListBox.Text, out var acodec))
             {
-                SetResultAndClose(acodec, DialogResult.OK);
+                MessageBox.Show("Invalid or empty audio codec property", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Invalid or empty audio codec property", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SetFilterAndClose(acodec, DialogResult.OK);
             }
         }
 
@@ -89,17 +76,12 @@ namespace CourseWork.Forms
             var minutes = int.Parse(MinutesTextBox.Text);
             var seconds = int.Parse(SecondsTextBox.Text);
 
-            SetResultAndClose(new TimeSpan(hours, minutes, seconds), DialogResult.OK);
+            SetFilterAndClose(new TimeSpan(hours, minutes, seconds), DialogResult.OK);
         }
 
         private void SubtitlesButton_Click(object sender, EventArgs e)
         {
-            SetResultAndClose(SubtitlesAvaliabilityCheckBox.Checked, DialogResult.OK);
-        }
-
-        public object GetResultProperty()
-        {
-            return resultProperty;
+            SetFilterAndClose(SubtitlesAvaliabilityCheckBox.Checked, DialogResult.OK);
         }
     }
 }

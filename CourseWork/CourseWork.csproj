@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Filter.cs" />
     <Compile Include="Forms\AddNewObjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,8 +61,8 @@
     <Compile Include="Forms\FilterForm.Designer.cs">
       <DependentUpon>FilterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SecondaryClasses\Enums.cs" />
-    <Compile Include="SecondaryClasses\FileSize.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Enums\FileSize.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,9 +71,9 @@
     </Compile>
     <Compile Include="Program\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VideoFile\VideoFile.cs" />
-    <Compile Include="VideoFile\VideoFileSerializer.cs" />
-    <Compile Include="VideoFile\VideoFileSorter.cs" />
+    <Compile Include="Video\VideoFile.cs" />
+    <Compile Include="Video\VideoFileSerializer.cs" />
+    <Compile Include="Video\VideoFileSorter.cs" />
     <EmbeddedResource Include="Forms\AddNewObjectForm.resx">
       <DependentUpon>AddNewObjectForm.cs</DependentUpon>
     </EmbeddedResource>
