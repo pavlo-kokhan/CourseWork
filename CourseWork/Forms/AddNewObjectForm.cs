@@ -1,12 +1,11 @@
 ﻿using Enums;
 using System;
 using System.Windows.Forms;
+using VideoFileClass;
 using SecondaryClasses;
 
 namespace CourseWork.Forms
 {
-    using Video;
-
     public partial class AddNewObjectForm : Form
     {
         private VideoFile resultObject;
@@ -21,6 +20,22 @@ namespace CourseWork.Forms
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
             {
                 e.Handled = true;
+            }
+        }
+
+        private void HandleItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            CheckedListBox checkedListBox = sender as CheckedListBox;
+
+            if (checkedListBox != null)
+            {
+                for (int i = 0; i < checkedListBox.Items.Count; i++)
+                {
+                    if (i != e.Index)
+                    {
+                        checkedListBox.SetItemChecked(i, false);
+                    }
+                }
             }
         }
 
@@ -54,48 +69,101 @@ namespace CourseWork.Forms
             NumericTextBox_KeyPress(sender, e);
         }
 
+        private void FormatListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            HandleItemCheck(sender, e);
+        }
+
+        private void VCodecListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            HandleItemCheck(sender, e);
+        }
+
+        private void ACodecListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            HandleItemCheck(sender, e);
+        }
+
+        private void VideoPlayerListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            HandleItemCheck(sender, e);
+        }
+
         private bool TryParseTextBoxes()
         {
             try
             {
-                if (NameTextBox.Text == string.Empty || LocationTextBox.Text == string.Empty)
+                if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(LocationTextBox.Text))
                 {
-                    throw new Exception();
+                    MessageBox.Show("Dont leave empty name or location. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return false;
                 }
 
-                string Name = NameTextBox.Text;
+                string name = NameTextBox.Text;
 
-                string Location = LocationTextBox.Text;
+                string location = LocationTextBox.Text;
 
-                var Format = (VideoFormat)Enum.Parse(typeof(VideoFormat), FormatListBox.Text);
+                if (!Enum.TryParse<VideoFormat>(FormatListBox.Text, out var videoFormat))
+                {
+                    MessageBox.Show("Invalid video format data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                var VCodec = (VideoCodec)Enum.Parse(typeof(VideoCodec), VCodecListBox.Text);
+                    return false;
+                }
 
-                var ACodec = (AudioCodec)Enum.Parse(typeof(AudioCodec), ACodecListBox.Text);
+                if (!Enum.TryParse<VideoCodec>(VCodecListBox.Text, out var videoCodec))
+                {
+                    MessageBox.Show("Invalid video codec data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                var Player = (VideoPlayer)Enum.Parse(typeof(VideoPlayer), VideoPlayerListBox.Text);
+                    return false;
+                }
 
-                var hours = int.Parse(HoursTextBox.Text);
-                var minutes = int.Parse(MinutesTextBox.Text);
-                var seconds = int.Parse(SecondsTextBox.Text);
+                if (!Enum.TryParse<AudioCodec>(ACodecListBox.Text, out var audioCodec))
+                {
+                    MessageBox.Show("Invalid audio codec data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                TimeSpan Duration = new TimeSpan(hours, minutes, seconds);
+                    return false;
+                }
 
-                var GB = uint.Parse(GBTextBox.Text);
-                var MB = uint.Parse(MBTextBox.Text);
-                var KB = uint.Parse(KBTextBox.Text);
+                if (!Enum.TryParse<VideoPlayer>(VideoPlayerListBox.Text, out var videoPlayer))
+                {
+                    MessageBox.Show("Invalid video player data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                FileSize Size = new FileSize(KB, MB, GB);
+                    return false;
+                }
 
-                var SubtitlesAvaliability = SubtitlesAvaliabilityCheckBox.Checked;
+                if (!int.TryParse(HoursTextBox.Text, out var hours) 
+                    || !int.TryParse(MinutesTextBox.Text, out var minutes) 
+                    || !int.TryParse(SecondsTextBox.Text, out var seconds))
+                {
+                    MessageBox.Show("Invalid duration data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                resultObject =  new VideoFile(Name, Location, Format, Duration, ACodec, VCodec, SubtitlesAvaliability, Size, Player);
+                    return false;
+                }
+
+                TimeSpan duration = new TimeSpan(hours, minutes, seconds);
+
+                if (!uint.TryParse(GBTextBox.Text, out var gb)
+                    || !uint.TryParse(MBTextBox.Text, out var mb)
+                    || !uint.TryParse(KBTextBox.Text, out var kb)) 
+                {
+                    MessageBox.Show("Invalid size data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return false;
+                }
+
+                FileSize size = new FileSize(kb, mb, gb);
+
+                var subtitles = SubtitlesAvaliabilityCheckBox.Checked;
+
+                resultObject =  new VideoFile(name, location, videoFormat, duration, audioCodec, 
+                    videoCodec, subtitles, size, videoPlayer);
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Dont leave empty properties. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return false;
             }

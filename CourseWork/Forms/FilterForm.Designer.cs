@@ -141,6 +141,7 @@
             this.FormatListBox.Name = "FormatListBox";
             this.FormatListBox.Size = new System.Drawing.Size(92, 26);
             this.FormatListBox.TabIndex = 7;
+            this.FormatListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.FormatListBox_ItemCheck);
             // 
             // SecondsTextBox
             // 
@@ -150,6 +151,7 @@
             this.SecondsTextBox.Size = new System.Drawing.Size(67, 27);
             this.SecondsTextBox.TabIndex = 27;
             this.SecondsTextBox.Text = "0";
+            this.SecondsTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SecondsTextBox_KeyPress);
             // 
             // SecondsLabel
             // 
@@ -194,6 +196,7 @@
             this.MinutesTextBox.Size = new System.Drawing.Size(67, 27);
             this.MinutesTextBox.TabIndex = 22;
             this.MinutesTextBox.Text = "0";
+            this.MinutesTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MinutesTextBox_KeyPress);
             // 
             // HoursTextBox
             // 
@@ -203,6 +206,7 @@
             this.HoursTextBox.Size = new System.Drawing.Size(67, 27);
             this.HoursTextBox.TabIndex = 21;
             this.HoursTextBox.Text = "0";
+            this.HoursTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HoursTextBox_KeyPress);
             // 
             // DurationLabel
             // 
@@ -225,6 +229,7 @@
             this.VCodecListBox.Name = "VCodecListBox";
             this.VCodecListBox.Size = new System.Drawing.Size(92, 26);
             this.VCodecListBox.TabIndex = 28;
+            this.VCodecListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.VCodecListBox_ItemCheck);
             // 
             // ACodecListBox
             // 
@@ -238,6 +243,7 @@
             this.ACodecListBox.Name = "ACodecListBox";
             this.ACodecListBox.Size = new System.Drawing.Size(92, 26);
             this.ACodecListBox.TabIndex = 29;
+            this.ACodecListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ACodecListBox_ItemCheck);
             // 
             // SubtitlesAvaliabilityCheckBox
             // 

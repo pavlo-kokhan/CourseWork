@@ -116,6 +116,7 @@
             this.FormatListBox.Name = "FormatListBox";
             this.FormatListBox.Size = new System.Drawing.Size(92, 92);
             this.FormatListBox.TabIndex = 5;
+            this.FormatListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.FormatListBox_ItemCheck);
             // 
             // VideoCodecLabel
             // 
@@ -138,6 +139,7 @@
             this.VCodecListBox.Name = "VCodecListBox";
             this.VCodecListBox.Size = new System.Drawing.Size(92, 92);
             this.VCodecListBox.TabIndex = 7;
+            this.VCodecListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.VCodecListBox_ItemCheck);
             // 
             // AudioCodecLabel
             // 
@@ -160,6 +162,7 @@
             this.ACodecListBox.Name = "ACodecListBox";
             this.ACodecListBox.Size = new System.Drawing.Size(92, 92);
             this.ACodecListBox.TabIndex = 9;
+            this.ACodecListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ACodecListBox_ItemCheck);
             // 
             // VideoPlayerLabel
             // 
@@ -182,6 +185,7 @@
             this.VideoPlayerListBox.Name = "VideoPlayerListBox";
             this.VideoPlayerListBox.Size = new System.Drawing.Size(92, 92);
             this.VideoPlayerListBox.TabIndex = 11;
+            this.VideoPlayerListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.VideoPlayerListBox_ItemCheck);
             // 
             // DurationLabel
             // 

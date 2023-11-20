@@ -112,8 +112,9 @@
             // AboutMenuStripButton
             // 
             this.AboutMenuStripButton.Name = "AboutMenuStripButton";
-            this.AboutMenuStripButton.Size = new System.Drawing.Size(108, 24);
+            this.AboutMenuStripButton.Size = new System.Drawing.Size(180, 24);
             this.AboutMenuStripButton.Text = "About";
+            this.AboutMenuStripButton.Click += new System.EventHandler(this.AboutMenuStripButton_Click);
             // 
             // FilterButton
             // 
