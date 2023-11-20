@@ -1,20 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Xml;
-using Microsoft.SqlServer.Server;
 using System.Xml.Serialization;
-using System.Xml.Linq;
-
 using Enums;
 using SecondaryClasses;
-using static System.Windows.Forms.DataFormats;
-using System.Drawing;
 
 //Створити клас «VideoFile» для запису мультимедійної інформації про відео файл:
 //1) Розміщення файлу на диску; 2) Формат файлу; 3) Тривалість; 4) Кодек відео; 5) Кодек аудіо;
@@ -58,7 +47,7 @@ namespace VideoFileClass
             Duration = TimeSpan.Zero;
             ACodec = AudioCodec.Undefined;
             VCodec = VideoCodec.Undefined;
-            SubtitlesAvaliability = false;
+            SubtitlesAvailability = false;
             Size = new FileSize();
             Player = VideoPlayer.Undefined;
         }
@@ -67,35 +56,22 @@ namespace VideoFileClass
             string name, 
             string location, 
             VideoFormat format, 
-            TimeSpan duraton, 
+            TimeSpan duration, 
             AudioCodec aCodec, 
             VideoCodec vCodec, 
-            bool subtitlesAvaliability, 
+            bool subtitlesAvailability, 
             FileSize size, 
             VideoPlayer player)
         {
             Name = name;
             Location = location;
             Format = format;
-            Duration = duraton;
+            Duration = duration;
             ACodec = aCodec;
             VCodec = vCodec;
-            SubtitlesAvaliability = subtitlesAvaliability;
+            SubtitlesAvailability = subtitlesAvailability;
             Size = size;
             Player = player;
-        }
-
-        public VideoFile(VideoFile Other)
-        {
-            this.Name = Other.Name;
-            this.Location = Other.Location;
-            this.Format = Other.Format;
-            this.Duration = Other.Duration;
-            this.ACodec = Other.ACodec;
-            this.VCodec = Other.VCodec;
-            this.SubtitlesAvaliability = Other.SubtitlesAvaliability;
-            this.Size = Other.Size;
-            this.Player = Other.Player;
         }
 
         public TimeSpan GetDuration()
@@ -104,39 +80,39 @@ namespace VideoFileClass
         }
 
         // Пошук даних за розміщенням на диску
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, string targetLocation)
+        public static List<VideoFile> FindObjectsWithCorrespondingProperties(List<VideoFile> objects, string targetLocation)
         {
             return objects.Where(file => file.Location == targetLocation).ToList();
         }
 
         // Пошук даних за форматом
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, VideoFormat targetVideoFormat)
+        public static List<VideoFile> FindObjectsWithCorrespondingProperties(List<VideoFile> objects, VideoFormat targetVideoFormat)
         {
             return objects.Where(file => file.Format == targetVideoFormat).ToList();
         }
 
         // Пошук даних за тривалістю
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, TimeSpan targetDuration)
+        public static List<VideoFile> FindObjectsWithCorrespondingProperties(List<VideoFile> objects, TimeSpan targetDuration)
         {
             return objects.Where(file => file.Duration == targetDuration).ToList();
         }
 
         // Пошук даних за аудіокодеком 
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, AudioCodec targetAudioCodec)
+        public static List<VideoFile> FindObjectsWithCorrespondingProperties(List<VideoFile> objects, AudioCodec targetAudioCodec)
         {
             return objects.Where(file => file.ACodec == targetAudioCodec).ToList();
         }
 
         // Пошук даних за відеокодеком 
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, VideoCodec targetVideoCodec)
+        public static List<VideoFile> FindObjectsWithCorrespondingProperties(List<VideoFile> objects, VideoCodec targetVideoCodec)
         {
             return objects.Where(file => file.VCodec == targetVideoCodec).ToList();
         }
 
         // Пошук даних за субтитрами
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, bool targetSubtitlesAvaliability)
+        public static List<VideoFile> FindObjectsWithCorrespondingProperties(List<VideoFile> objects, bool targetSubtitlesAvaliability)
         {
-            return objects.Where(file => file.SubtitlesAvaliability == targetSubtitlesAvaliability).ToList();
+            return objects.Where(file => file.SubtitlesAvailability == targetSubtitlesAvaliability).ToList();
         }
 
         public static bool operator <(VideoFile left, VideoFile right)
@@ -148,85 +124,31 @@ namespace VideoFileClass
             return left.Duration > right.Duration;
         }
 
-        [XmlIgnore] private string Name { get; set; }
-
-        [XmlIgnore] private string Location { get; set; }
-
-        [XmlIgnore] private VideoFormat Format { get; set; }
-
-        [XmlIgnore] private TimeSpan Duration { get; set; }
-
-        [XmlIgnore] private AudioCodec ACodec { get; set; }
-
-        [XmlIgnore] private VideoCodec VCodec { get; set; }
-
-        [XmlIgnore] private bool SubtitlesAvaliability { get; set; }
-
-        [XmlIgnore] private FileSize Size { get; set; }
-
-        [XmlIgnore] private VideoPlayer Player { get; set; }
-
         [XmlElement("Name")]
-        public string NameString
-        {
-            get { return Name; }
-            set { Name = value; }
-        }
+        public string Name { get; }
 
         [XmlElement("Location")]
-        public string LocationString
-        {
-            get { return Location; }
-            set { Location = value; }
-        }
+        public string Location { get; }
 
         [XmlElement("Format")]
-        public string FormatString
-        {
-            get { return Format.ToString(); }
-            set { Format = (VideoFormat)Enum.Parse(typeof(VideoFormat), value); }
-        }
+        public VideoFormat Format { get; }
 
         [XmlElement("Duration")]
-        public string DurationString
-        {
-            get { return XmlConvert.ToString(Duration); }
-            set { Duration = XmlConvert.ToTimeSpan(value); }
-        }
+        public TimeSpan Duration { get; }
 
         [XmlElement("ACodec")]
-        public string ACodecString
-        {
-            get { return ACodec.ToString(); }
-            set { ACodec = (AudioCodec)Enum.Parse(typeof(AudioCodec), value); }
-        }
+        public AudioCodec ACodec { get; }
 
         [XmlElement("VCodec")]
-        public string VCodecString
-        {
-            get { return VCodec.ToString(); }
-            set { VCodec = (VideoCodec)Enum.Parse(typeof(VideoCodec), value); }
-        }
+        public VideoCodec VCodec { get; }
 
         [XmlElement("SubtitlesAvaliability")]
-        public string SubtitlesAvaliabilityString
-        {
-            get { return XmlConvert.ToString(SubtitlesAvaliability); }
-            set { SubtitlesAvaliability = XmlConvert.ToBoolean(value); }
-        }
+        public bool SubtitlesAvailability { get; }
 
         [XmlElement("Size")]
-        public string SizeString
-        {
-            get { return Size.ToString(); }
-            set { Size = FileSize.Parse(value); }
-        }
+        public FileSize Size { get; }
 
         [XmlElement("Player")]
-        public string PlayerString
-        {
-            get { return Player.ToString(); }
-            set { Player = (VideoPlayer)Enum.Parse(typeof(VideoPlayer), value); }
-        }
+        public VideoPlayer Player { get; }
     }
 }

@@ -3,12 +3,6 @@ using Enums;
 using SecondaryClasses;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VideoFileClass;
 
@@ -16,35 +10,35 @@ namespace CourseWork
 {
     public partial class MainForm : Form
     {
-        List<VideoFile> objects = new List<VideoFile>();
+        private List<VideoFile> _videoFiles = new List<VideoFile>();
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private ListViewItem ConvertToListViewItem(VideoFile obj)
+        private ListViewItem ConvertToListViewItem(VideoFile videoFile)
         {
-            ListViewItem item = new ListViewItem(obj.NameString);
+            var item = new ListViewItem(videoFile.Name);
 
-            var duration = obj.GetDuration();
-            string durationFormatted = $"{duration.Hours:D2}:{duration.Minutes:D2}:{duration.Seconds:D2}";
+            var duration = videoFile.GetDuration();
+            var durationFormatted = $"{duration.Hours:D2}:{duration.Minutes:D2}:{duration.Seconds:D2}";
 
-            item.SubItems.Add(obj.LocationString);
-            item.SubItems.Add(obj.FormatString);
+            item.SubItems.Add(videoFile.Location);
+            item.SubItems.Add(videoFile.Format.ToString());
             item.SubItems.Add(durationFormatted);
-            item.SubItems.Add(obj.VCodecString);
-            item.SubItems.Add(obj.ACodecString);
-            item.SubItems.Add(obj.SubtitlesAvaliabilityString);
-            item.SubItems.Add(obj.SizeString);
-            item.SubItems.Add(obj.PlayerString);
+            item.SubItems.Add(videoFile.VCodec.ToString());
+            item.SubItems.Add(videoFile.ACodec.ToString());
+            item.SubItems.Add(videoFile.SubtitlesAvailability.ToString());
+            item.SubItems.Add(videoFile.Size.ToString());
+            item.SubItems.Add(videoFile.Player.ToString());
 
             return item;
         }
 
         private VideoFile ConvertToVideoFile(ListViewItem item)
         {
-            return objects[ObjectsListView.Items.IndexOf(item)];
+            return _videoFiles[ObjectsListView.Items.IndexOf(item)];
         }
 
         private void UpdateListView(List<VideoFile> list)
@@ -73,7 +67,7 @@ namespace CourseWork
 
                 ListViewItem item = ConvertToListViewItem(newObject);
                 ObjectsListView.Items.Add(item);
-                objects.Add(newObject);
+                _videoFiles.Add(newObject);
             }
         }
 
@@ -84,7 +78,7 @@ namespace CourseWork
                 foreach (ListViewItem item in ObjectsListView.SelectedItems)
                 {
                     VideoFile obj = ConvertToVideoFile(item);
-                    objects.Remove(obj);
+                    _videoFiles.Remove(obj);
                     ObjectsListView.Items.Remove(item);
                 }
             }
@@ -106,30 +100,30 @@ namespace CourseWork
 
                 if (property is string specificProperty1)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty1);
+                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty1);
                 }
                 else if (property is VideoFormat specificProperty2)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty2);
+                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty2);
                 }
                 else if (property is TimeSpan specificProperty3)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty3);
+                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty3);
                 }
                 else if (property is VideoCodec specificProperty4)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty4);
+                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty4);
                 }
                 else if (property is AudioCodec specificProperty5)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty5);
+                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty5);
                 }
                 else if (property is bool specificProperty6)
                 {
-                    objects = VideoFile.FindObjectsWithCorespondingProperties(objects, specificProperty6);
+                    _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty6);
                 }
 
-                UpdateListView(objects);
+                UpdateListView(_videoFiles);
             }
         }
 
@@ -147,7 +141,7 @@ namespace CourseWork
 
                     try
                     {
-                        objects = VideoFileSerializer.DeserializeXml(filePath);
+                        _videoFiles = VideoFileSerializer.DeserializeXml(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -156,7 +150,7 @@ namespace CourseWork
                         return;
                     }
 
-                    UpdateListView(objects);
+                    UpdateListView(_videoFiles);
                 }
             }
         }
@@ -175,7 +169,7 @@ namespace CourseWork
 
                     try
                     {
-                        VideoFileSerializer.SerializeXml(objects, filePath);
+                        VideoFileSerializer.SerializeXml(_videoFiles, filePath);
                     }
                     catch (Exception ex)
                     {
@@ -187,7 +181,7 @@ namespace CourseWork
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            objects.Clear();
+            _videoFiles.Clear();
 
             ObjectsListView.Clear();
         }
