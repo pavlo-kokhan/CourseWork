@@ -72,7 +72,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VideoFile\VideoFile.cs" />
     <Compile Include="VideoFile\VideoFileSerializer.cs" />
-    <Compile Include="VideoFile\VideoFileSorter.cs" />
     <EmbeddedResource Include="Forms\AddNewObjectForm.resx">
       <DependentUpon>AddNewObjectForm.cs</DependentUpon>
     </EmbeddedResource>
