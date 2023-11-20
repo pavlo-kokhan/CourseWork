@@ -95,8 +95,7 @@ namespace CourseWork
             if (result != DialogResult.OK)
                 return;
 
-            var filter = childForm.Filter;
-            _videoFiles = GetFilteredVideoFiles(filter);
+            _videoFiles = GetFilteredVideoFiles(childForm.Filter);
 
             UpdateListView();
         }

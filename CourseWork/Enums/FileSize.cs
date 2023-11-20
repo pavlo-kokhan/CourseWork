@@ -8,9 +8,9 @@ namespace SecondaryClasses
     {
         public FileSize()
         {
-            this.KB = 0;
-            this.MB = 0;
-            this.GB = 0;
+            KB = 0;
+            MB = 0;
+            GB = 0;
         }
 
         public FileSize(uint KB, uint MB, uint GB)
@@ -38,14 +38,14 @@ namespace SecondaryClasses
 
         public FileSize(FileSize Other)
         {
-            this.KB = Other.KB;
-            this.MB = Other.MB;
-            this.GB = Other.GB;
+            KB = Other.KB;
+            MB = Other.MB;
+            GB = Other.GB;
         }
 
         public uint GetAllInKB()
         {
-            return (1024 * 1024 * this.GB) + (1024 * this.MB) + this.KB;
+            return (1024 * 1024 * GB) + (1024 * MB) + KB;
         }
 
         public double GetAllInMB()

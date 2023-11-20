@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\Filter.cs" />
     <Compile Include="Forms\AddNewObjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +70,9 @@
     </Compile>
     <Compile Include="Program\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Video\Filters\Abstract\IFilter.cs" />
+    <Compile Include="Video\Filters\DurationFilter.cs" />
+    <Compile Include="Video\Filters\SubtitlesAvailabilityFilter.cs" />
     <Compile Include="Video\VideoFile.cs" />
     <Compile Include="Video\VideoFileSerializer.cs" />
     <Compile Include="Video\VideoFileSorter.cs" />

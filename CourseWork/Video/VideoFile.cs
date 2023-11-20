@@ -35,7 +35,7 @@ namespace CourseWork.Video
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Serialization;
-    using global::Enums;
+    using Enums;
     using SecondaryClasses;
 
     [Serializable]
