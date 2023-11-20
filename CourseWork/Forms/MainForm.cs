@@ -9,6 +9,8 @@ namespace CourseWork
 {
     using System.Linq;
     using Video;
+    using Video.Filters;
+    using Video.Filters.Abstract;
 
     public partial class MainForm : Form
     {
@@ -99,22 +101,22 @@ namespace CourseWork
             UpdateListView();
         }
 
-        private List<VideoFile> GetFilteredVideoFiles(object filter)
+        private List<VideoFile> GetFilteredVideoFiles(IFilter filter)
         {
             switch (filter)
             {
-                case string specificProperty1:
-                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty1);
-                case VideoFormat specificProperty2:
-                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty2);
-                case TimeSpan specificProperty3:
-                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty3);
-                case VideoCodec specificProperty4:
-                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty4);
-                case AudioCodec specificProperty5:
-                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty5);
-                case bool specificProperty6:
-                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty6);
+                // case string specificProperty1:
+                //     return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty1);
+                // case VideoFormat specificProperty2:
+                //     return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty2);
+                case DurationFilter durationFilter:
+                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, durationFilter.Duration);
+                // case VideoCodec specificProperty4:
+                //     return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty4);
+                // case AudioCodec specificProperty5:
+                //     return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty5);
+                case SubtitlesAvailabilityFilter subtitlesAvailabilityFilter:
+                    return VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, subtitlesAvailabilityFilter.IsAvailable);
             }
 
             return new List<VideoFile>();
