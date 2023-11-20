@@ -1,12 +1,5 @@
 ﻿using Enums;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CourseWork.Forms
@@ -27,6 +20,60 @@ namespace CourseWork.Forms
             DialogResult = dialogResult;
 
             Close();
+        }
+
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void HandleItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            CheckedListBox checkedListBox = sender as CheckedListBox;
+
+            if (checkedListBox != null)
+            {
+                for (int i = 0; i < checkedListBox.Items.Count; i++)
+                {
+                    if (i != e.Index)
+                    {
+                        checkedListBox.SetItemChecked(i, false);
+                    }
+                }
+            }
+        }
+
+        private void HoursTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericTextBox_KeyPress(sender, e);
+        }
+
+        private void MinutesTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericTextBox_KeyPress(sender, e);
+        }
+
+        private void SecondsTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericTextBox_KeyPress(sender, e);
+        }
+
+        private void FormatListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            HandleItemCheck(sender, e);
+        }
+
+        private void VCodecListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            HandleItemCheck(sender, e);
+        }
+
+        private void ACodecListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            HandleItemCheck(sender, e);
         }
 
         private void LocationButton_Click(object sender, EventArgs e)

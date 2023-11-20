@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ArrayOfVideoFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />  <VideoFile>
+    <Name>HarryPotter</Name>
+    <Location>C:\Videos</Location>
+    <Format>MP4</Format>
+    <Duration>PT2H23M45S</Duration>
+    <ACodec>MP3</ACodec>
+    <VCodec>AVC</VCodec>
+    <SubtitlesAvaliability>true</SubtitlesAvaliability>
+    <Size>5-84-988</Size>
+    <Player>VLC</Player>
+  </VideoFile>
+  <VideoFile>
+    <Name>Batman</Name>
+    <Location>C:\Videos\others</Location>
+    <Format>MP4</Format>
+    <Duration>PT2H56M58S</Duration>
+    <ACodec>AAC</ACodec>
+    <VCodec>HEVC</VCodec>
+    <SubtitlesAvaliability>true</SubtitlesAvaliability>
+    <Size>7-998-58</Size>
+    <Player>VLC</Player>
+  </VideoFile>
+  <VideoFile>
+    <Name>GodFellas</Name>
+    <Location>C:\Videos\others</Location>
+    <Format>MP4</Format>
+    <Duration>PT3H19M34S</Duration>
+    <ACodec>MP3</ACodec>
+    <VCodec>AVC</VCodec>
+    <SubtitlesAvaliability>true</SubtitlesAvaliability>
+    <Size>10-226-1013</Size>
+    <Player>Kodi</Player>
+  </VideoFile>
+</ArrayOfVideoFile>

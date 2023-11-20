@@ -3,12 +3,6 @@ using Enums;
 using SecondaryClasses;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VideoFileClass;
 
@@ -189,7 +183,15 @@ namespace CourseWork
         {
             objects.Clear();
 
-            ObjectsListView.Clear();
+            UpdateListView(objects);
+        }
+
+        private void AboutMenuStripButton_Click(object sender, EventArgs e)
+        {
+            string message = "Objective-oriented programming course work\n";
+            message += "Made by Pavlo Kokhan PZ-23";
+
+            MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
