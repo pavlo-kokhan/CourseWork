@@ -8,6 +8,8 @@ using VideoFileClass;
 
 namespace CourseWork
 {
+    using System.Linq;
+
     public partial class MainForm : Form
     {
         private List<VideoFile> _videoFiles = new List<VideoFile>();
@@ -17,7 +19,7 @@ namespace CourseWork
             InitializeComponent();
         }
 
-        private ListViewItem ConvertToListViewItem(VideoFile videoFile)
+        private static ListViewItem ConvertToListViewItem(VideoFile videoFile)
         {
             var item = new ListViewItem(videoFile.Name);
 
@@ -43,32 +45,27 @@ namespace CourseWork
 
         private void UpdateListView(List<VideoFile> list)
         {
-            ObjectsListView.Items.Clear(); 
+            ObjectsListView.Items.Clear();
 
-            foreach (var obj in list)
+            foreach (var item in list.Select(ConvertToListViewItem))
             {
-                ListViewItem item = ConvertToListViewItem(obj);
-
                 ObjectsListView.Items.Add(item);
             }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            VideoFile newObject;
-
-            AddNewObjectForm childForm = new AddNewObjectForm();
-
+            var childForm = new AddNewObjectForm();
             var result = childForm.ShowDialog();
 
-            if (result == DialogResult.OK)
-            {
-                newObject = childForm.GetResultObject();
+            if (result != DialogResult.OK)
+                return;
 
-                ListViewItem item = ConvertToListViewItem(newObject);
-                ObjectsListView.Items.Add(item);
-                _videoFiles.Add(newObject);
-            }
+            var newObject = childForm.GetResultObject();
+            var item = ConvertToListViewItem(newObject);
+            
+            ObjectsListView.Items.Add(item);
+            _videoFiles.Add(newObject);
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
@@ -77,7 +74,7 @@ namespace CourseWork
             {
                 foreach (ListViewItem item in ObjectsListView.SelectedItems)
                 {
-                    VideoFile obj = ConvertToVideoFile(item);
+                    var obj = ConvertToVideoFile(item);
                     _videoFiles.Remove(obj);
                     ObjectsListView.Items.Remove(item);
                 }
@@ -90,74 +87,70 @@ namespace CourseWork
 
         private void FilterButton_Click(object sender, EventArgs e)
         {
-            FilterForm childForm = new FilterForm();
-
+            var childForm = new FilterForm();
             var result = childForm.ShowDialog();
 
-            if (result == DialogResult.OK)
-            {
-                var property = childForm.GetResultProperty();
+            if (result != DialogResult.OK)
+                return;
 
-                if (property is string specificProperty1)
-                {
+            var property = childForm.GetResultProperty();
+
+            switch (property)
+            {
+                case string specificProperty1:
                     _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty1);
-                }
-                else if (property is VideoFormat specificProperty2)
-                {
+                    break;
+                case VideoFormat specificProperty2:
                     _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty2);
-                }
-                else if (property is TimeSpan specificProperty3)
-                {
+                    break;
+                case TimeSpan specificProperty3:
                     _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty3);
-                }
-                else if (property is VideoCodec specificProperty4)
-                {
+                    break;
+                case VideoCodec specificProperty4:
                     _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty4);
-                }
-                else if (property is AudioCodec specificProperty5)
-                {
+                    break;
+                case AudioCodec specificProperty5:
                     _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty5);
-                }
-                else if (property is bool specificProperty6)
-                {
+                    break;
+                case bool specificProperty6:
                     _videoFiles = VideoFile.FindObjectsWithCorrespondingProperties(_videoFiles, specificProperty6);
+                    break;
+            }
+
+            UpdateListView(_videoFiles);
+        }
+
+        private void OpenMenuStripButton_Click(object sender, EventArgs e)
+        {
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                ofd.FilterIndex = 1;
+                ofd.RestoreDirectory = true;
+
+                if (ofd.ShowDialog() != DialogResult.OK)
+                    return;
+
+                var filePath = ofd.FileName;
+
+                try
+                {
+                    _videoFiles = VideoFileSerializer.DeserializeXml(filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
                 }
 
                 UpdateListView(_videoFiles);
             }
         }
 
-        private void OpenMenuStripButton_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
-                ofd.FilterIndex = 1;
-                ofd.RestoreDirectory = true;
-
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    string filePath = ofd.FileName;
-
-                    try
-                    {
-                        _videoFiles = VideoFileSerializer.DeserializeXml(filePath);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                        return;
-                    }
-
-                    UpdateListView(_videoFiles);
-                }
-            }
-        }
-
         private void SaveMenuStripButton_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (var ofd = new OpenFileDialog())
             {
                 ofd.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
                 ofd.FilterIndex = 1;
@@ -182,7 +175,6 @@ namespace CourseWork
         private void ClearButton_Click(object sender, EventArgs e)
         {
             _videoFiles.Clear();
-
             ObjectsListView.Clear();
         }
     }
