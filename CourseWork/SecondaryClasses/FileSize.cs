@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace SecondaryClasses
@@ -13,59 +8,40 @@ namespace SecondaryClasses
     {
         public FileSize()
         {
-            this.KB = 0;
-            this.MB = 0;
-            this.GB = 0;
+            Kilobytes = 0;
         }
 
-        public FileSize(uint KB, uint MB, uint GB)
+        public FileSize(uint kilobytes)
         {
-            this.KB = 0;
-            this.MB = 0;
-            this.GB = 0;
-
-            if (KB <= 1023) { this.KB = KB; }
-            else
-            {
-                this.MB = KB / 1024;
-                this.KB = KB % 1024;
-            }
-
-            if (MB <= 1023) { this.MB += MB; }
-            else
-            {
-                this.GB = MB / 1024;
-                this.MB += MB % 1024;
-            }
-
-            this.GB += GB;
+            Kilobytes = kilobytes;
         }
 
-        public FileSize(FileSize Other)
+        public FileSize(uint kilobytes, uint megabytes)
         {
-            this.KB = Other.KB;
-            this.MB = Other.MB;
-            this.GB = Other.GB;
+            Kilobytes = kilobytes + megabytes * 1024;
         }
 
-        public uint GetAllInKB()
+        public FileSize(uint kilobytes, uint megabytes, uint gigabytes)
         {
-            return (1024 * 1024 * this.GB) + (1024 * this.MB) + this.KB;
+            Kilobytes = kilobytes + megabytes * 1024 + gigabytes * 1024 * 1024;
         }
 
-        public double GetAllInMB()
+        public FileSize(FileSize other)
         {
-            return Convert.ToDouble(GetAllInKB()) / 1024.0;
-        }
-
-        public double GetAllInGB()
-        {
-            return GetAllInMB() / 1024;
+            Kilobytes = other.Kilobytes;
         }
 
         public override string ToString()
         {
-            return Convert.ToString(GB) + "-" + Convert.ToString(MB) + "-" + Convert.ToString(KB);
+            uint gigabytesChunk, megabytesChunk, kilobytesChunk;
+
+            kilobytesChunk = Kilobytes % 1024;
+            megabytesChunk = Kilobytes / 1024;
+
+            gigabytesChunk = megabytesChunk / 1024;
+            megabytesChunk = megabytesChunk % 1024;
+
+            return string.Join("-", gigabytesChunk, megabytesChunk, kilobytesChunk);
         }
 
         public static FileSize Parse(string sizeString)
@@ -75,16 +51,16 @@ namespace SecondaryClasses
                 throw new ArgumentException("Size string is empty or null.");
             }
 
-            string[] parts = sizeString.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] chunks = sizeString.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (parts.Length != 3)
+            if (chunks.Length != 3)
             {
                 throw new FormatException("Invalid size string format.");
             }
 
-            if (!uint.TryParse(parts[0], out uint gb) ||
-                !uint.TryParse(parts[1], out uint mb) ||
-                !uint.TryParse(parts[2], out uint kb))
+            if (!uint.TryParse(chunks[0], out uint gb) ||
+                !uint.TryParse(chunks[1], out uint mb) ||
+                !uint.TryParse(chunks[2], out uint kb))
             {
                 throw new FormatException("Invalid size values.");
             }
@@ -101,49 +77,32 @@ namespace SecondaryClasses
                 return false;
             }
 
-            string[] parts = sizeString.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] chunks = sizeString.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (parts.Length != 3)
+            if (chunks.Length != 3)
             {
                 return false;
             }
 
-            if (!uint.TryParse(parts[0], out uint gb) ||
-                !uint.TryParse(parts[1], out uint mb) ||
-                !uint.TryParse(parts[2], out uint kb))
+            if (!uint.TryParse(chunks[0], out uint gb) ||
+                !uint.TryParse(chunks[1], out uint mb) ||
+                !uint.TryParse(chunks[2], out uint kb))
             {
                 return false;
             }
 
             fileSize = new FileSize(kb, mb, gb);
+
             return true;
         }
 
-        [XmlIgnore] private uint KB { get; set; }
+        public uint Kilobytes { get; set; }
 
-        [XmlIgnore] private uint MB { get; set; }
-
-        [XmlIgnore] private uint GB { get; set; }
-
-        [XmlElement("KB")]
-        public string KBString
+        [XmlElement("Kilobytes")]
+        public string KilobytesString
         {
-            get { return KB.ToString(); }
-            set { KB = uint.Parse(value); }
-        }
-
-        [XmlElement("MB")]
-        public string MBString
-        {
-            get { return MB.ToString(); }
-            set { MB = uint.Parse(value); }
-        }
-
-        [XmlElement("GB")]
-        public string GBString
-        {
-            get { return GB.ToString(); }
-            set { GB = uint.Parse(value); }
+            get { return Kilobytes.ToString(); }
+            set { Kilobytes = uint.Parse(value); }
         }
     }
 }
