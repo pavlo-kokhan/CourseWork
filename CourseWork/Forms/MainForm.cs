@@ -303,7 +303,25 @@ namespace CourseWork
             SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Kilobytes.CompareTo(obj2.Size.Kilobytes), false);
         }
 
-        // Розібратися чому не відображається контекстне меню
-        // Переробити сереалізацію з xml на json
+        private void VideoFilesListView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.A:
+                        AddButton.PerformClick();
+                        break;
+
+                    case Keys.R:
+                        RemoveButton.PerformClick();
+                        break;
+
+                    case Keys.F:
+                        FilterButton.PerformClick();
+                        break;
+                }
+            }
+        }
     }
 }

@@ -190,5 +190,17 @@ namespace CourseWork.Forms
         {
             return resultObject;
         }
+
+        private void AddNewObjectForm_KeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ApplyButton.PerformClick();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                CancelButton.PerformClick();
+            }
+        }
     }
 }

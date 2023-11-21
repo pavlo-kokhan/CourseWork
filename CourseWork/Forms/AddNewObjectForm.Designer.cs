@@ -407,6 +407,7 @@
             this.Name = "AddNewObjectForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add";
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.AddNewObjectForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

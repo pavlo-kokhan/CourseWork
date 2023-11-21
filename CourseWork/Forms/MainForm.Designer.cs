@@ -52,22 +52,22 @@
             this.SizeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PlayerHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.OpenContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.AddContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.FilterContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.SortContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.NameSortContextMenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.DurationSortContextMenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.SizeSortContextMenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.ClearContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.NameSortContextMenuAscending = new System.Windows.Forms.ToolStripMenuItem();
             this.NameSortContextMenuDescending = new System.Windows.Forms.ToolStripMenuItem();
+            this.DurationSortContextMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.DurationSortContextMenuAscending = new System.Windows.Forms.ToolStripMenuItem();
             this.DurationSortContextMenuDescending = new System.Windows.Forms.ToolStripMenuItem();
+            this.SizeSortContextMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.SizeSortContextMenuAscending = new System.Windows.Forms.ToolStripMenuItem();
             this.SizeSortContextMenuDescending = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ButtonsPanel.SuspendLayout();
             this.HeadMenuStrip.SuspendLayout();
             this.ContextMenuStrip.SuspendLayout();
@@ -162,20 +162,23 @@
             this.OpenMenuStripButton,
             this.SaveMenuStripButton});
             this.FileMenuStrip.Name = "FileMenuStrip";
+            this.FileMenuStrip.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.FileMenuStrip.Size = new System.Drawing.Size(40, 23);
             this.FileMenuStrip.Text = "File";
             // 
             // OpenMenuStripButton
             // 
             this.OpenMenuStripButton.Name = "OpenMenuStripButton";
-            this.OpenMenuStripButton.Size = new System.Drawing.Size(104, 24);
+            this.OpenMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.OpenMenuStripButton.Size = new System.Drawing.Size(180, 24);
             this.OpenMenuStripButton.Text = "Open";
             this.OpenMenuStripButton.Click += new System.EventHandler(this.OpenMenuStripButton_Click);
             // 
             // SaveMenuStripButton
             // 
             this.SaveMenuStripButton.Name = "SaveMenuStripButton";
-            this.SaveMenuStripButton.Size = new System.Drawing.Size(104, 24);
+            this.SaveMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.SaveMenuStripButton.Size = new System.Drawing.Size(180, 24);
             this.SaveMenuStripButton.Text = "Save";
             this.SaveMenuStripButton.Click += new System.EventHandler(this.SaveMenuStripButton_Click);
             // 
@@ -190,7 +193,7 @@
             // AboutMenuStripButton
             // 
             this.AboutMenuStripButton.Name = "AboutMenuStripButton";
-            this.AboutMenuStripButton.Size = new System.Drawing.Size(108, 24);
+            this.AboutMenuStripButton.Size = new System.Drawing.Size(180, 24);
             this.AboutMenuStripButton.Text = "About";
             this.AboutMenuStripButton.Click += new System.EventHandler(this.AboutMenuStripButton_Click);
             // 
@@ -219,6 +222,7 @@
             this.VideoFilesListView.UseCompatibleStateImageBehavior = false;
             this.VideoFilesListView.View = System.Windows.Forms.View.Details;
             this.VideoFilesListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.VideoFilesListView_ColumnClick);
+            this.VideoFilesListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VideoFilesListView_KeyDown);
             this.VideoFilesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.VideoFilesListView_MouseDown);
             // 
             // NameHeader
@@ -277,26 +281,45 @@
             this.SortContextMenuStripButton,
             this.ClearContextMenuStripButton});
             this.ContextMenuStrip.Name = "ContextMenuStrip";
-            this.ContextMenuStrip.Size = new System.Drawing.Size(181, 180);
+            this.ContextMenuStrip.Size = new System.Drawing.Size(159, 158);
+            // 
+            // OpenContextMenuStripButton
+            // 
+            this.OpenContextMenuStripButton.Name = "OpenContextMenuStripButton";
+            this.OpenContextMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.OpenContextMenuStripButton.Size = new System.Drawing.Size(158, 22);
+            this.OpenContextMenuStripButton.Text = "Open";
+            this.OpenContextMenuStripButton.Click += new System.EventHandler(this.OpenContextMenuStripButton_Click);
+            // 
+            // SaveContextMenuStripButton
+            // 
+            this.SaveContextMenuStripButton.Name = "SaveContextMenuStripButton";
+            this.SaveContextMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.SaveContextMenuStripButton.Size = new System.Drawing.Size(158, 22);
+            this.SaveContextMenuStripButton.Text = "Save";
+            this.SaveContextMenuStripButton.Click += new System.EventHandler(this.SaveContextMenuStripButton_Click);
             // 
             // AddContextMenuStripButton
             // 
             this.AddContextMenuStripButton.Name = "AddContextMenuStripButton";
-            this.AddContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.AddContextMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.AddContextMenuStripButton.Size = new System.Drawing.Size(158, 22);
             this.AddContextMenuStripButton.Text = "Add";
             this.AddContextMenuStripButton.Click += new System.EventHandler(this.AddContextMenuStripButton_Click);
             // 
             // RemoveContextMenuStripButton
             // 
             this.RemoveContextMenuStripButton.Name = "RemoveContextMenuStripButton";
-            this.RemoveContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.RemoveContextMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.RemoveContextMenuStripButton.Size = new System.Drawing.Size(158, 22);
             this.RemoveContextMenuStripButton.Text = "Remove";
             this.RemoveContextMenuStripButton.Click += new System.EventHandler(this.RemoveContextMenuStripButton_Click);
             // 
             // FilterContextMenuStripButton
             // 
             this.FilterContextMenuStripButton.Name = "FilterContextMenuStripButton";
-            this.FilterContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.FilterContextMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.FilterContextMenuStripButton.Size = new System.Drawing.Size(158, 22);
             this.FilterContextMenuStripButton.Text = "Filter";
             this.FilterContextMenuStripButton.Click += new System.EventHandler(this.FilterContextMenuStripButton_Click);
             // 
@@ -307,7 +330,7 @@
             this.DurationSortContextMenuButton,
             this.SizeSortContextMenuButton});
             this.SortContextMenuStripButton.Name = "SortContextMenuStripButton";
-            this.SortContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.SortContextMenuStripButton.Size = new System.Drawing.Size(158, 22);
             this.SortContextMenuStripButton.Text = "Sort";
             // 
             // NameSortContextMenuButton
@@ -319,6 +342,20 @@
             this.NameSortContextMenuButton.Size = new System.Drawing.Size(180, 22);
             this.NameSortContextMenuButton.Text = "Name";
             // 
+            // NameSortContextMenuAscending
+            // 
+            this.NameSortContextMenuAscending.Name = "NameSortContextMenuAscending";
+            this.NameSortContextMenuAscending.Size = new System.Drawing.Size(136, 22);
+            this.NameSortContextMenuAscending.Text = "Ascending";
+            this.NameSortContextMenuAscending.Click += new System.EventHandler(this.NameSortContextMenuAscending_Click);
+            // 
+            // NameSortContextMenuDescending
+            // 
+            this.NameSortContextMenuDescending.Name = "NameSortContextMenuDescending";
+            this.NameSortContextMenuDescending.Size = new System.Drawing.Size(136, 22);
+            this.NameSortContextMenuDescending.Text = "Descending";
+            this.NameSortContextMenuDescending.Click += new System.EventHandler(this.NameSortContextMenuDescending_Click);
+            // 
             // DurationSortContextMenuButton
             // 
             this.DurationSortContextMenuButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -327,6 +364,20 @@
             this.DurationSortContextMenuButton.Name = "DurationSortContextMenuButton";
             this.DurationSortContextMenuButton.Size = new System.Drawing.Size(180, 22);
             this.DurationSortContextMenuButton.Text = "Duration";
+            // 
+            // DurationSortContextMenuAscending
+            // 
+            this.DurationSortContextMenuAscending.Name = "DurationSortContextMenuAscending";
+            this.DurationSortContextMenuAscending.Size = new System.Drawing.Size(136, 22);
+            this.DurationSortContextMenuAscending.Text = "Ascending";
+            this.DurationSortContextMenuAscending.Click += new System.EventHandler(this.DurationSortContextMenuAscending_Click);
+            // 
+            // DurationSortContextMenuDescending
+            // 
+            this.DurationSortContextMenuDescending.Name = "DurationSortContextMenuDescending";
+            this.DurationSortContextMenuDescending.Size = new System.Drawing.Size(136, 22);
+            this.DurationSortContextMenuDescending.Text = "Descending";
+            this.DurationSortContextMenuDescending.Click += new System.EventHandler(this.DurationSortContextMenuDescending_Click);
             // 
             // SizeSortContextMenuButton
             // 
@@ -337,68 +388,26 @@
             this.SizeSortContextMenuButton.Size = new System.Drawing.Size(180, 22);
             this.SizeSortContextMenuButton.Text = "Size";
             // 
-            // ClearContextMenuStripButton
-            // 
-            this.ClearContextMenuStripButton.Name = "ClearContextMenuStripButton";
-            this.ClearContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
-            this.ClearContextMenuStripButton.Text = "Clear";
-            this.ClearContextMenuStripButton.Click += new System.EventHandler(this.ClearContextMenuStripButton_Click);
-            // 
-            // NameSortContextMenuAscending
-            // 
-            this.NameSortContextMenuAscending.Name = "NameSortContextMenuAscending";
-            this.NameSortContextMenuAscending.Size = new System.Drawing.Size(180, 22);
-            this.NameSortContextMenuAscending.Text = "Ascending";
-            this.NameSortContextMenuAscending.Click += new System.EventHandler(this.NameSortContextMenuAscending_Click);
-            // 
-            // NameSortContextMenuDescending
-            // 
-            this.NameSortContextMenuDescending.Name = "NameSortContextMenuDescending";
-            this.NameSortContextMenuDescending.Size = new System.Drawing.Size(180, 22);
-            this.NameSortContextMenuDescending.Text = "Descending";
-            this.NameSortContextMenuDescending.Click += new System.EventHandler(this.NameSortContextMenuDescending_Click);
-            // 
-            // DurationSortContextMenuAscending
-            // 
-            this.DurationSortContextMenuAscending.Name = "DurationSortContextMenuAscending";
-            this.DurationSortContextMenuAscending.Size = new System.Drawing.Size(180, 22);
-            this.DurationSortContextMenuAscending.Text = "Ascending";
-            this.DurationSortContextMenuAscending.Click += new System.EventHandler(this.DurationSortContextMenuAscending_Click);
-            // 
-            // DurationSortContextMenuDescending
-            // 
-            this.DurationSortContextMenuDescending.Name = "DurationSortContextMenuDescending";
-            this.DurationSortContextMenuDescending.Size = new System.Drawing.Size(180, 22);
-            this.DurationSortContextMenuDescending.Text = "Descending";
-            this.DurationSortContextMenuDescending.Click += new System.EventHandler(this.DurationSortContextMenuDescending_Click);
-            // 
             // SizeSortContextMenuAscending
             // 
             this.SizeSortContextMenuAscending.Name = "SizeSortContextMenuAscending";
-            this.SizeSortContextMenuAscending.Size = new System.Drawing.Size(180, 22);
+            this.SizeSortContextMenuAscending.Size = new System.Drawing.Size(136, 22);
             this.SizeSortContextMenuAscending.Text = "Ascending";
             this.SizeSortContextMenuAscending.Click += new System.EventHandler(this.SizeSortContextMenuAscending_Click);
             // 
             // SizeSortContextMenuDescending
             // 
             this.SizeSortContextMenuDescending.Name = "SizeSortContextMenuDescending";
-            this.SizeSortContextMenuDescending.Size = new System.Drawing.Size(180, 22);
+            this.SizeSortContextMenuDescending.Size = new System.Drawing.Size(136, 22);
             this.SizeSortContextMenuDescending.Text = "Descending";
             this.SizeSortContextMenuDescending.Click += new System.EventHandler(this.SizeSortContextMenuDescending_Click);
             // 
-            // OpenContextMenuStripButton
+            // ClearContextMenuStripButton
             // 
-            this.OpenContextMenuStripButton.Name = "OpenContextMenuStripButton";
-            this.OpenContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
-            this.OpenContextMenuStripButton.Text = "Open";
-            this.OpenContextMenuStripButton.Click += new System.EventHandler(this.OpenContextMenuStripButton_Click);
-            // 
-            // SaveContextMenuStripButton
-            // 
-            this.SaveContextMenuStripButton.Name = "SaveContextMenuStripButton";
-            this.SaveContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
-            this.SaveContextMenuStripButton.Text = "Save";
-            this.SaveContextMenuStripButton.Click += new System.EventHandler(this.SaveContextMenuStripButton_Click);
+            this.ClearContextMenuStripButton.Name = "ClearContextMenuStripButton";
+            this.ClearContextMenuStripButton.Size = new System.Drawing.Size(158, 22);
+            this.ClearContextMenuStripButton.Text = "Clear";
+            this.ClearContextMenuStripButton.Click += new System.EventHandler(this.ClearContextMenuStripButton_Click);
             // 
             // MainForm
             // 
