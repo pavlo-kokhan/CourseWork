@@ -66,6 +66,8 @@
             this.DurationSortContextMenuDescending = new System.Windows.Forms.ToolStripMenuItem();
             this.SizeSortContextMenuAscending = new System.Windows.Forms.ToolStripMenuItem();
             this.SizeSortContextMenuDescending = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ButtonsPanel.SuspendLayout();
             this.HeadMenuStrip.SuspendLayout();
             this.ContextMenuStrip.SuspendLayout();
@@ -267,13 +269,15 @@
             // ContextMenuStrip
             // 
             this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenContextMenuStripButton,
+            this.SaveContextMenuStripButton,
             this.AddContextMenuStripButton,
             this.RemoveContextMenuStripButton,
             this.FilterContextMenuStripButton,
             this.SortContextMenuStripButton,
             this.ClearContextMenuStripButton});
             this.ContextMenuStrip.Name = "ContextMenuStrip";
-            this.ContextMenuStrip.Size = new System.Drawing.Size(181, 136);
+            this.ContextMenuStrip.Size = new System.Drawing.Size(181, 180);
             // 
             // AddContextMenuStripButton
             // 
@@ -382,6 +386,20 @@
             this.SizeSortContextMenuDescending.Text = "Descending";
             this.SizeSortContextMenuDescending.Click += new System.EventHandler(this.SizeSortContextMenuDescending_Click);
             // 
+            // OpenContextMenuStripButton
+            // 
+            this.OpenContextMenuStripButton.Name = "OpenContextMenuStripButton";
+            this.OpenContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.OpenContextMenuStripButton.Text = "Open";
+            this.OpenContextMenuStripButton.Click += new System.EventHandler(this.OpenContextMenuStripButton_Click);
+            // 
+            // SaveContextMenuStripButton
+            // 
+            this.SaveContextMenuStripButton.Name = "SaveContextMenuStripButton";
+            this.SaveContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.SaveContextMenuStripButton.Text = "Save";
+            this.SaveContextMenuStripButton.Click += new System.EventHandler(this.SaveContextMenuStripButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -446,6 +464,8 @@
         private System.Windows.Forms.ToolStripMenuItem DurationSortContextMenuDescending;
         private System.Windows.Forms.ToolStripMenuItem SizeSortContextMenuAscending;
         private System.Windows.Forms.ToolStripMenuItem SizeSortContextMenuDescending;
+        private System.Windows.Forms.ToolStripMenuItem OpenContextMenuStripButton;
+        private System.Windows.Forms.ToolStripMenuItem SaveContextMenuStripButton;
     }
 }
 

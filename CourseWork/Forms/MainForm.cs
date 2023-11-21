@@ -243,6 +243,16 @@ namespace CourseWork
             }
         }
 
+        private void OpenContextMenuStripButton_Click(object sender, EventArgs e)
+        {
+            OpenMenuStripButton_Click(sender, e);
+        }
+
+        private void SaveContextMenuStripButton_Click(object sender, EventArgs e)
+        {
+            SaveMenuStripButton_Click(sender, e);
+        }
+
         private void AddContextMenuStripButton_Click(object sender, EventArgs e)
         {
             AddButton_Click(sender, e);
@@ -292,7 +302,6 @@ namespace CourseWork
         {
             SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Kilobytes.CompareTo(obj2.Size.Kilobytes), false);
         }
-
 
         // Розібратися чому не відображається контекстне меню
         // Переробити сереалізацію з xml на json

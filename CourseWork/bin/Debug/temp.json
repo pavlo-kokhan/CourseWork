@@ -1,0 +1,24 @@
+[
+  {
+    "Name": "HarryPotter",
+    "Location": "C:\\Videos",
+    "FormatString": "MP4",
+    "DurationString": "PT2H44M13S",
+    "ACodecString": "MP3",
+    "VCodecString": "AVC",
+    "SubtitlesAvaliabilityString": "true",
+    "SizeString": "4-567-26",
+    "PlayerString": "VLC"
+  },
+  {
+    "Name": "TheMatrix",
+    "Location": "C:\\Videos\\old",
+    "FormatString": "MP4",
+    "DurationString": "PT2H16M2S",
+    "ACodecString": "MP3",
+    "VCodecString": "MPEG",
+    "SubtitlesAvaliabilityString": "false",
+    "SizeString": "8-152-674",
+    "PlayerString": "VLC"
+  }
+]
