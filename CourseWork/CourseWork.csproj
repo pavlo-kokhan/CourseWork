@@ -60,6 +60,7 @@
     <Compile Include="Forms\FilterForm.Designer.cs">
       <DependentUpon>FilterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SecondaryClasses\EnumConverter.cs" />
     <Compile Include="SecondaryClasses\Enums.cs" />
     <Compile Include="SecondaryClasses\FileSize.cs" />
     <Compile Include="Forms\MainForm.cs">

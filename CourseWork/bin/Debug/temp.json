@@ -1,24 +1,28 @@
 [
   {
-    "Name": "HarryPotter",
-    "Location": "C:\\Videos",
-    "FormatString": "MP4",
-    "DurationString": "PT2H44M13S",
-    "ACodecString": "MP3",
-    "VCodecString": "AVC",
-    "SubtitlesAvaliabilityString": "true",
-    "SizeString": "4-567-26",
-    "PlayerString": "VLC"
+    "Name": "test1",
+    "Location": "location1",
+    "Format": "MP4",
+    "Duration": "01:42:44",
+    "ACodec": "MP3",
+    "VCodec": "HEVC",
+    "SubtitlesAvaliability": true,
+    "Size": {
+      "KilobytesString": "2149931"
+    },
+    "Player": "MPC"
   },
   {
-    "Name": "TheMatrix",
-    "Location": "C:\\Videos\\old",
-    "FormatString": "MP4",
-    "DurationString": "PT2H16M2S",
-    "ACodecString": "MP3",
-    "VCodecString": "MPEG",
-    "SubtitlesAvaliabilityString": "false",
-    "SizeString": "8-152-674",
-    "PlayerString": "VLC"
+    "Name": "test2",
+    "Location": "location2",
+    "Format": "MOV",
+    "Duration": "05:12:55",
+    "ACodec": "AAC",
+    "VCodec": "AVI1",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "KilobytesString": "1307045"
+    },
+    "Player": "Kodi"
   }
 ]

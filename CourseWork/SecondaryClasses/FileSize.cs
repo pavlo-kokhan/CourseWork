@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace SecondaryClasses
@@ -91,9 +92,8 @@ namespace SecondaryClasses
             return true;
         }
 
-        public uint Kilobytes { get; set; }
-
-        [XmlElement("Kilobytes")]
+        [JsonIgnore] public uint Kilobytes { get; set; }
+        
         public string KilobytesString
         {
             get { return Kilobytes.ToString(); }

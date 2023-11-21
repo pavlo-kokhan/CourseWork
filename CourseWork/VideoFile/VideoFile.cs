@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
-using System.Xml;
-using System.Xml.Serialization;
-
 using Enums;
 using SecondaryClasses;
 
@@ -90,11 +87,6 @@ namespace VideoFileClass
             this.Player = Other.Player;
         }
 
-        public TimeSpan GetDuration()
-        {
-            return Duration;
-        }
-
         // Пошук даних за розміщенням на диску
         public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, string targetLocation)
         {
@@ -143,61 +135,65 @@ namespace VideoFileClass
         public string Name { get; set; }
 
         public string Location { get; set; }
-            
-        [JsonIgnore] public VideoFormat Format { get; set; }
 
-        [JsonIgnore] public TimeSpan Duration { get; set; }
+        [JsonConverter(typeof(EnumConverter<VideoFormat>))]
+        public VideoFormat Format { get; set; }
 
-        [JsonIgnore] public AudioCodec ACodec { get; set; }
+        public TimeSpan Duration { get; set; }
 
-        [JsonIgnore] public VideoCodec VCodec { get; set; }
+        [JsonConverter(typeof(EnumConverter<AudioCodec>))]
+        public AudioCodec ACodec { get; set; }
 
-        [JsonIgnore] public bool SubtitlesAvaliability { get; set; }
+        [JsonConverter(typeof(EnumConverter<VideoCodec>))]
+        public VideoCodec VCodec { get; set; }
 
-        [JsonIgnore] public FileSize Size { get; set; }
+        public bool SubtitlesAvaliability { get; set; }
 
-        [JsonIgnore] public VideoPlayer Player { get; set; }
+        public FileSize Size { get; set; }
 
-        public string FormatString
-        {
-            get { return Format.ToString(); }
-            set { Format = (VideoFormat)Enum.Parse(typeof(VideoFormat), value); }
-        }
+        [JsonConverter(typeof(EnumConverter<VideoPlayer>))]
+        public VideoPlayer Player { get; set; }
 
-        public string DurationString
-        {
-            get { return XmlConvert.ToString(Duration); }
-            set { Duration = XmlConvert.ToTimeSpan(value); }
-        }
+        //public string FormatString
+        //{
+        //    get { return Format.ToString(); }
+        //    set { Format = (VideoFormat)Enum.Parse(typeof(VideoFormat), value); }
+        //}
 
-        public string ACodecString
-        {
-            get { return ACodec.ToString(); }
-            set { ACodec = (AudioCodec)Enum.Parse(typeof(AudioCodec), value); }
-        }
+        //public string DurationString
+        //{
+        //    get { return Duration.ToString(); }
+        //    set { Duration = TimeSpan.Parse(value); }
+        //}
 
-        public string VCodecString
-        {
-            get { return VCodec.ToString(); }
-            set { VCodec = (VideoCodec)Enum.Parse(typeof(VideoCodec), value); }
-        }
+        //public string ACodecString
+        //{
+        //    get { return ACodec.ToString(); }
+        //    set { ACodec = (AudioCodec)Enum.Parse(typeof(AudioCodec), value); }
+        //}
 
-        public string SubtitlesAvaliabilityString
-        {
-            get { return XmlConvert.ToString(SubtitlesAvaliability); }
-            set { SubtitlesAvaliability = XmlConvert.ToBoolean(value); }
-        }
+        //public string VCodecString
+        //{
+        //    get { return VCodec.ToString(); }
+        //    set { VCodec = (VideoCodec)Enum.Parse(typeof(VideoCodec), value); }
+        //}
 
-        public string SizeString
-        {
-            get { return Size.ToString(); }
-            set { Size = FileSize.Parse(value); }
-        }
+        //public string SubtitlesAvaliabilityString
+        //{
+        //    get { return SubtitlesAvaliability.ToString(); }
+        //    set { SubtitlesAvaliability = bool.Parse(value); }
+        //}
 
-        public string PlayerString
-        {
-            get { return Player.ToString(); }
-            set { Player = (VideoPlayer)Enum.Parse(typeof(VideoPlayer), value); }
-        }
+        //public string SizeString
+        //{
+        //    get { return Size.ToString(); }
+        //    set { Size = FileSize.Parse(value); }
+        //}
+
+        //public string PlayerString
+        //{
+        //    get { return Player.ToString(); }
+        //    set { Player = (VideoPlayer)Enum.Parse(typeof(VideoPlayer), value); }
+        //}
     }
 }

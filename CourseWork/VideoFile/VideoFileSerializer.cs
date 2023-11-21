@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Enums;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml.Serialization;
 using System.Text.Json;
-
 using VideoFileClass;
 
 namespace SecondaryClasses
@@ -17,6 +16,10 @@ namespace SecondaryClasses
                 var options = new JsonSerializerOptions();
 
                 options.WriteIndented = true;
+                options.Converters.Add(new EnumConverter<VideoFormat>());
+                options.Converters.Add(new EnumConverter<AudioCodec>());
+                options.Converters.Add(new EnumConverter<VideoCodec>());
+                options.Converters.Add(new EnumConverter<VideoPlayer>());
 
                 string jsonString = JsonSerializer.Serialize(objects, options);
 
@@ -32,9 +35,15 @@ namespace SecondaryClasses
         {
             try
             {
+                var options = new JsonSerializerOptions();
+                options.Converters.Add(new EnumConverter<VideoFormat>());
+                options.Converters.Add(new EnumConverter<AudioCodec>());
+                options.Converters.Add(new EnumConverter<VideoCodec>());
+                options.Converters.Add(new EnumConverter<VideoPlayer>());
+
                 string jsonString = File.ReadAllText(filename);
 
-                var objects = JsonSerializer.Deserialize<List<VideoFile>>(jsonString);
+                var objects = JsonSerializer.Deserialize<List<VideoFile>>(jsonString, options);
 
                 return objects;
             }

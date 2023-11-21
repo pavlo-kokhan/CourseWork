@@ -28,17 +28,14 @@ namespace CourseWork
         {
             ListViewItem item = new ListViewItem(obj.Name);
 
-            var duration = obj.GetDuration();
-            string durationFormatted = $"{duration.Hours:D2}:{duration.Minutes:D2}:{duration.Seconds:D2}";
-
             item.SubItems.Add(obj.Location);
-            item.SubItems.Add(obj.FormatString);
-            item.SubItems.Add(durationFormatted);
-            item.SubItems.Add(obj.VCodecString);
-            item.SubItems.Add(obj.ACodecString);
-            item.SubItems.Add(obj.SubtitlesAvaliabilityString);
-            item.SubItems.Add(obj.SizeString);
-            item.SubItems.Add(obj.PlayerString);
+            item.SubItems.Add(obj.Format.ToString());
+            item.SubItems.Add(obj.Duration.ToString());
+            item.SubItems.Add(obj.VCodec.ToString());
+            item.SubItems.Add(obj.ACodec.ToString());
+            item.SubItems.Add(obj.SubtitlesAvaliability.ToString());
+            item.SubItems.Add(obj.Size.ToString());
+            item.SubItems.Add(obj.Player.ToString());
 
             return item;
         }
