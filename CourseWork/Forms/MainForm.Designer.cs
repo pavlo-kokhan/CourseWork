@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ButtonsPanel = new System.Windows.Forms.Panel();
             this.ClearButton = new System.Windows.Forms.Button();
@@ -50,8 +51,24 @@
             this.SubtitlesAvaliabilityHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SizeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PlayerHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AddContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.FilterContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.SortContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.NameSortContextMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.DurationSortContextMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.SizeSortContextMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.NameSortContextMenuAscending = new System.Windows.Forms.ToolStripMenuItem();
+            this.NameSortContextMenuDescending = new System.Windows.Forms.ToolStripMenuItem();
+            this.DurationSortContextMenuAscending = new System.Windows.Forms.ToolStripMenuItem();
+            this.DurationSortContextMenuDescending = new System.Windows.Forms.ToolStripMenuItem();
+            this.SizeSortContextMenuAscending = new System.Windows.Forms.ToolStripMenuItem();
+            this.SizeSortContextMenuDescending = new System.Windows.Forms.ToolStripMenuItem();
             this.ButtonsPanel.SuspendLayout();
             this.HeadMenuStrip.SuspendLayout();
+            this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonsPanel
@@ -200,11 +217,12 @@
             this.VideoFilesListView.UseCompatibleStateImageBehavior = false;
             this.VideoFilesListView.View = System.Windows.Forms.View.Details;
             this.VideoFilesListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.VideoFilesListView_ColumnClick);
+            this.VideoFilesListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.VideoFilesListView_MouseDown);
             // 
             // NameHeader
             // 
             this.NameHeader.Text = "Name";
-            this.NameHeader.Width = 94;
+            this.NameHeader.Width = 97;
             // 
             // LocationHeader
             // 
@@ -214,7 +232,7 @@
             // FormatHeader
             // 
             this.FormatHeader.Text = "Format";
-            this.FormatHeader.Width = 101;
+            this.FormatHeader.Width = 56;
             // 
             // DurationHeader
             // 
@@ -224,27 +242,145 @@
             // VCodecHeader
             // 
             this.VCodecHeader.Text = "Video Codec";
-            this.VCodecHeader.Width = 83;
+            this.VCodecHeader.Width = 75;
             // 
             // ACodecHeader
             // 
             this.ACodecHeader.Text = "Audio Codec";
-            this.ACodecHeader.Width = 82;
+            this.ACodecHeader.Width = 79;
             // 
             // SubtitlesAvaliabilityHeader
             // 
             this.SubtitlesAvaliabilityHeader.Text = "Subtitles";
-            this.SubtitlesAvaliabilityHeader.Width = 69;
+            this.SubtitlesAvaliabilityHeader.Width = 62;
             // 
             // SizeHeader
             // 
             this.SizeHeader.Text = "Size";
-            this.SizeHeader.Width = 66;
+            this.SizeHeader.Width = 124;
             // 
             // PlayerHeader
             // 
             this.PlayerHeader.Text = "Player";
             this.PlayerHeader.Width = 63;
+            // 
+            // ContextMenuStrip
+            // 
+            this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddContextMenuStripButton,
+            this.RemoveContextMenuStripButton,
+            this.FilterContextMenuStripButton,
+            this.SortContextMenuStripButton,
+            this.ClearContextMenuStripButton});
+            this.ContextMenuStrip.Name = "ContextMenuStrip";
+            this.ContextMenuStrip.Size = new System.Drawing.Size(181, 136);
+            // 
+            // AddContextMenuStripButton
+            // 
+            this.AddContextMenuStripButton.Name = "AddContextMenuStripButton";
+            this.AddContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.AddContextMenuStripButton.Text = "Add";
+            this.AddContextMenuStripButton.Click += new System.EventHandler(this.AddContextMenuStripButton_Click);
+            // 
+            // RemoveContextMenuStripButton
+            // 
+            this.RemoveContextMenuStripButton.Name = "RemoveContextMenuStripButton";
+            this.RemoveContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.RemoveContextMenuStripButton.Text = "Remove";
+            this.RemoveContextMenuStripButton.Click += new System.EventHandler(this.RemoveContextMenuStripButton_Click);
+            // 
+            // FilterContextMenuStripButton
+            // 
+            this.FilterContextMenuStripButton.Name = "FilterContextMenuStripButton";
+            this.FilterContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.FilterContextMenuStripButton.Text = "Filter";
+            this.FilterContextMenuStripButton.Click += new System.EventHandler(this.FilterContextMenuStripButton_Click);
+            // 
+            // SortContextMenuStripButton
+            // 
+            this.SortContextMenuStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NameSortContextMenuButton,
+            this.DurationSortContextMenuButton,
+            this.SizeSortContextMenuButton});
+            this.SortContextMenuStripButton.Name = "SortContextMenuStripButton";
+            this.SortContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.SortContextMenuStripButton.Text = "Sort";
+            // 
+            // NameSortContextMenuButton
+            // 
+            this.NameSortContextMenuButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NameSortContextMenuAscending,
+            this.NameSortContextMenuDescending});
+            this.NameSortContextMenuButton.Name = "NameSortContextMenuButton";
+            this.NameSortContextMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.NameSortContextMenuButton.Text = "Name";
+            // 
+            // DurationSortContextMenuButton
+            // 
+            this.DurationSortContextMenuButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DurationSortContextMenuAscending,
+            this.DurationSortContextMenuDescending});
+            this.DurationSortContextMenuButton.Name = "DurationSortContextMenuButton";
+            this.DurationSortContextMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.DurationSortContextMenuButton.Text = "Duration";
+            // 
+            // SizeSortContextMenuButton
+            // 
+            this.SizeSortContextMenuButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SizeSortContextMenuAscending,
+            this.SizeSortContextMenuDescending});
+            this.SizeSortContextMenuButton.Name = "SizeSortContextMenuButton";
+            this.SizeSortContextMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.SizeSortContextMenuButton.Text = "Size";
+            // 
+            // ClearContextMenuStripButton
+            // 
+            this.ClearContextMenuStripButton.Name = "ClearContextMenuStripButton";
+            this.ClearContextMenuStripButton.Size = new System.Drawing.Size(180, 22);
+            this.ClearContextMenuStripButton.Text = "Clear";
+            this.ClearContextMenuStripButton.Click += new System.EventHandler(this.ClearContextMenuStripButton_Click);
+            // 
+            // NameSortContextMenuAscending
+            // 
+            this.NameSortContextMenuAscending.Name = "NameSortContextMenuAscending";
+            this.NameSortContextMenuAscending.Size = new System.Drawing.Size(180, 22);
+            this.NameSortContextMenuAscending.Text = "Ascending";
+            this.NameSortContextMenuAscending.Click += new System.EventHandler(this.NameSortContextMenuAscending_Click);
+            // 
+            // NameSortContextMenuDescending
+            // 
+            this.NameSortContextMenuDescending.Name = "NameSortContextMenuDescending";
+            this.NameSortContextMenuDescending.Size = new System.Drawing.Size(180, 22);
+            this.NameSortContextMenuDescending.Text = "Descending";
+            this.NameSortContextMenuDescending.Click += new System.EventHandler(this.NameSortContextMenuDescending_Click);
+            // 
+            // DurationSortContextMenuAscending
+            // 
+            this.DurationSortContextMenuAscending.Name = "DurationSortContextMenuAscending";
+            this.DurationSortContextMenuAscending.Size = new System.Drawing.Size(180, 22);
+            this.DurationSortContextMenuAscending.Text = "Ascending";
+            this.DurationSortContextMenuAscending.Click += new System.EventHandler(this.DurationSortContextMenuAscending_Click);
+            // 
+            // DurationSortContextMenuDescending
+            // 
+            this.DurationSortContextMenuDescending.Name = "DurationSortContextMenuDescending";
+            this.DurationSortContextMenuDescending.Size = new System.Drawing.Size(180, 22);
+            this.DurationSortContextMenuDescending.Text = "Descending";
+            this.DurationSortContextMenuDescending.Click += new System.EventHandler(this.DurationSortContextMenuDescending_Click);
+            // 
+            // SizeSortContextMenuAscending
+            // 
+            this.SizeSortContextMenuAscending.Name = "SizeSortContextMenuAscending";
+            this.SizeSortContextMenuAscending.Size = new System.Drawing.Size(180, 22);
+            this.SizeSortContextMenuAscending.Text = "Ascending";
+            this.SizeSortContextMenuAscending.Click += new System.EventHandler(this.SizeSortContextMenuAscending_Click);
+            // 
+            // SizeSortContextMenuDescending
+            // 
+            this.SizeSortContextMenuDescending.Name = "SizeSortContextMenuDescending";
+            this.SizeSortContextMenuDescending.Size = new System.Drawing.Size(180, 22);
+            this.SizeSortContextMenuDescending.Text = "Descending";
+            this.SizeSortContextMenuDescending.Click += new System.EventHandler(this.SizeSortContextMenuDescending_Click);
             // 
             // MainForm
             // 
@@ -267,6 +403,7 @@
             this.ButtonsPanel.ResumeLayout(false);
             this.HeadMenuStrip.ResumeLayout(false);
             this.HeadMenuStrip.PerformLayout();
+            this.ContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,6 +431,21 @@
         private System.Windows.Forms.ColumnHeader SubtitlesAvaliabilityHeader;
         private System.Windows.Forms.ColumnHeader SizeHeader;
         private System.Windows.Forms.ColumnHeader PlayerHeader;
+        private System.Windows.Forms.ContextMenuStrip ContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem AddContextMenuStripButton;
+        private System.Windows.Forms.ToolStripMenuItem RemoveContextMenuStripButton;
+        private System.Windows.Forms.ToolStripMenuItem FilterContextMenuStripButton;
+        private System.Windows.Forms.ToolStripMenuItem ClearContextMenuStripButton;
+        private System.Windows.Forms.ToolStripMenuItem SortContextMenuStripButton;
+        private System.Windows.Forms.ToolStripMenuItem NameSortContextMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem DurationSortContextMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem SizeSortContextMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem NameSortContextMenuAscending;
+        private System.Windows.Forms.ToolStripMenuItem NameSortContextMenuDescending;
+        private System.Windows.Forms.ToolStripMenuItem DurationSortContextMenuAscending;
+        private System.Windows.Forms.ToolStripMenuItem DurationSortContextMenuDescending;
+        private System.Windows.Forms.ToolStripMenuItem SizeSortContextMenuAscending;
+        private System.Windows.Forms.ToolStripMenuItem SizeSortContextMenuDescending;
     }
 }
 

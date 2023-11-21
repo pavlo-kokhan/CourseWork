@@ -10,6 +10,7 @@ namespace CourseWork
 {
     public partial class MainForm : Form
     {
+        // Зберігає об'єкти VideoFile в такій послідовності, що і відображено на формі
         List<VideoFile> videoFiles = new List<VideoFile>();
 
         // Зберігає індекс стовпця, який був вибраний користувачем, як критерій для сортування
@@ -233,5 +234,67 @@ namespace CourseWork
 
             MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void VideoFilesListView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ContextMenuStrip.Show(VideoFilesListView, e.Location);
+            }
+        }
+
+        private void AddContextMenuStripButton_Click(object sender, EventArgs e)
+        {
+            AddButton_Click(sender, e);
+        }
+
+        private void RemoveContextMenuStripButton_Click(object sender, EventArgs e)
+        {
+            RemoveButton_Click(sender, e);  
+        }
+
+        private void FilterContextMenuStripButton_Click(object sender, EventArgs e)
+        {
+            FilterButton_Click(sender, e);  
+        }
+
+        private void ClearContextMenuStripButton_Click(object sender, EventArgs e)
+        {
+            ClearButton_Click(sender, e);
+        }
+
+        private void NameSortContextMenuAscending_Click(object sender, EventArgs e)
+        {
+            SortVideoFilesAndUpdate((obj1, obj2) => obj1.Name.CompareTo(obj2.Name), true);
+        }
+
+        private void NameSortContextMenuDescending_Click(object sender, EventArgs e)
+        {
+            SortVideoFilesAndUpdate((obj1, obj2) => obj1.Name.CompareTo(obj2.Name), false);
+        }
+
+        private void DurationSortContextMenuAscending_Click(object sender, EventArgs e)
+        {
+            SortVideoFilesAndUpdate((obj1, obj2) => obj1.Duration.CompareTo(obj2.Duration), true);
+        }
+
+        private void DurationSortContextMenuDescending_Click(object sender, EventArgs e)
+        {
+            SortVideoFilesAndUpdate((obj1, obj2) => obj1.Duration.CompareTo(obj2.Duration), false);
+        }
+
+        private void SizeSortContextMenuAscending_Click(object sender, EventArgs e)
+        {
+            SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Kilobytes.CompareTo(obj2.Size.Kilobytes), true);
+        }
+
+        private void SizeSortContextMenuDescending_Click(object sender, EventArgs e)
+        {
+            SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Kilobytes.CompareTo(obj2.Size.Kilobytes), false);
+        }
+
+
+        // Розібратися чому не відображається контекстне меню
+        // Переробити сереалізацію з xml на json
     }
 }
