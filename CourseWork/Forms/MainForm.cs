@@ -172,7 +172,7 @@ namespace CourseWork
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                ofd.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
                 ofd.FilterIndex = 1;
                 ofd.RestoreDirectory = true;
 
@@ -182,11 +182,11 @@ namespace CourseWork
 
                     try
                     {
-                        videoFiles = VideoFileSerializer.DeserializeXml(filePath);
+                        videoFiles = VideoFileSerializer.DeserializeJson(filePath);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Failde to open: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         return;
                     }
@@ -200,7 +200,7 @@ namespace CourseWork
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+                ofd.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
                 ofd.FilterIndex = 1;
                 ofd.RestoreDirectory = true;
 
@@ -210,11 +210,11 @@ namespace CourseWork
 
                     try
                     {
-                        VideoFileSerializer.SerializeXml(videoFiles, filePath);
+                        VideoFileSerializer.SerializeJson(videoFiles, filePath);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Failed to save: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

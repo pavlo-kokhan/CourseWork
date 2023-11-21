@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -139,70 +140,60 @@ namespace VideoFileClass
             return left.Duration > right.Duration;
         }
 
-        [XmlElement("Name")]
         public string Name { get; set; }
 
-        [XmlElement("Location")]
         public string Location { get; set; }
             
-        [XmlIgnore] public VideoFormat Format { get; set; }
+        [JsonIgnore] public VideoFormat Format { get; set; }
 
-        [XmlIgnore] public TimeSpan Duration { get; set; }
+        [JsonIgnore] public TimeSpan Duration { get; set; }
 
-        [XmlIgnore] public AudioCodec ACodec { get; set; }
+        [JsonIgnore] public AudioCodec ACodec { get; set; }
 
-        [XmlIgnore] public VideoCodec VCodec { get; set; }
+        [JsonIgnore] public VideoCodec VCodec { get; set; }
 
-        [XmlIgnore] public bool SubtitlesAvaliability { get; set; }
+        [JsonIgnore] public bool SubtitlesAvaliability { get; set; }
 
-        [XmlIgnore] public FileSize Size { get; set; }
+        [JsonIgnore] public FileSize Size { get; set; }
 
-        [XmlIgnore] public VideoPlayer Player { get; set; }
+        [JsonIgnore] public VideoPlayer Player { get; set; }
 
-
-        [XmlElement("Format")]
         public string FormatString
         {
             get { return Format.ToString(); }
             set { Format = (VideoFormat)Enum.Parse(typeof(VideoFormat), value); }
         }
 
-        [XmlElement("Duration")]
         public string DurationString
         {
             get { return XmlConvert.ToString(Duration); }
             set { Duration = XmlConvert.ToTimeSpan(value); }
         }
 
-        [XmlElement("ACodec")]
         public string ACodecString
         {
             get { return ACodec.ToString(); }
             set { ACodec = (AudioCodec)Enum.Parse(typeof(AudioCodec), value); }
         }
 
-        [XmlElement("VCodec")]
         public string VCodecString
         {
             get { return VCodec.ToString(); }
             set { VCodec = (VideoCodec)Enum.Parse(typeof(VideoCodec), value); }
         }
 
-        [XmlElement("SubtitlesAvaliability")]
         public string SubtitlesAvaliabilityString
         {
             get { return XmlConvert.ToString(SubtitlesAvaliability); }
             set { SubtitlesAvaliability = XmlConvert.ToBoolean(value); }
         }
 
-        [XmlElement("Size")]
         public string SizeString
         {
             get { return Size.ToString(); }
             set { Size = FileSize.Parse(value); }
         }
 
-        [XmlElement("Player")]
         public string PlayerString
         {
             get { return Player.ToString(); }

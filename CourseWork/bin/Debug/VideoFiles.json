@@ -1,24 +1,57 @@
 [
   {
-    "Name": "Undefined",
-    "Location": "Undefined",
-    "Format": 4,
-    "Duration": "00:00:00",
-    "ACodec": 4,
-    "VCodec": 4,
-    "SubtitlesAvaliability": false,
-    "Size": {},
-    "Player": 4
+    "Name": "HarryPotter",
+    "Location": "C:\\Videos",
+    "FormatString": "MP4",
+    "DurationString": "PT2H44M13S",
+    "ACodecString": "MP3",
+    "VCodecString": "AVC",
+    "SubtitlesAvaliabilityString": "true",
+    "SizeString": "4-567-26",
+    "PlayerString": "VLC"
   },
   {
-    "Name": "123",
-    "Location": "123",
-    "Format": 0,
-    "Duration": "00:00:00",
-    "ACodec": 3,
-    "VCodec": 1,
-    "SubtitlesAvaliability": true,
-    "Size": {},
-    "Player": 1
+    "Name": "Casino",
+    "Location": "C:\\Videos\\others",
+    "FormatString": "AVI",
+    "DurationString": "PT3H24M19S",
+    "ACodecString": "AAC",
+    "VCodecString": "AVI1",
+    "SubtitlesAvaliabilityString": "false",
+    "SizeString": "12-47-299",
+    "PlayerString": "Kodi"
+  },
+  {
+    "Name": "TheKiller",
+    "Location": "C:\\Videos\\others",
+    "FormatString": "MOV",
+    "DurationString": "PT2H32M13S",
+    "ACodecString": "FLAC",
+    "VCodecString": "MPEG",
+    "SubtitlesAvaliabilityString": "true",
+    "SizeString": "5-189-986",
+    "PlayerString": "VLC"
+  },
+  {
+    "Name": "Tenet",
+    "Location": "C:\\Videos",
+    "FormatString": "MKV",
+    "DurationString": "PT2H30M",
+    "ACodecString": "Opus",
+    "VCodecString": "HEVC",
+    "SubtitlesAvaliabilityString": "true",
+    "SizeString": "15-256-5",
+    "PlayerString": "Kodi"
+  },
+  {
+    "Name": "TheMatrix",
+    "Location": "C:\\Videos\\old",
+    "FormatString": "MP4",
+    "DurationString": "PT2H16M2S",
+    "ACodecString": "MP3",
+    "VCodecString": "MPEG",
+    "SubtitlesAvaliabilityString": "false",
+    "SizeString": "8-152-674",
+    "PlayerString": "VLC"
   }
 ]
