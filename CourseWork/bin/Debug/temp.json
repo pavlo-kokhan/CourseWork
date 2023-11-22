@@ -8,7 +8,7 @@
     "VCodec": "HEVC",
     "SubtitlesAvaliability": false,
     "Size": {
-      "Kilobytes": 9876543
+      "Bytes": 9876543
     },
     "Player": "Kodi"
   },
@@ -21,7 +21,7 @@
     "VCodec": "AVC",
     "SubtitlesAvaliability": true,
     "Size": {
-      "Kilobytes": 5432109
+      "Bytes": 5432109
     },
     "Player": "PotPlayer"
   },
@@ -34,7 +34,7 @@
     "VCodec": "HEVC",
     "SubtitlesAvaliability": false,
     "Size": {
-      "Kilobytes": 8765432
+      "Bytes": 8765432
     },
     "Player": "Kodi"
   },
@@ -47,7 +47,7 @@
     "VCodec": "MPEG",
     "SubtitlesAvaliability": true,
     "Size": {
-      "Kilobytes": 5432109
+      "Bytes": 5432109
     },
     "Player": "Kodi"
   }

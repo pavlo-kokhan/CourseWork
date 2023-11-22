@@ -65,15 +65,6 @@ namespace VideoFileClass
             return objects.Where(predicate).ToList();
         }
 
-        public static bool operator <(VideoFile left, VideoFile right)
-        {
-            return left.Duration < right.Duration;
-        }
-        public static bool operator >(VideoFile left, VideoFile right)
-        {
-            return left.Duration > right.Duration;
-        }
-
         public string Name { get; set; }
 
         public string Location { get; set; }

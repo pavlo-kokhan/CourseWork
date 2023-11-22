@@ -15,27 +15,15 @@ namespace CourseWork.Forms
             InitializeComponent();
         }
 
-        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void AddNewObjectForm_KeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            if (e.KeyCode == Keys.Enter)
             {
-                e.Handled = true;
+                ApplyButton.PerformClick();
             }
-        }
-
-        private void HandleItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            CheckedListBox checkedListBox = sender as CheckedListBox;
-
-            if (checkedListBox != null)
+            else if (e.KeyCode == Keys.Escape)
             {
-                for (int i = 0; i < checkedListBox.Items.Count; i++)
-                {
-                    if (i != e.Index)
-                    {
-                        checkedListBox.SetItemChecked(i, false);
-                    }
-                }
+                CancelButton.PerformClick();
             }
         }
 
@@ -69,6 +57,14 @@ namespace CourseWork.Forms
             NumericTextBox_KeyPress(sender, e);
         }
 
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
+        }
+
         private void FormatListBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             HandleItemCheck(sender, e);
@@ -89,14 +85,28 @@ namespace CourseWork.Forms
             HandleItemCheck(sender, e);
         }
 
+        private void HandleItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            CheckedListBox checkedListBox = sender as CheckedListBox;
+
+            if (checkedListBox != null)
+            {
+                for (int i = 0; i < checkedListBox.Items.Count; i++)
+                {
+                    if (i != e.Index)
+                    {
+                        checkedListBox.SetItemChecked(i, false);
+                    }
+                }
+            }
+        }
+
         private bool TryParseTextBoxes()
         {
             try
             {
-                if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(LocationTextBox.Text))
+                if (!ValidateNameAndLocation())
                 {
-                    MessageBox.Show("Dont leave empty name or location. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     return false;
                 }
 
@@ -104,69 +114,138 @@ namespace CourseWork.Forms
 
                 string location = LocationTextBox.Text;
 
-                if (!Enum.TryParse<VideoFormat>(FormatListBox.Text, out var videoFormat))
+                if (!TryParseEnum<VideoFormat>(FormatListBox.Text, "Invalid video format data. Try again.", out var videoFormat))
                 {
-                    MessageBox.Show("Invalid video format data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     return false;
                 }
 
-                if (!Enum.TryParse<VideoCodec>(VCodecListBox.Text, out var videoCodec))
+                if (!TryParseEnum<VideoCodec>(VCodecListBox.Text, "Invalid video codec data. Try again.", out var videoCodec))
                 {
-                    MessageBox.Show("Invalid video codec data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     return false;
                 }
 
-                if (!Enum.TryParse<AudioCodec>(ACodecListBox.Text, out var audioCodec))
+                if (!TryParseEnum<AudioCodec>(ACodecListBox.Text, "Invalid audio codec data. Try again.", out var audioCodec))
                 {
-                    MessageBox.Show("Invalid audio codec data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     return false;
                 }
 
-                if (!Enum.TryParse<VideoPlayer>(VideoPlayerListBox.Text, out var videoPlayer))
+                if (!TryParseEnum<VideoPlayer>(VideoPlayerListBox.Text, "Invalid video player data. Try again.", out var videoPlayer))
                 {
-                    MessageBox.Show("Invalid video player data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     return false;
                 }
 
-                if (!int.TryParse(HoursTextBox.Text, out var hours) 
-                    || !int.TryParse(MinutesTextBox.Text, out var minutes) 
-                    || !int.TryParse(SecondsTextBox.Text, out var seconds))
+                if (!TryParseDuration(out TimeSpan duration))
                 {
-                    MessageBox.Show("Invalid duration data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     return false;
                 }
 
-                TimeSpan duration = new TimeSpan(hours, minutes, seconds);
-
-                if (!uint.TryParse(GBTextBox.Text, out var gb)
-                    || !uint.TryParse(MBTextBox.Text, out var mb)
-                    || !uint.TryParse(KBTextBox.Text, out var kb)) 
+                if (!TryParseSize(out FileSize size))
                 {
-                    MessageBox.Show("Invalid size data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     return false;
                 }
-
-                FileSize size = new FileSize(kb, mb, gb);
 
                 var subtitles = SubtitlesAvaliabilityCheckBox.Checked;
 
-                resultObject =  new VideoFile(name, location, videoFormat, duration, audioCodec, 
-                    videoCodec, subtitles, size, videoPlayer);
+                resultObject =  new VideoFile(name, location, videoFormat, duration, 
+                    audioCodec, videoCodec, subtitles, size, videoPlayer);
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unhandled error. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return false;
             }
+        }
+
+        private bool ValidateNameAndLocation()
+        {
+            if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(LocationTextBox.Text))
+            {
+                MessageBox.Show("Don`t leave empty name or location. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool TryParseEnum<T>(string value, string errorMessage, out T result) where T : struct
+        {
+            if (!Enum.TryParse<T>(value, out result))
+            {
+                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+            return true;
+        }
+
+        private bool TryParseDuration(out TimeSpan duration)
+        {
+            duration = TimeSpan.Zero;
+
+            if (!int.TryParse(HoursTextBox.Text, out var hours)
+                || !int.TryParse(MinutesTextBox.Text, out var minutes)
+                || !int.TryParse(SecondsTextBox.Text, out var seconds))
+            {
+                MessageBox.Show("Invalid duration data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            duration = new TimeSpan(hours, minutes, seconds);
+
+            if (duration.TotalSeconds == 0)
+            {
+                MessageBox.Show("Duration can't be empty. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool TryParseSize(out FileSize size)
+        {
+            size = null;
+
+            if (!ulong.TryParse(SizeTextBox.Text, out ulong rawSize))
+            {
+                MessageBox.Show("Invalid size data. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            if (rawSize == 0)
+            {
+                MessageBox.Show("Size can`t be empty. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            switch (SizeComboBox.Text)
+            {
+                case "B":
+                    break;
+                case "KB":
+                    rawSize *= FileSize.BYTES_IN_KILOBYTE;
+                    break;
+                case "MB":
+                    rawSize *= (ulong)Math.Pow(FileSize.BYTES_IN_KILOBYTE, 2);
+                    break;
+                case "GB":
+                    rawSize *= (ulong)Math.Pow(FileSize.BYTES_IN_KILOBYTE, 3);
+                    break;
+                default:
+                    MessageBox.Show("Choose size dimension. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+            }
+
+            size = new FileSize(rawSize);
+
+            return true;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -189,18 +268,6 @@ namespace CourseWork.Forms
         public VideoFile GetResultObject()
         {
             return resultObject;
-        }
-
-        private void AddNewObjectForm_KeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                ApplyButton.PerformClick();
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                CancelButton.PerformClick();
-            }
         }
     }
 }

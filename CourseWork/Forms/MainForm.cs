@@ -186,7 +186,7 @@ namespace CourseWork
             }
             else if (columnName == "Size")
             {
-                SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Kilobytes.CompareTo(obj2.Size.Kilobytes), ascendingOrder);
+                SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Bytes.CompareTo(obj2.Size.Bytes), ascendingOrder);
             }
 
             lastSortedColumn = e.Column;
@@ -319,12 +319,12 @@ namespace CourseWork
 
         private void SizeSortContextMenuAscending_Click(object sender, EventArgs e)
         {
-            SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Kilobytes.CompareTo(obj2.Size.Kilobytes), true);
+            SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Bytes.CompareTo(obj2.Size.Bytes), true);
         }
 
         private void SizeSortContextMenuDescending_Click(object sender, EventArgs e)
         {
-            SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Kilobytes.CompareTo(obj2.Size.Kilobytes), false);
+            SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Bytes.CompareTo(obj2.Size.Bytes), false);
         }
 
         private void VideoFilesListView_KeyDown(object sender, KeyEventArgs e)

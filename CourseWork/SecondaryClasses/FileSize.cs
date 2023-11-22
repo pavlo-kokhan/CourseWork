@@ -5,95 +5,96 @@ namespace SecondaryClasses
     [Serializable]
     public class FileSize
     {
-        private const char SEPARATOR = '-';
+        private const char SEPARATOR = ' ';
 
-        private const uint BYTES_IN_KILOBYTE = 1024;
+        public const uint BYTES_IN_KILOBYTE = 1024;
 
         public FileSize()
         {
-            Kilobytes = 0;
+            Bytes = 0;
         }
 
-        public FileSize(uint kilobytes)
+        public FileSize(ulong bytes)
         {
-            Kilobytes = kilobytes;
-        }
-
-        public FileSize(uint kilobytes, uint megabytes, uint gigabytes)
-        {
-            Kilobytes = kilobytes + megabytes * BYTES_IN_KILOBYTE + gigabytes * BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE;
+            Bytes = bytes;
         }
 
         public FileSize(FileSize other)
         {
-            Kilobytes = other.Kilobytes;
+            Bytes = other.Bytes;
         }
 
         public override string ToString()
         {
-            uint gigabytesChunk, megabytesChunk, kilobytesChunk;
+            // we have less than 1024               bytes: result will be a string in bytes:     n B
+            // we have more than 1024               bytes: result will be a string in kilobytes: n KB
+            // we have more than 1024 * 1024        bytes: result will be a string in megabytes: n MB
+            // we have more than 1024 * 1024 * 1024 bytes: result will be a string in gigabytes: n GB
 
-            kilobytesChunk = Kilobytes % BYTES_IN_KILOBYTE;
-            megabytesChunk = Kilobytes / BYTES_IN_KILOBYTE;
-
-            gigabytesChunk = megabytesChunk / BYTES_IN_KILOBYTE;
-            megabytesChunk = megabytesChunk % BYTES_IN_KILOBYTE;
-
-            return string.Join(SEPARATOR.ToString(), gigabytesChunk, megabytesChunk, kilobytesChunk);
+            if (Bytes < BYTES_IN_KILOBYTE)
+            {
+                return $"{Bytes} B";
+            }
+            else if (Bytes < BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE)
+            {
+                return $"{Bytes / BYTES_IN_KILOBYTE} KB";
+            }
+            else if (Bytes < BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE)
+            {
+                return $"{Bytes / (BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE)} MB";
+            }
+            else
+            {
+                return $"{Bytes / (BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE)} GB";
+            }
         }
 
         public static FileSize Parse(string sizeString)
         {
-            if (string.IsNullOrWhiteSpace(sizeString))
+            string[] parts = sizeString.Split(SEPARATOR);
+
+            if (parts.Length != 2)
             {
-                throw new ArgumentException("Size string is empty or null.");
+                throw new FormatException("Invalid format for FileSize string.");
             }
 
-            string[] chunks = sizeString.Split(new[] { SEPARATOR }, StringSplitOptions.RemoveEmptyEntries);
-
-            if (chunks.Length != 3)
+            if (!ulong.TryParse(parts[0], out ulong value))
             {
-                throw new FormatException("Invalid size string format.");
+                throw new FormatException("Invalid numeric value in FileSize string.");
             }
 
-            if (!uint.TryParse(chunks[0], out uint gb) ||
-                !uint.TryParse(chunks[1], out uint mb) ||
-                !uint.TryParse(chunks[2], out uint kb))
-            {
-                throw new FormatException("Invalid size values.");
-            }
+            string unit = parts[1].ToLower();
 
-            return new FileSize(kb, mb, gb);
+            switch (unit)
+            {
+                case "b":
+                    return new FileSize(value);
+                case "kb":
+                    return new FileSize(value * BYTES_IN_KILOBYTE);
+                case "mb":
+                    return new FileSize(value * BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE);
+                case "gb":
+                    return new FileSize(value * BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE);
+                default:
+                    throw new FormatException("Invalid unit in FileSize string.");
+            }
         }
 
         public static bool TryParse(string sizeString, out FileSize fileSize)
         {
             fileSize = null;
 
-            if (string.IsNullOrWhiteSpace(sizeString))
+            try
+            {
+                fileSize = Parse(sizeString);
+                return true;
+            }
+            catch (FormatException)
             {
                 return false;
             }
-
-            string[] chunks = sizeString.Split(new[] { SEPARATOR }, StringSplitOptions.RemoveEmptyEntries);
-
-            if (chunks.Length != 3)
-            {
-                return false;
-            }
-
-            if (!uint.TryParse(chunks[0], out uint gb) ||
-                !uint.TryParse(chunks[1], out uint mb) ||
-                !uint.TryParse(chunks[2], out uint kb))
-            {
-                return false;
-            }
-
-            fileSize = new FileSize(kb, mb, gb);
-
-            return true;
         }
 
-        public uint Kilobytes { get; set; }
+        public ulong Bytes { get; set; }
     }
 }

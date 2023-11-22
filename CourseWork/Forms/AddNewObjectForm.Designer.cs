@@ -50,15 +50,11 @@
             this.SecondsLabel = new System.Windows.Forms.Label();
             this.SecondsTextBox = new System.Windows.Forms.TextBox();
             this.SizeLabel = new System.Windows.Forms.Label();
-            this.GBLabel = new System.Windows.Forms.Label();
-            this.GBTextBox = new System.Windows.Forms.TextBox();
-            this.MBLabel = new System.Windows.Forms.Label();
-            this.MBTextBox = new System.Windows.Forms.TextBox();
-            this.KBLabel = new System.Windows.Forms.Label();
-            this.KBTextBox = new System.Windows.Forms.TextBox();
+            this.SizeTextBox = new System.Windows.Forms.TextBox();
             this.SubtitlesAvaliabilityCheckBox = new System.Windows.Forms.CheckBox();
             this.ApplyButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.SizeComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // NameLabel
@@ -270,67 +266,20 @@
             this.SizeLabel.TabIndex = 20;
             this.SizeLabel.Text = "Size:";
             // 
-            // GBLabel
+            // SizeTextBox
             // 
-            this.GBLabel.AutoSize = true;
-            this.GBLabel.Location = new System.Drawing.Point(91, 219);
-            this.GBLabel.Name = "GBLabel";
-            this.GBLabel.Size = new System.Drawing.Size(26, 19);
-            this.GBLabel.TabIndex = 21;
-            this.GBLabel.Text = "GB:";
-            // 
-            // GBTextBox
-            // 
-            this.GBTextBox.Location = new System.Drawing.Point(123, 216);
-            this.GBTextBox.MaxLength = 4;
-            this.GBTextBox.Name = "GBTextBox";
-            this.GBTextBox.Size = new System.Drawing.Size(67, 27);
-            this.GBTextBox.TabIndex = 22;
-            this.GBTextBox.Text = "0";
-            this.GBTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GBTextBox_KeyPress);
-            // 
-            // MBLabel
-            // 
-            this.MBLabel.AutoSize = true;
-            this.MBLabel.Location = new System.Drawing.Point(220, 222);
-            this.MBLabel.Name = "MBLabel";
-            this.MBLabel.Size = new System.Drawing.Size(28, 19);
-            this.MBLabel.TabIndex = 23;
-            this.MBLabel.Text = "MB:";
-            // 
-            // MBTextBox
-            // 
-            this.MBTextBox.Location = new System.Drawing.Point(256, 219);
-            this.MBTextBox.MaxLength = 4;
-            this.MBTextBox.Name = "MBTextBox";
-            this.MBTextBox.Size = new System.Drawing.Size(67, 27);
-            this.MBTextBox.TabIndex = 24;
-            this.MBTextBox.Text = "0";
-            this.MBTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MBTextBox_KeyPress);
-            // 
-            // KBLabel
-            // 
-            this.KBLabel.AutoSize = true;
-            this.KBLabel.Location = new System.Drawing.Point(359, 219);
-            this.KBLabel.Name = "KBLabel";
-            this.KBLabel.Size = new System.Drawing.Size(26, 19);
-            this.KBLabel.TabIndex = 25;
-            this.KBLabel.Text = "KB:";
-            // 
-            // KBTextBox
-            // 
-            this.KBTextBox.Location = new System.Drawing.Point(391, 216);
-            this.KBTextBox.MaxLength = 4;
-            this.KBTextBox.Name = "KBTextBox";
-            this.KBTextBox.Size = new System.Drawing.Size(67, 27);
-            this.KBTextBox.TabIndex = 26;
-            this.KBTextBox.Text = "0";
-            this.KBTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KBTextBox_KeyPress);
+            this.SizeTextBox.Location = new System.Drawing.Point(52, 216);
+            this.SizeTextBox.MaxLength = 4;
+            this.SizeTextBox.Name = "SizeTextBox";
+            this.SizeTextBox.Size = new System.Drawing.Size(67, 27);
+            this.SizeTextBox.TabIndex = 22;
+            this.SizeTextBox.Text = "0";
+            this.SizeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GBTextBox_KeyPress);
             // 
             // SubtitlesAvaliabilityCheckBox
             // 
             this.SubtitlesAvaliabilityCheckBox.AutoSize = true;
-            this.SubtitlesAvaliabilityCheckBox.Location = new System.Drawing.Point(16, 265);
+            this.SubtitlesAvaliabilityCheckBox.Location = new System.Drawing.Point(16, 263);
             this.SubtitlesAvaliabilityCheckBox.Name = "SubtitlesAvaliabilityCheckBox";
             this.SubtitlesAvaliabilityCheckBox.Size = new System.Drawing.Size(138, 23);
             this.SubtitlesAvaliabilityCheckBox.TabIndex = 28;
@@ -363,21 +312,31 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // SizeComboBox
+            // 
+            this.SizeComboBox.FormattingEnabled = true;
+            this.SizeComboBox.Items.AddRange(new object[] {
+            "B",
+            "KB",
+            "MB",
+            "GB"});
+            this.SizeComboBox.Location = new System.Drawing.Point(123, 216);
+            this.SizeComboBox.Name = "SizeComboBox";
+            this.SizeComboBox.Size = new System.Drawing.Size(67, 27);
+            this.SizeComboBox.TabIndex = 31;
+            this.SizeComboBox.Text = "Select";
+            // 
             // AddNewObjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(474, 361);
+            this.Controls.Add(this.SizeComboBox);
             this.Controls.Add(this.ApplyButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SubtitlesAvaliabilityCheckBox);
-            this.Controls.Add(this.KBTextBox);
-            this.Controls.Add(this.KBLabel);
-            this.Controls.Add(this.MBTextBox);
-            this.Controls.Add(this.MBLabel);
-            this.Controls.Add(this.GBTextBox);
-            this.Controls.Add(this.GBLabel);
+            this.Controls.Add(this.SizeTextBox);
             this.Controls.Add(this.SizeLabel);
             this.Controls.Add(this.SecondsTextBox);
             this.Controls.Add(this.SecondsLabel);
@@ -436,14 +395,10 @@
         private System.Windows.Forms.Label SecondsLabel;
         private System.Windows.Forms.TextBox SecondsTextBox;
         private System.Windows.Forms.Label SizeLabel;
-        private System.Windows.Forms.Label GBLabel;
-        private System.Windows.Forms.TextBox GBTextBox;
-        private System.Windows.Forms.Label MBLabel;
-        private System.Windows.Forms.TextBox MBTextBox;
-        private System.Windows.Forms.Label KBLabel;
-        private System.Windows.Forms.TextBox KBTextBox;
+        private System.Windows.Forms.TextBox SizeTextBox;
         private System.Windows.Forms.CheckBox SubtitlesAvaliabilityCheckBox;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button ApplyButton;
+        private System.Windows.Forms.ComboBox SizeComboBox;
     }
 }

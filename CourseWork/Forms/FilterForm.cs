@@ -19,15 +19,19 @@ namespace CourseWork.Forms
             InitializeComponent();
         }
 
-        private void SetResultAndClose(VideoFilter filter, object property, DialogResult dialogResult)
+        private void HoursTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            resultFilter = filter;
+            NumericTextBox_KeyPress(sender, e);
+        }
 
-            resultProperty = property;
+        private void MinutesTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericTextBox_KeyPress(sender, e);
+        }
 
-            DialogResult = dialogResult;
-
-            Close();
+        private void SecondsTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericTextBox_KeyPress(sender, e);
         }
 
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -36,6 +40,21 @@ namespace CourseWork.Forms
             {
                 e.Handled = true;
             }
+        }
+
+        private void FormatListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            HandleItemCheck(sender, e);
+        }
+
+        private void VCodecListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            HandleItemCheck(sender, e);
+        }
+
+        private void ACodecListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            HandleItemCheck(sender, e);
         }
 
         private void HandleItemCheck(object sender, ItemCheckEventArgs e)
@@ -52,36 +71,6 @@ namespace CourseWork.Forms
                     }
                 }
             }
-        }
-
-        private void HoursTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            NumericTextBox_KeyPress(sender, e);
-        }
-
-        private void MinutesTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            NumericTextBox_KeyPress(sender, e);
-        }
-
-        private void SecondsTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            NumericTextBox_KeyPress(sender, e);
-        }
-
-        private void FormatListBox_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            HandleItemCheck(sender, e);
-        }
-
-        private void VCodecListBox_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            HandleItemCheck(sender, e);
-        }
-
-        private void ACodecListBox_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            HandleItemCheck(sender, e);
         }
 
         private void LocationButton_Click(object sender, EventArgs e)
@@ -138,12 +127,32 @@ namespace CourseWork.Forms
             var minutes = int.Parse(MinutesTextBox.Text);
             var seconds = int.Parse(SecondsTextBox.Text);
 
+            var duration = new TimeSpan(hours, minutes, seconds);
+
+            if (duration.TotalSeconds == 0)
+            {
+                MessageBox.Show("Invalid or empty duration property", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
             SetResultAndClose(VideoFilter.Duration, new TimeSpan(hours, minutes, seconds), DialogResult.OK);
         }
 
         private void SubtitlesButton_Click(object sender, EventArgs e)
         {
             SetResultAndClose(VideoFilter.SubtitlesAvaliability, SubtitlesAvaliabilityCheckBox.Checked, DialogResult.OK);
+        }
+
+        private void SetResultAndClose(VideoFilter filter, object property, DialogResult dialogResult)
+        {
+            resultFilter = filter;
+
+            resultProperty = property;
+
+            DialogResult = dialogResult;
+
+            Close();
         }
 
         public VideoFilter GetResultFilter()
