@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Text.Json.Serialization;
-using System.Xml.Serialization;
 
 namespace SecondaryClasses
 {
     [Serializable]
     public class FileSize
     {
+        private const char SEPARATOR = '-';
+
+        private const uint BYTES_IN_KILOBYTE = 1024;
+
         public FileSize()
         {
             Kilobytes = 0;
@@ -19,7 +21,7 @@ namespace SecondaryClasses
 
         public FileSize(uint kilobytes, uint megabytes, uint gigabytes)
         {
-            Kilobytes = kilobytes + megabytes * 1024 + gigabytes * 1024 * 1024;
+            Kilobytes = kilobytes + megabytes * BYTES_IN_KILOBYTE + gigabytes * BYTES_IN_KILOBYTE * BYTES_IN_KILOBYTE;
         }
 
         public FileSize(FileSize other)
@@ -31,13 +33,13 @@ namespace SecondaryClasses
         {
             uint gigabytesChunk, megabytesChunk, kilobytesChunk;
 
-            kilobytesChunk = Kilobytes % 1024;
-            megabytesChunk = Kilobytes / 1024;
+            kilobytesChunk = Kilobytes % BYTES_IN_KILOBYTE;
+            megabytesChunk = Kilobytes / BYTES_IN_KILOBYTE;
 
-            gigabytesChunk = megabytesChunk / 1024;
-            megabytesChunk = megabytesChunk % 1024;
+            gigabytesChunk = megabytesChunk / BYTES_IN_KILOBYTE;
+            megabytesChunk = megabytesChunk % BYTES_IN_KILOBYTE;
 
-            return string.Join("-", gigabytesChunk, megabytesChunk, kilobytesChunk);
+            return string.Join(SEPARATOR.ToString(), gigabytesChunk, megabytesChunk, kilobytesChunk);
         }
 
         public static FileSize Parse(string sizeString)
@@ -47,7 +49,7 @@ namespace SecondaryClasses
                 throw new ArgumentException("Size string is empty or null.");
             }
 
-            string[] chunks = sizeString.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] chunks = sizeString.Split(new[] { SEPARATOR }, StringSplitOptions.RemoveEmptyEntries);
 
             if (chunks.Length != 3)
             {
@@ -73,7 +75,7 @@ namespace SecondaryClasses
                 return false;
             }
 
-            string[] chunks = sizeString.Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] chunks = sizeString.Split(new[] { SEPARATOR }, StringSplitOptions.RemoveEmptyEntries);
 
             if (chunks.Length != 3)
             {
@@ -92,12 +94,6 @@ namespace SecondaryClasses
             return true;
         }
 
-        [JsonIgnore] public uint Kilobytes { get; set; }
-        
-        public string KilobytesString
-        {
-            get { return Kilobytes.ToString(); }
-            set { Kilobytes = uint.Parse(value); }
-        }
+        public uint Kilobytes { get; set; }
     }
 }

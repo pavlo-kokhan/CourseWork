@@ -1,57 +1,132 @@
 [
   {
-    "Name": "HarryPotter",
-    "Location": "C:\\Videos",
-    "FormatString": "MP4",
-    "DurationString": "PT2H44M13S",
-    "ACodecString": "MP3",
-    "VCodecString": "AVC",
-    "SubtitlesAvaliabilityString": "true",
-    "SizeString": "4-567-26",
-    "PlayerString": "VLC"
+    "Name": "The Matrix",
+    "Location": "C:\\Videos\\movies",
+    "Format": "MKV",
+    "Duration": "02:23:45",
+    "ACodec": "AAC",
+    "VCodec": "AVC",
+    "SubtitlesAvaliability": true,
+    "Size": {
+      "Kilobytes": 8765432
+    },
+    "Player": "VLC"
   },
   {
-    "Name": "Casino",
-    "Location": "C:\\Videos\\others",
-    "FormatString": "AVI",
-    "DurationString": "PT3H24M19S",
-    "ACodecString": "AAC",
-    "VCodecString": "AVI1",
-    "SubtitlesAvaliabilityString": "false",
-    "SizeString": "12-47-299",
-    "PlayerString": "Kodi"
+    "Name": "Inception",
+    "Location": "C:\\Videos\\movies",
+    "Format": "MP4",
+    "Duration": "02:28:30",
+    "ACodec": "MP3",
+    "VCodec": "HEVC",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "Kilobytes": 9876543
+    },
+    "Player": "Kodi"
   },
   {
-    "Name": "TheKiller",
-    "Location": "C:\\Videos\\others",
-    "FormatString": "MOV",
-    "DurationString": "PT2H32M13S",
-    "ACodecString": "FLAC",
-    "VCodecString": "MPEG",
-    "SubtitlesAvaliabilityString": "true",
-    "SizeString": "5-189-986",
-    "PlayerString": "VLC"
-  },
-  {
-    "Name": "Tenet",
-    "Location": "C:\\Videos",
-    "FormatString": "MKV",
-    "DurationString": "PT2H30M",
-    "ACodecString": "Opus",
-    "VCodecString": "HEVC",
-    "SubtitlesAvaliabilityString": "true",
-    "SizeString": "15-256-5",
-    "PlayerString": "Kodi"
-  },
-  {
-    "Name": "TheMatrix",
+    "Name": "The Shawshank Redemption",
     "Location": "C:\\Videos\\old",
-    "FormatString": "MP4",
-    "DurationString": "PT2H16M2S",
-    "ACodecString": "MP3",
-    "VCodecString": "MPEG",
-    "SubtitlesAvaliabilityString": "false",
-    "SizeString": "8-152-674",
-    "PlayerString": "VLC"
+    "Format": "AVI",
+    "Duration": "02:22:10",
+    "ACodec": "FLAC",
+    "VCodec": "AVI1",
+    "SubtitlesAvaliability": true,
+    "Size": {
+      "Kilobytes": 7654321
+    },
+    "Player": "MPC"
+  },
+  {
+    "Name": "Pulp Fiction",
+    "Location": "C:\\Videos\\old",
+    "Format": "MOV",
+    "Duration": "02:34:55",
+    "ACodec": "Opus",
+    "VCodec": "MPEG",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "Kilobytes": 6543210
+    },
+    "Player": "PotPlayer"
+  },
+  {
+    "Name": "The Dark Knight",
+    "Location": "C:\\Videos\\new",
+    "Format": "MP4",
+    "Duration": "02:32:18",
+    "ACodec": "AAC",
+    "VCodec": "AVC",
+    "SubtitlesAvaliability": true,
+    "Size": {
+      "Kilobytes": 5432109
+    },
+    "Player": "PotPlayer"
+  },
+  {
+    "Name": "Forrest Gump",
+    "Location": "C:\\Videos\\new folder",
+    "Format": "MKV",
+    "Duration": "02:22:55",
+    "ACodec": "AAC",
+    "VCodec": "AVC",
+    "SubtitlesAvaliability": true,
+    "Size": {
+      "Kilobytes": 9876543
+    },
+    "Player": "VLC"
+  },
+  {
+    "Name": "The Godfather",
+    "Location": "C:\\Videos",
+    "Format": "MP4",
+    "Duration": "02:55:30",
+    "ACodec": "MP3",
+    "VCodec": "HEVC",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "Kilobytes": 8765432
+    },
+    "Player": "Kodi"
+  },
+  {
+    "Name": "Fight Club",
+    "Location": "C:\\Videos\\movies",
+    "Format": "AVI",
+    "Duration": "02:19:40",
+    "ACodec": "FLAC",
+    "VCodec": "AVI1",
+    "SubtitlesAvaliability": true,
+    "Size": {
+      "Kilobytes": 7654321
+    },
+    "Player": "MPC"
+  },
+  {
+    "Name": "Schindler's List",
+    "Location": "C:\\Videos\\old",
+    "Format": "MOV",
+    "Duration": "03:15:22",
+    "ACodec": "Opus",
+    "VCodec": "MPEG",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "Kilobytes": 6543210
+    },
+    "Player": "PotPlayer"
+  },
+  {
+    "Name": "The Lord of the Rings: The Fellowship of the Ring",
+    "Location": "C:\\Videos\\new",
+    "Format": "MP4",
+    "Duration": "03:48:10",
+    "ACodec": "MP3",
+    "VCodec": "MPEG",
+    "SubtitlesAvaliability": true,
+    "Size": {
+      "Kilobytes": 5432109
+    },
+    "Player": "Kodi"
   }
 ]

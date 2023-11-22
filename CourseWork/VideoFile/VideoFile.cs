@@ -5,35 +5,6 @@ using System.Text.Json.Serialization;
 using Enums;
 using SecondaryClasses;
 
-//Створити клас «VideoFile» для запису мультимедійної інформації про відео файл:
-//1) Розміщення файлу на диску; 2) Формат файлу; 3) Тривалість; 4) Кодек відео; 5) Кодек аудіо;
-//6) Наявність субтитрів; 7) Розмір відео; 8) Плеєр необхідний для відкриття даного файлу.
-//Для класу створити: 1) Конструктор за замовчуванням; 2) Конструктор з параметрами; 3)
-//конструктор копій; 4) конструктор переміщення; 5) перевизначити операції >>, << для
-//зчитування та запису у файл. 
-
-//Реалізувати:
-//1) функції пошуку даних за «тривалістю» та за «розміщенням на диску».
-//методи які повертають просто список об'єктів, в яких присутня передана властивість
-
-//2) Згрупувати назви файлів, у яких однаковий кодек та відсортувати за тривалістю в кожній
-//групі.
-//в програмі зробити можливість фільтрування і сортування списку об'єктів.
-//це забезпечить можливість знайти об'єкти в яких однаковий кодек і відсортувати цей список
-
-//3) Знайти файли з найдовшою тривалістю та наявністю субтитрів одночасно (передбачити
-//декілька однакових результатів).
-//відфільтрувати за наявністю субтитрів і відсортувати за тривалістю
-
-//4) Для файлів з однаковим форматом визначити найменший та найбільший розмір відео.
-//відфільтрувати об'єкти за форматом, відсортувати за розміром, побачити відповідні об'єкти
-
-//Реально з методів треба пошук за критерієм, сортування, серіалізація
-
-//Для демонстрації роботи програми використати засоби візуального середовища
-//програмування.
- 
-
 namespace VideoFileClass
 {
     [Serializable]
@@ -74,54 +45,18 @@ namespace VideoFileClass
             Player = player;
         }
 
-        public VideoFile(VideoFile Other)
+        public VideoFile(VideoFile other)
         {
-            this.Name = Other.Name;
-            this.Location = Other.Location;
-            this.Format = Other.Format;
-            this.Duration = Other.Duration;
-            this.ACodec = Other.ACodec;
-            this.VCodec = Other.VCodec;
-            this.SubtitlesAvaliability = Other.SubtitlesAvaliability;
-            this.Size = Other.Size;
-            this.Player = Other.Player;
+            this.Name = other.Name;
+            this.Location = other.Location;
+            this.Format = other.Format;
+            this.Duration = other.Duration;
+            this.ACodec = other.ACodec;
+            this.VCodec = other.VCodec;
+            this.SubtitlesAvaliability = other.SubtitlesAvaliability;
+            this.Size = other.Size;
+            this.Player = other.Player;
         }
-
-        //// Пошук даних за розміщенням на диску
-        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, string targetLocation)
-        //{
-        //    return objects.Where(file => file.Location == targetLocation).ToList();
-        //}
-
-        //// Пошук даних за форматом
-        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, VideoFormat targetVideoFormat)
-        //{
-        //    return objects.Where(file => file.Format == targetVideoFormat).ToList();
-        //}
-
-        //// Пошук даних за тривалістю
-        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, TimeSpan targetDuration)
-        //{
-        //    return objects.Where(file => file.Duration == targetDuration).ToList();
-        //}
-
-        //// Пошук даних за аудіокодеком 
-        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, AudioCodec targetAudioCodec)
-        //{
-        //    return objects.Where(file => file.ACodec == targetAudioCodec).ToList();
-        //}
-
-        //// Пошук даних за відеокодеком 
-        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, VideoCodec targetVideoCodec)
-        //{
-        //    return objects.Where(file => file.VCodec == targetVideoCodec).ToList();
-        //}
-
-        //// Пошук даних за субтитрами
-        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, bool targetSubtitlesAvaliability)
-        //{
-        //    return objects.Where(file => file.SubtitlesAvaliability == targetSubtitlesAvaliability).ToList();
-        //}
 
         public static List<VideoFile> FindObjectsWithCorespondingProperties(
             List<VideoFile> objects,
