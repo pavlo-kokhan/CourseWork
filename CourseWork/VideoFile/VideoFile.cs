@@ -87,40 +87,47 @@ namespace VideoFileClass
             this.Player = Other.Player;
         }
 
-        // Пошук даних за розміщенням на диску
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, string targetLocation)
-        {
-            return objects.Where(file => file.Location == targetLocation).ToList();
-        }
+        //// Пошук даних за розміщенням на диску
+        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, string targetLocation)
+        //{
+        //    return objects.Where(file => file.Location == targetLocation).ToList();
+        //}
 
-        // Пошук даних за форматом
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, VideoFormat targetVideoFormat)
-        {
-            return objects.Where(file => file.Format == targetVideoFormat).ToList();
-        }
+        //// Пошук даних за форматом
+        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, VideoFormat targetVideoFormat)
+        //{
+        //    return objects.Where(file => file.Format == targetVideoFormat).ToList();
+        //}
 
-        // Пошук даних за тривалістю
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, TimeSpan targetDuration)
-        {
-            return objects.Where(file => file.Duration == targetDuration).ToList();
-        }
+        //// Пошук даних за тривалістю
+        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, TimeSpan targetDuration)
+        //{
+        //    return objects.Where(file => file.Duration == targetDuration).ToList();
+        //}
 
-        // Пошук даних за аудіокодеком 
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, AudioCodec targetAudioCodec)
-        {
-            return objects.Where(file => file.ACodec == targetAudioCodec).ToList();
-        }
+        //// Пошук даних за аудіокодеком 
+        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, AudioCodec targetAudioCodec)
+        //{
+        //    return objects.Where(file => file.ACodec == targetAudioCodec).ToList();
+        //}
 
-        // Пошук даних за відеокодеком 
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, VideoCodec targetVideoCodec)
-        {
-            return objects.Where(file => file.VCodec == targetVideoCodec).ToList();
-        }
+        //// Пошук даних за відеокодеком 
+        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, VideoCodec targetVideoCodec)
+        //{
+        //    return objects.Where(file => file.VCodec == targetVideoCodec).ToList();
+        //}
 
-        // Пошук даних за субтитрами
-        public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, bool targetSubtitlesAvaliability)
+        //// Пошук даних за субтитрами
+        //public static List<VideoFile> FindObjectsWithCorespondingProperties(List<VideoFile> objects, bool targetSubtitlesAvaliability)
+        //{
+        //    return objects.Where(file => file.SubtitlesAvaliability == targetSubtitlesAvaliability).ToList();
+        //}
+
+        public static List<VideoFile> FindObjectsWithCorespondingProperties(
+            List<VideoFile> objects,
+            Func<VideoFile, bool> predicate)
         {
-            return objects.Where(file => file.SubtitlesAvaliability == targetSubtitlesAvaliability).ToList();
+            return objects.Where(predicate).ToList();
         }
 
         public static bool operator <(VideoFile left, VideoFile right)
@@ -153,47 +160,5 @@ namespace VideoFileClass
 
         [JsonConverter(typeof(EnumConverter<VideoPlayer>))]
         public VideoPlayer Player { get; set; }
-
-        //public string FormatString
-        //{
-        //    get { return Format.ToString(); }
-        //    set { Format = (VideoFormat)Enum.Parse(typeof(VideoFormat), value); }
-        //}
-
-        //public string DurationString
-        //{
-        //    get { return Duration.ToString(); }
-        //    set { Duration = TimeSpan.Parse(value); }
-        //}
-
-        //public string ACodecString
-        //{
-        //    get { return ACodec.ToString(); }
-        //    set { ACodec = (AudioCodec)Enum.Parse(typeof(AudioCodec), value); }
-        //}
-
-        //public string VCodecString
-        //{
-        //    get { return VCodec.ToString(); }
-        //    set { VCodec = (VideoCodec)Enum.Parse(typeof(VideoCodec), value); }
-        //}
-
-        //public string SubtitlesAvaliabilityString
-        //{
-        //    get { return SubtitlesAvaliability.ToString(); }
-        //    set { SubtitlesAvaliability = bool.Parse(value); }
-        //}
-
-        //public string SizeString
-        //{
-        //    get { return Size.ToString(); }
-        //    set { Size = FileSize.Parse(value); }
-        //}
-
-        //public string PlayerString
-        //{
-        //    get { return Player.ToString(); }
-        //    set { Player = (VideoPlayer)Enum.Parse(typeof(VideoPlayer), value); }
-        //}
     }
 }

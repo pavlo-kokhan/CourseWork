@@ -112,31 +112,58 @@ namespace CourseWork
 
             if (result == DialogResult.OK)
             {
+                var filter = childForm.GetResultFilter();
+
                 var property = childForm.GetResultProperty();
 
-                if (property is string specificProperty1)
+                switch (filter)
                 {
-                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty1);
-                }
-                else if (property is VideoFormat specificProperty2)
-                {
-                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty2);
-                }
-                else if (property is TimeSpan specificProperty3)
-                {
-                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty3);
-                }
-                else if (property is VideoCodec specificProperty4)
-                {
-                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty4);
-                }
-                else if (property is AudioCodec specificProperty5)
-                {
-                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty5);
-                }
-                else if (property is bool specificProperty6)
-                {
-                    videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, specificProperty6);
+                    case VideoFilter.Location:
+
+                        string locationFilter = property as string;
+
+                        if (!string.IsNullOrEmpty(locationFilter))
+                        {
+                            videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, 
+                                file => file.Location == locationFilter);
+                        }
+
+                        break;
+
+                    case VideoFilter.AudioCodec:
+
+                        videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles,
+                            file => file.ACodec == (AudioCodec)property);
+
+                        break;
+
+                    case VideoFilter.VideoCodec:
+
+                        videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, 
+                            file => file.VCodec == (VideoCodec)property);
+
+                        break;
+
+                    case VideoFilter.VideoFormat:
+
+                        videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, 
+                            file => file.Format == (VideoFormat)property);
+
+                        break;
+
+                    case VideoFilter.Duration:
+
+                        videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles,
+                            file => file.Duration == (TimeSpan)property);
+
+                        break;
+
+                    case VideoFilter.SubtitlesAvaliability:
+
+                        videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles,
+                            file => file.SubtitlesAvaliability == (bool)property);
+
+                        break;
                 }
 
                 UpdateListView(videoFiles);

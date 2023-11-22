@@ -4,18 +4,26 @@ using System.Windows.Forms;
 
 namespace CourseWork.Forms
 {
+    public enum VideoFilter { Location, VideoFormat, VideoCodec, AudioCodec, Duration, SubtitlesAvaliability, }
+
     public partial class FilterForm : Form
     {
+        // Властивість за якою буде фільтруватися список
         private object resultProperty;
+
+        // Перелічуваний тип, який вказує на те, по якій саме властивості відбувається фільтрування
+        private VideoFilter resultFilter;
 
         public FilterForm()
         {
             InitializeComponent();
         }
 
-        private void SetResultAndClose(object result, DialogResult dialogResult)
+        private void SetResultAndClose(VideoFilter filter, object property, DialogResult dialogResult)
         {
-            resultProperty = result;
+            resultFilter = filter;
+
+            resultProperty = property;
 
             DialogResult = dialogResult;
 
@@ -80,7 +88,7 @@ namespace CourseWork.Forms
         {
             if (LocationTextBox.Text != string.Empty)
             {
-                SetResultAndClose(LocationTextBox.Text, DialogResult.OK);
+                SetResultAndClose(VideoFilter.Location, LocationTextBox.Text, DialogResult.OK);
             }
             else
             {
@@ -90,11 +98,9 @@ namespace CourseWork.Forms
 
         private void FormatButton_Click(object sender, EventArgs e)
         {
-            VideoFormat format;
-
-            if (Enum.TryParse<VideoFormat>(FormatListBox.Text, out format))
+            if (Enum.TryParse<VideoFormat>(FormatListBox.Text, out var videoFormat))
             {
-                SetResultAndClose(format, DialogResult.OK);
+                SetResultAndClose(VideoFilter.VideoFormat, videoFormat, DialogResult.OK);
             }
             else
             {
@@ -104,11 +110,9 @@ namespace CourseWork.Forms
 
         private void VideoCodecButton_Click(object sender, EventArgs e)
         {
-            VideoCodec vcodec;
-
-            if (Enum.TryParse<VideoCodec>(VCodecListBox.Text, out vcodec))
+            if (Enum.TryParse<VideoCodec>(VCodecListBox.Text, out var vcodec))
             {
-                SetResultAndClose(vcodec, DialogResult.OK);
+                SetResultAndClose(VideoFilter.VideoCodec, vcodec, DialogResult.OK);
             }
             else
             {
@@ -118,11 +122,9 @@ namespace CourseWork.Forms
 
         private void AudioCodecButton_Click(object sender, EventArgs e)
         {
-            AudioCodec acodec;
-
-            if (Enum.TryParse<AudioCodec>(ACodecListBox.Text, out acodec))
+            if (Enum.TryParse<AudioCodec>(ACodecListBox.Text, out var acodec))
             {
-                SetResultAndClose(acodec, DialogResult.OK);
+                SetResultAndClose(VideoFilter.AudioCodec, acodec, DialogResult.OK);
             }
             else
             {
@@ -136,12 +138,17 @@ namespace CourseWork.Forms
             var minutes = int.Parse(MinutesTextBox.Text);
             var seconds = int.Parse(SecondsTextBox.Text);
 
-            SetResultAndClose(new TimeSpan(hours, minutes, seconds), DialogResult.OK);
+            SetResultAndClose(VideoFilter.Duration, new TimeSpan(hours, minutes, seconds), DialogResult.OK);
         }
 
         private void SubtitlesButton_Click(object sender, EventArgs e)
         {
-            SetResultAndClose(SubtitlesAvaliabilityCheckBox.Checked, DialogResult.OK);
+            SetResultAndClose(VideoFilter.SubtitlesAvaliability, SubtitlesAvaliabilityCheckBox.Checked, DialogResult.OK);
+        }
+
+        public VideoFilter GetResultFilter()
+        {
+            return resultFilter;
         }
 
         public object GetResultProperty()
