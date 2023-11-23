@@ -68,6 +68,7 @@
             this.SizeSortContextMenuAscending = new System.Windows.Forms.ToolStripMenuItem();
             this.SizeSortContextMenuDescending = new System.Windows.Forms.ToolStripMenuItem();
             this.ClearContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.SourceButton = new System.Windows.Forms.Button();
             this.ButtonsPanel.SuspendLayout();
             this.HeadMenuStrip.SuspendLayout();
             this.ContextMenuStrip.SuspendLayout();
@@ -79,6 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonsPanel.BackColor = System.Drawing.Color.White;
             this.ButtonsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ButtonsPanel.Controls.Add(this.SourceButton);
             this.ButtonsPanel.Controls.Add(this.ClearButton);
             this.ButtonsPanel.Controls.Add(this.FilterButton);
             this.ButtonsPanel.Controls.Add(this.RemoveButton);
@@ -92,7 +94,7 @@
             // ClearButton
             // 
             this.ClearButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ClearButton.Location = new System.Drawing.Point(3, 112);
+            this.ClearButton.Location = new System.Drawing.Point(3, 148);
             this.ClearButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(80, 28);
@@ -170,7 +172,7 @@
             // 
             this.OpenMenuStripButton.Name = "OpenMenuStripButton";
             this.OpenMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.OpenMenuStripButton.Size = new System.Drawing.Size(180, 24);
+            this.OpenMenuStripButton.Size = new System.Drawing.Size(145, 24);
             this.OpenMenuStripButton.Text = "Open";
             this.OpenMenuStripButton.Click += new System.EventHandler(this.OpenMenuStripButton_Click);
             // 
@@ -178,7 +180,7 @@
             // 
             this.SaveMenuStripButton.Name = "SaveMenuStripButton";
             this.SaveMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.SaveMenuStripButton.Size = new System.Drawing.Size(180, 24);
+            this.SaveMenuStripButton.Size = new System.Drawing.Size(145, 24);
             this.SaveMenuStripButton.Text = "Save";
             this.SaveMenuStripButton.Click += new System.EventHandler(this.SaveMenuStripButton_Click);
             // 
@@ -193,7 +195,7 @@
             // AboutMenuStripButton
             // 
             this.AboutMenuStripButton.Name = "AboutMenuStripButton";
-            this.AboutMenuStripButton.Size = new System.Drawing.Size(180, 24);
+            this.AboutMenuStripButton.Size = new System.Drawing.Size(108, 24);
             this.AboutMenuStripButton.Text = "About";
             this.AboutMenuStripButton.Click += new System.EventHandler(this.AboutMenuStripButton_Click);
             // 
@@ -339,7 +341,7 @@
             this.NameSortContextMenuAscending,
             this.NameSortContextMenuDescending});
             this.NameSortContextMenuButton.Name = "NameSortContextMenuButton";
-            this.NameSortContextMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.NameSortContextMenuButton.Size = new System.Drawing.Size(120, 22);
             this.NameSortContextMenuButton.Text = "Name";
             // 
             // NameSortContextMenuAscending
@@ -362,7 +364,7 @@
             this.DurationSortContextMenuAscending,
             this.DurationSortContextMenuDescending});
             this.DurationSortContextMenuButton.Name = "DurationSortContextMenuButton";
-            this.DurationSortContextMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.DurationSortContextMenuButton.Size = new System.Drawing.Size(120, 22);
             this.DurationSortContextMenuButton.Text = "Duration";
             // 
             // DurationSortContextMenuAscending
@@ -385,7 +387,7 @@
             this.SizeSortContextMenuAscending,
             this.SizeSortContextMenuDescending});
             this.SizeSortContextMenuButton.Name = "SizeSortContextMenuButton";
-            this.SizeSortContextMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.SizeSortContextMenuButton.Size = new System.Drawing.Size(120, 22);
             this.SizeSortContextMenuButton.Text = "Size";
             // 
             // SizeSortContextMenuAscending
@@ -408,6 +410,18 @@
             this.ClearContextMenuStripButton.Size = new System.Drawing.Size(158, 22);
             this.ClearContextMenuStripButton.Text = "Clear";
             this.ClearContextMenuStripButton.Click += new System.EventHandler(this.ClearContextMenuStripButton_Click);
+            // 
+            // SourceButton
+            // 
+            this.SourceButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SourceButton.Location = new System.Drawing.Point(3, 112);
+            this.SourceButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.SourceButton.Name = "SourceButton";
+            this.SourceButton.Size = new System.Drawing.Size(80, 28);
+            this.SourceButton.TabIndex = 4;
+            this.SourceButton.Text = "Source";
+            this.SourceButton.UseVisualStyleBackColor = true;
+            this.SourceButton.Click += new System.EventHandler(this.SourceButton_Click);
             // 
             // MainForm
             // 
@@ -475,6 +489,7 @@
         private System.Windows.Forms.ToolStripMenuItem SizeSortContextMenuDescending;
         private System.Windows.Forms.ToolStripMenuItem OpenContextMenuStripButton;
         private System.Windows.Forms.ToolStripMenuItem SaveContextMenuStripButton;
+        private System.Windows.Forms.Button SourceButton;
     }
 }
 

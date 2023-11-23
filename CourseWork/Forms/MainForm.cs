@@ -10,8 +10,11 @@ namespace CourseWork
 {
     public partial class MainForm : Form
     {
+        // Зберігає основні об'єкти VideoFile для зручнішого використання програми
+        List<VideoFile> sourceVideoFiles = new List<VideoFile>();
+
         // Зберігає об'єкти VideoFile в такій послідовності, що і відображено на формі
-        List<VideoFile> videoFiles = new List<VideoFile>();
+        List<VideoFile> currentVideoFiles = new List<VideoFile>();
 
         // Зберігає індекс стовпця, який був вибраний користувачем, як критерій для сортування
         private int lastSortedColumn = -1;
@@ -42,7 +45,7 @@ namespace CourseWork
 
         private VideoFile ConvertToVideoFile(ListViewItem item)
         {
-            return videoFiles[VideoFilesListView.Items.IndexOf(item)];
+            return currentVideoFiles[VideoFilesListView.Items.IndexOf(item)];
         }
 
         private void UpdateListView(List<VideoFile> list)
@@ -59,14 +62,14 @@ namespace CourseWork
 
         private void SortVideoFilesAndUpdate(Comparison<VideoFile> comparison, bool ascending)
         {
-            videoFiles.Sort(comparison);
+            currentVideoFiles.Sort(comparison);
 
             if (!ascending)
             {
-                videoFiles.Reverse();
+                currentVideoFiles.Reverse();
             }
 
-            UpdateListView(videoFiles);
+            UpdateListView(currentVideoFiles);
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -83,7 +86,7 @@ namespace CourseWork
 
                 ListViewItem item = ConvertToListViewItem(newObject);
                 VideoFilesListView.Items.Add(item);
-                videoFiles.Add(newObject);
+                currentVideoFiles.Add(newObject);
             }
         }
 
@@ -94,7 +97,7 @@ namespace CourseWork
                 foreach (ListViewItem item in VideoFilesListView.SelectedItems)
                 {
                     VideoFile obj = ConvertToVideoFile(item);
-                    videoFiles.Remove(obj);
+                    currentVideoFiles.Remove(obj);
                     VideoFilesListView.Items.Remove(item);
                 }
             }
@@ -124,7 +127,7 @@ namespace CourseWork
 
                         if (!string.IsNullOrEmpty(locationFilter))
                         {
-                            videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, 
+                            currentVideoFiles = VideoFile.FindObjectsWithCorespondingProperties(sourceVideoFiles, 
                                 file => file.Location == locationFilter);
                         }
 
@@ -132,21 +135,21 @@ namespace CourseWork
 
                     case VideoFilter.AudioCodec:
 
-                        videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles,
+                        currentVideoFiles = VideoFile.FindObjectsWithCorespondingProperties(sourceVideoFiles,
                             file => file.ACodec == (AudioCodec)property);
 
                         break;
 
                     case VideoFilter.VideoCodec:
 
-                        videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, 
+                        currentVideoFiles = VideoFile.FindObjectsWithCorespondingProperties(sourceVideoFiles, 
                             file => file.VCodec == (VideoCodec)property);
 
                         break;
 
                     case VideoFilter.VideoFormat:
 
-                        videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles, 
+                        currentVideoFiles = VideoFile.FindObjectsWithCorespondingProperties(sourceVideoFiles, 
                             file => file.Format == (VideoFormat)property);
 
                         break;
@@ -155,20 +158,24 @@ namespace CourseWork
 
                         var range = (TimeSpan[])property;
 
-                        videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles,
+                        currentVideoFiles = VideoFile.FindObjectsWithCorespondingProperties(sourceVideoFiles,
                             file => (file.Duration >= range[0]) && (file.Duration <= range[1]));
 
                         break;
 
                     case VideoFilter.SubtitlesAvaliability:
 
-                        videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles,
+                        currentVideoFiles = VideoFile.FindObjectsWithCorespondingProperties(sourceVideoFiles,
                             file => file.SubtitlesAvaliability == (bool)property);
+
+                        break;
+
+                    default:
 
                         break;
                 }
 
-                UpdateListView(videoFiles);
+                UpdateListView(currentVideoFiles);
             }
         }
 
@@ -208,16 +215,21 @@ namespace CourseWork
 
                     try
                     {
-                        videoFiles = VideoFileSerializer.DeserializeJson(filePath);
+                        sourceVideoFiles = VideoFileSerializer.DeserializeJson(filePath);
+
+                        foreach (var file in sourceVideoFiles)
+                        {
+                            currentVideoFiles.Add(file);
+                        }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        MessageBox.Show("Failde to open: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("File penning error, make sure you open.json file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         return;
                     }
 
-                    UpdateListView(videoFiles);
+                    UpdateListView(currentVideoFiles);
                 }
             }
         }
@@ -236,7 +248,7 @@ namespace CourseWork
 
                     try
                     {
-                        VideoFileSerializer.SerializeJson(videoFiles, filePath);
+                        VideoFileSerializer.SerializeJson(currentVideoFiles, filePath);
                     }
                     catch (Exception ex)
                     {
@@ -246,11 +258,16 @@ namespace CourseWork
             }
         }
 
+        private void SourceButton_Click(object sender, EventArgs e)
+        {
+            UpdateListView(sourceVideoFiles);
+        }
+
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            videoFiles.Clear();
+            currentVideoFiles.Clear();
 
-            UpdateListView(videoFiles);
+            UpdateListView(currentVideoFiles);
         }
 
         private void AboutMenuStripButton_Click(object sender, EventArgs e)
@@ -336,15 +353,25 @@ namespace CourseWork
                 switch (e.KeyCode)
                 {
                     case Keys.A:
+
                         AddButton.PerformClick();
+
                         break;
 
                     case Keys.R:
+
                         RemoveButton.PerformClick();
+
                         break;
 
                     case Keys.F:
+
                         FilterButton.PerformClick();
+
+                        break;
+
+                    default:
+
                         break;
                 }
             }
