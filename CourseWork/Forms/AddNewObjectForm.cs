@@ -245,18 +245,31 @@ namespace CourseWork.Forms
             switch (SizeComboBox.Text)
             {
                 case "B":
+
                     break;
+
                 case "KB":
+
                     rawSize *= FileSize.BYTES_IN_KILOBYTE;
+
                     break;
+
                 case "MB":
+
                     rawSize *= (ulong)Math.Pow(FileSize.BYTES_IN_KILOBYTE, 2);
+
                     break;
+
                 case "GB":
+
                     rawSize *= (ulong)Math.Pow(FileSize.BYTES_IN_KILOBYTE, 3);
+
                     break;
+
                 default:
+
                     MessageBox.Show("Choose size dimension. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     return false;
             }
 

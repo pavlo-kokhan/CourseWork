@@ -276,6 +276,8 @@ namespace CourseWork
                     {
                         MessageBox.Show("Failed to save: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
+                    MessageBox.Show("Data is saved successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
