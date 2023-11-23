@@ -19,6 +19,7 @@ namespace CourseWork.Forms
             InitializeComponent();
         }
 
+        // Обробка введення символьного значення в текстові поля з часом
         private void HoursTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             NumericTextBox_KeyPress(sender, e);
@@ -49,6 +50,7 @@ namespace CourseWork.Forms
             NumericTextBox_KeyPress(sender, e);
         }
 
+        // Метод, який забороняє вводити символьні значення в текстове поле
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
@@ -57,6 +59,7 @@ namespace CourseWork.Forms
             }
         }
 
+        // Обробка вибору елементів в об'єктах ListBox
         private void FormatListBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             HandleItemCheck(sender, e);
@@ -72,6 +75,7 @@ namespace CourseWork.Forms
             HandleItemCheck(sender, e);
         }
 
+        // Метод, який не дозволяє вибір більше ніж 1 елемента в об'єкті ListBox
         private void HandleItemCheck(object sender, ItemCheckEventArgs e)
         {
             CheckedListBox checkedListBox = sender as CheckedListBox;
@@ -88,6 +92,7 @@ namespace CourseWork.Forms
             }
         }
 
+        // Оброблення натискання кнопок, які вказують на фінальний фільтр для списку
         private void LocationButton_Click(object sender, EventArgs e)
         {
             if (LocationTextBox.Text != string.Empty)
@@ -167,6 +172,7 @@ namespace CourseWork.Forms
             SetResultAndClose(VideoFilter.SubtitlesAvaliability, SubtitlesAvaliabilityCheckBox.Checked, DialogResult.OK);
         }
 
+        // Метод для встановлення влативості і фільтру і закриття цієї форми
         private void SetResultAndClose(VideoFilter filter, object property, DialogResult dialogResult)
         {
             resultFilter = filter;
@@ -178,11 +184,13 @@ namespace CourseWork.Forms
             Close();
         }
 
+        // Метод для повернення фінального фільтру
         public VideoFilter GetResultFilter()
         {
             return resultFilter;
         }
 
+        // Метод для повернення фінальної властивості
         public object GetResultProperty()
         {
             return resultProperty;

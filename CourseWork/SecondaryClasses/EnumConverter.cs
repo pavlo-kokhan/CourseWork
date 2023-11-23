@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace SecondaryClasses
 {
+    // Спеціальний клас для властивостей сереалізації/десереалізації
+    // Використовується як властивості Converters для JsonSerializerOptions
+    // Конвертує перелічувані типи для сереалізації/десереалізації у тип string
     public class EnumConverter<T> : JsonConverter<T> where T : Enum
     {
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -14,6 +17,7 @@ namespace SecondaryClasses
             }
 
             string enumString = reader.GetString();
+
             return (T)Enum.Parse(typeof(T), enumString);
         }
 

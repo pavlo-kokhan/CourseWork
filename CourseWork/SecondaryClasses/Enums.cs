@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Enums
 {
+    // Усі перелічувані типи, які використовує клас VideoFile
     public enum VideoFormat { MP4, AVI, MKV, MOV, Undefined, }
 
     public enum VideoCodec { AVC, HEVC, AVI1, MPEG, Undefined, }

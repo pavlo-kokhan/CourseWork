@@ -27,6 +27,8 @@ namespace CourseWork
             InitializeComponent();
         }
 
+        // Конвертує значення з об'єкта VideoFiles у об'єкт ListViewItem
+        // Використовується для візуального представлення списку
         private ListViewItem ConvertToListViewItem(VideoFile obj)
         {
             ListViewItem item = new ListViewItem(obj.Name);
@@ -43,11 +45,15 @@ namespace CourseWork
             return item;
         }
 
+        // Конвертує об'єкт ListViewItem зі списку в об'єкт VideoFile
+        // Використовується для видалення вибраного елемента зі списку
         private VideoFile ConvertToVideoFile(ListViewItem item)
         {
             return currentVideoFiles[VideoFilesListView.Items.IndexOf(item)];
         }
 
+        // Метод, який візуально виводить список об'єктів VideoFile у ListView
+        // Викоритовується після багатьох операцій над списком
         private void UpdateListView(List<VideoFile> list)
         {
             VideoFilesListView.Items.Clear(); 
@@ -60,6 +66,7 @@ namespace CourseWork
             }
         }
 
+        // Метод для сортування списку і виводу у ListView
         private void SortVideoFilesAndUpdate(Comparison<VideoFile> comparison, bool ascending)
         {
             currentVideoFiles.Sort(comparison);
@@ -72,6 +79,7 @@ namespace CourseWork
             UpdateListView(currentVideoFiles);
         }
 
+        // Оброблення події кнопки додавання нового об'єкта VideoFile
         private void AddButton_Click(object sender, EventArgs e)
         {
             VideoFile newObject;
@@ -90,6 +98,7 @@ namespace CourseWork
             }
         }
 
+        // Оброблення події кнопки видалення вибраних об'єктів зі списку
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             if (VideoFilesListView.SelectedItems.Count > 0)
@@ -107,18 +116,21 @@ namespace CourseWork
             }
         }
 
+        // Оброблення події кнопки фільтрування списку 
         private void FilterButton_Click(object sender, EventArgs e)
         {
             FilterForm childForm = new FilterForm();
 
+            // Відкривається нова форма для вибору критерію фільтрування
             var result = childForm.ShowDialog();
 
             if (result == DialogResult.OK)
             {
+                // Отримання фільтру і властивості з форми
                 var filter = childForm.GetResultFilter();
-
                 var property = childForm.GetResultProperty();
 
+                // В залежності від фільтру шукаємо лише ті об'єкти, які відповідають критерію
                 switch (filter)
                 {
                     case VideoFilter.Location:
@@ -179,12 +191,16 @@ namespace CourseWork
             }
         }
 
+        // Оброблення події натискання на головний елемент стовпня ListView
+        // Використовується для сортування об'єктів
         private void VideoFilesListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             string columnName = VideoFilesListView.Columns[e.Column].Text;
 
+            // Якщо було натиснуто перший раз, сортується за зростанням, другий - за спаданням...
             ascendingOrder = e.Column != lastSortedColumn ? true : !ascendingOrder;
 
+            // Сортування за тривалістю, іменем, розміром
             if (columnName == "Duration")
             {
                 SortVideoFilesAndUpdate((obj1, obj2) => obj1.Duration.CompareTo(obj2.Duration), ascendingOrder);
@@ -201,6 +217,8 @@ namespace CourseWork
             lastSortedColumn = e.Column;
         }
 
+        // Оброблення події натискання на кнопку відкриття файлу з об'єктами VideoFile
+        // Використовується для отримання списку об'єктів з файлу
         private void OpenMenuStripButton_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -224,7 +242,7 @@ namespace CourseWork
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("File penning error, make sure you open.json file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("File openning error, make sure you open.json file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         return;
                     }
@@ -234,6 +252,8 @@ namespace CourseWork
             }
         }
 
+
+        // Оброблення події натискання на кнопку збереження об'єктів зі списку у файл
         private void SaveMenuStripButton_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -258,11 +278,19 @@ namespace CourseWork
             }
         }
 
+        // Виведення на екран вхідного списку (того, що прочитаний з файлу)
         private void SourceButton_Click(object sender, EventArgs e)
         {
             UpdateListView(sourceVideoFiles);
         }
 
+        // Виведення на екран поточного списку (того, з яким зараз працює користувач)
+        private void CurrentButton_Click(object sender, EventArgs e)
+        {
+            UpdateListView(currentVideoFiles);
+        }
+
+        // Очищає поточний список об'єктів
         private void ClearButton_Click(object sender, EventArgs e)
         {
             currentVideoFiles.Clear();
@@ -270,6 +298,8 @@ namespace CourseWork
             UpdateListView(currentVideoFiles);
         }
 
+        // Подія натискання на кнопку About в головному меню
+        // Виводить Прізвище, ім'я, групу розробника курсової роботи
         private void AboutMenuStripButton_Click(object sender, EventArgs e)
         {
             string message = "Objective-oriented programming course work\n";
@@ -278,6 +308,7 @@ namespace CourseWork
             MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // Оброблення події відкриття контекстного меню на панелі зі списком
         private void VideoFilesListView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -286,6 +317,38 @@ namespace CourseWork
             }
         }
 
+        // Обробленння натискання кнопок на панелі інструментів
+        private void ToolStripOpen_Click(object sender, EventArgs e)
+        {
+            OpenMenuStripButton.PerformClick();
+        }
+
+        private void ToolStripSave_Click(object sender, EventArgs e)
+        {
+            SaveMenuStripButton.PerformClick();
+        }
+
+        private void ToolStripAdd_Click(object sender, EventArgs e)
+        {
+            AddButton.PerformClick();
+        }
+
+        private void ToolStripRemove_Click(object sender, EventArgs e)
+        {
+            RemoveButton.PerformClick();
+        }
+
+        private void ToolStripFilter_Click(object sender, EventArgs e)
+        {
+            FilterButton.PerformClick();
+        }
+
+        private void ToolStripClear_Click(object sender, EventArgs e)
+        {
+            ClearButton.PerformClick();
+        }
+
+        // Оброблення подій натискання кнопок в контекстному меню
         private void OpenContextMenuStripButton_Click(object sender, EventArgs e)
         {
             OpenMenuStripButton_Click(sender, e);
@@ -346,6 +409,7 @@ namespace CourseWork
             SortVideoFilesAndUpdate((obj1, obj2) => obj1.Size.Bytes.CompareTo(obj2.Size.Bytes), false);
         }
 
+        // Гарячі клавіші для додавання, видалення, фільтрування об'єктів у списку
         private void VideoFilesListView_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control)

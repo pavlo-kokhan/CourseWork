@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.SourceButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.FilterButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
@@ -68,10 +69,18 @@
             this.SizeSortContextMenuAscending = new System.Windows.Forms.ToolStripMenuItem();
             this.SizeSortContextMenuDescending = new System.Windows.Forms.ToolStripMenuItem();
             this.ClearContextMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.SourceButton = new System.Windows.Forms.Button();
+            this.ToolStrip = new System.Windows.Forms.ToolStrip();
+            this.ToolStripOpen = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripSave = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripAdd = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripRemove = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripFilter = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripClear = new System.Windows.Forms.ToolStripButton();
+            this.CurrentButton = new System.Windows.Forms.Button();
             this.ButtonsPanel.SuspendLayout();
             this.HeadMenuStrip.SuspendLayout();
             this.ContextMenuStrip.SuspendLayout();
+            this.ToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonsPanel
@@ -80,21 +89,34 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonsPanel.BackColor = System.Drawing.Color.White;
             this.ButtonsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ButtonsPanel.Controls.Add(this.CurrentButton);
             this.ButtonsPanel.Controls.Add(this.SourceButton);
             this.ButtonsPanel.Controls.Add(this.ClearButton);
             this.ButtonsPanel.Controls.Add(this.FilterButton);
             this.ButtonsPanel.Controls.Add(this.RemoveButton);
             this.ButtonsPanel.Controls.Add(this.AddButton);
-            this.ButtonsPanel.Location = new System.Drawing.Point(12, 33);
+            this.ButtonsPanel.Location = new System.Drawing.Point(12, 60);
             this.ButtonsPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ButtonsPanel.Name = "ButtonsPanel";
-            this.ButtonsPanel.Size = new System.Drawing.Size(88, 415);
+            this.ButtonsPanel.Size = new System.Drawing.Size(88, 388);
             this.ButtonsPanel.TabIndex = 1;
+            // 
+            // SourceButton
+            // 
+            this.SourceButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SourceButton.Location = new System.Drawing.Point(3, 112);
+            this.SourceButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.SourceButton.Name = "SourceButton";
+            this.SourceButton.Size = new System.Drawing.Size(80, 28);
+            this.SourceButton.TabIndex = 4;
+            this.SourceButton.Text = "Source";
+            this.SourceButton.UseVisualStyleBackColor = true;
+            this.SourceButton.Click += new System.EventHandler(this.SourceButton_Click);
             // 
             // ClearButton
             // 
             this.ClearButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ClearButton.Location = new System.Drawing.Point(3, 148);
+            this.ClearButton.Location = new System.Drawing.Point(3, 182);
             this.ClearButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(80, 28);
@@ -217,10 +239,10 @@
             this.PlayerHeader});
             this.VideoFilesListView.FullRowSelect = true;
             this.VideoFilesListView.HideSelection = false;
-            this.VideoFilesListView.Location = new System.Drawing.Point(106, 33);
+            this.VideoFilesListView.Location = new System.Drawing.Point(106, 60);
             this.VideoFilesListView.Name = "VideoFilesListView";
-            this.VideoFilesListView.Size = new System.Drawing.Size(766, 416);
-            this.VideoFilesListView.TabIndex = 3;
+            this.VideoFilesListView.Size = new System.Drawing.Size(766, 389);
+            this.VideoFilesListView.TabIndex = 1;
             this.VideoFilesListView.UseCompatibleStateImageBehavior = false;
             this.VideoFilesListView.View = System.Windows.Forms.View.Details;
             this.VideoFilesListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.VideoFilesListView_ColumnClick);
@@ -411,17 +433,102 @@
             this.ClearContextMenuStripButton.Text = "Clear";
             this.ClearContextMenuStripButton.Click += new System.EventHandler(this.ClearContextMenuStripButton_Click);
             // 
-            // SourceButton
+            // ToolStrip
             // 
-            this.SourceButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SourceButton.Location = new System.Drawing.Point(3, 112);
-            this.SourceButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.SourceButton.Name = "SourceButton";
-            this.SourceButton.Size = new System.Drawing.Size(80, 28);
-            this.SourceButton.TabIndex = 4;
-            this.SourceButton.Text = "Source";
-            this.SourceButton.UseVisualStyleBackColor = true;
-            this.SourceButton.Click += new System.EventHandler(this.SourceButton_Click);
+            this.ToolStrip.BackColor = System.Drawing.Color.LightSlateGray;
+            this.ToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.ToolStrip.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripOpen,
+            this.ToolStripSave,
+            this.ToolStripAdd,
+            this.ToolStripRemove,
+            this.ToolStripFilter,
+            this.ToolStripClear});
+            this.ToolStrip.Location = new System.Drawing.Point(12, 29);
+            this.ToolStrip.Name = "ToolStrip";
+            this.ToolStrip.Size = new System.Drawing.Size(147, 27);
+            this.ToolStrip.TabIndex = 4;
+            this.ToolStrip.Text = "Tool Strip";
+            // 
+            // ToolStripOpen
+            // 
+            this.ToolStripOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripOpen.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ToolStripOpen.Image = global::CourseWork.Properties.Resources.Open;
+            this.ToolStripOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripOpen.Name = "ToolStripOpen";
+            this.ToolStripOpen.Size = new System.Drawing.Size(24, 24);
+            this.ToolStripOpen.Text = "Open file (Ctrl + O)";
+            this.ToolStripOpen.Click += new System.EventHandler(this.ToolStripOpen_Click);
+            // 
+            // ToolStripSave
+            // 
+            this.ToolStripSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripSave.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ToolStripSave.Image = global::CourseWork.Properties.Resources.Save;
+            this.ToolStripSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripSave.Name = "ToolStripSave";
+            this.ToolStripSave.Size = new System.Drawing.Size(24, 24);
+            this.ToolStripSave.Text = "Save to file (Ctrl + S)";
+            this.ToolStripSave.Click += new System.EventHandler(this.ToolStripSave_Click);
+            // 
+            // ToolStripAdd
+            // 
+            this.ToolStripAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripAdd.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ToolStripAdd.Image = global::CourseWork.Properties.Resources.Add;
+            this.ToolStripAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripAdd.Name = "ToolStripAdd";
+            this.ToolStripAdd.Size = new System.Drawing.Size(24, 24);
+            this.ToolStripAdd.Text = "Add new object (Ctrl + A)";
+            this.ToolStripAdd.Click += new System.EventHandler(this.ToolStripAdd_Click);
+            // 
+            // ToolStripRemove
+            // 
+            this.ToolStripRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripRemove.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolStripRemove.Image = global::CourseWork.Properties.Resources.Remove1;
+            this.ToolStripRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripRemove.Name = "ToolStripRemove";
+            this.ToolStripRemove.Size = new System.Drawing.Size(24, 24);
+            this.ToolStripRemove.Text = "Remove object (Ctrl + R)";
+            this.ToolStripRemove.Click += new System.EventHandler(this.ToolStripRemove_Click);
+            // 
+            // ToolStripFilter
+            // 
+            this.ToolStripFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripFilter.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ToolStripFilter.Image = global::CourseWork.Properties.Resources.FilterForm;
+            this.ToolStripFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripFilter.Name = "ToolStripFilter";
+            this.ToolStripFilter.Size = new System.Drawing.Size(24, 24);
+            this.ToolStripFilter.Text = "Filter current objects (Ctrl + F)";
+            this.ToolStripFilter.Click += new System.EventHandler(this.ToolStripFilter_Click);
+            // 
+            // ToolStripClear
+            // 
+            this.ToolStripClear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripClear.Image = global::CourseWork.Properties.Resources.Cancel1;
+            this.ToolStripClear.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripClear.Name = "ToolStripClear";
+            this.ToolStripClear.Size = new System.Drawing.Size(24, 24);
+            this.ToolStripClear.Text = "Clear list view";
+            this.ToolStripClear.Click += new System.EventHandler(this.ToolStripClear_Click);
+            // 
+            // CurrentButton
+            // 
+            this.CurrentButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CurrentButton.Location = new System.Drawing.Point(3, 146);
+            this.CurrentButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CurrentButton.Name = "CurrentButton";
+            this.CurrentButton.Size = new System.Drawing.Size(80, 28);
+            this.CurrentButton.TabIndex = 5;
+            this.CurrentButton.Text = "Current";
+            this.CurrentButton.UseVisualStyleBackColor = true;
+            this.CurrentButton.Click += new System.EventHandler(this.CurrentButton_Click);
             // 
             // MainForm
             // 
@@ -430,6 +537,7 @@
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.ToolStrip);
             this.Controls.Add(this.VideoFilesListView);
             this.Controls.Add(this.ButtonsPanel);
             this.Controls.Add(this.HeadMenuStrip);
@@ -445,6 +553,8 @@
             this.HeadMenuStrip.ResumeLayout(false);
             this.HeadMenuStrip.PerformLayout();
             this.ContextMenuStrip.ResumeLayout(false);
+            this.ToolStrip.ResumeLayout(false);
+            this.ToolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,6 +600,14 @@
         private System.Windows.Forms.ToolStripMenuItem OpenContextMenuStripButton;
         private System.Windows.Forms.ToolStripMenuItem SaveContextMenuStripButton;
         private System.Windows.Forms.Button SourceButton;
+        private System.Windows.Forms.ToolStrip ToolStrip;
+        private System.Windows.Forms.ToolStripButton ToolStripOpen;
+        private System.Windows.Forms.ToolStripButton ToolStripSave;
+        private System.Windows.Forms.ToolStripButton ToolStripAdd;
+        private System.Windows.Forms.ToolStripButton ToolStripRemove;
+        private System.Windows.Forms.ToolStripButton ToolStripFilter;
+        private System.Windows.Forms.ToolStripButton ToolStripClear;
+        private System.Windows.Forms.Button CurrentButton;
     }
 }
 

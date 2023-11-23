@@ -8,6 +8,8 @@ namespace CourseWork.Forms
 {
     public partial class AddNewObjectForm : Form
     {
+        // Результуючий об'єкт VideoFile,
+        // який буде повернений у головну форму після коректного відпрацювання цієї форми
         private VideoFile resultObject;
 
         public AddNewObjectForm()
@@ -15,6 +17,7 @@ namespace CourseWork.Forms
             InitializeComponent();
         }
 
+        // Оброблення гарячих клавіш для додавання, або скасування додавання об'єкта
         private void AddNewObjectForm_KeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -27,6 +30,7 @@ namespace CourseWork.Forms
             }
         }
 
+        // Заборона на введення буквенних символів у поля
         private void HoursTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             NumericTextBox_KeyPress(sender, e);
@@ -57,6 +61,7 @@ namespace CourseWork.Forms
             NumericTextBox_KeyPress(sender, e);
         }
 
+        // Метод, який обробляє введення символу в текстове поле, забороняє вводити буквенні символи
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
@@ -65,6 +70,7 @@ namespace CourseWork.Forms
             }
         }
 
+        // Події для обробки вибору елементів на об'єктах ListBox
         private void FormatListBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             HandleItemCheck(sender, e);
@@ -85,6 +91,7 @@ namespace CourseWork.Forms
             HandleItemCheck(sender, e);
         }
 
+        // Обробляє вибір елементів на об'єктах ListBox, забороняє обирати більше ніж 1 елемент
         private void HandleItemCheck(object sender, ItemCheckEventArgs e)
         {
             CheckedListBox checkedListBox = sender as CheckedListBox;
@@ -101,6 +108,7 @@ namespace CourseWork.Forms
             }
         }
 
+        // Метод, який пробує отримати значення з текстових полів, якщо є помилки, повертає false
         private bool TryParseTextBoxes()
         {
             try
@@ -146,6 +154,7 @@ namespace CourseWork.Forms
 
                 var subtitles = SubtitlesAvaliabilityCheckBox.Checked;
 
+                // Якщо все коректно, створюється новий об'єкт
                 resultObject =  new VideoFile(name, location, videoFormat, duration, 
                     audioCodec, videoCodec, subtitles, size, videoPlayer);
 
@@ -159,6 +168,7 @@ namespace CourseWork.Forms
             }
         }
 
+        // Метод для валідації назви, розміщення
         private bool ValidateNameAndLocation()
         {
             if (string.IsNullOrEmpty(NameTextBox.Text) || string.IsNullOrEmpty(LocationTextBox.Text))
@@ -171,6 +181,7 @@ namespace CourseWork.Forms
             return true;
         }
 
+        // Метод для значення в тип enum
         private bool TryParseEnum<T>(string value, string errorMessage, out T result) where T : struct
         {
             if (!Enum.TryParse<T>(value, out result))
@@ -179,9 +190,11 @@ namespace CourseWork.Forms
 
                 return false;
             }
+
             return true;
         }
 
+        // Метод для конвертації значення в тип TimeSpan
         private bool TryParseDuration(out TimeSpan duration)
         {
             duration = TimeSpan.Zero;
@@ -197,6 +210,7 @@ namespace CourseWork.Forms
 
             duration = new TimeSpan(hours, minutes, seconds);
 
+            // Заборона на створення об'єкта TimeSpan з нульовими значеннями
             if (duration.TotalSeconds == 0)
             {
                 MessageBox.Show("Duration can't be empty. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -207,6 +221,7 @@ namespace CourseWork.Forms
             return true;
         }
 
+        // Метод для конвертації значення в тип FileSize
         private bool TryParseSize(out FileSize size)
         {
             size = null;
@@ -218,6 +233,7 @@ namespace CourseWork.Forms
                 return false;
             }
 
+            // Заборона на нульовий розмір
             if (rawSize == 0)
             {
                 MessageBox.Show("Size can`t be empty. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -225,6 +241,7 @@ namespace CourseWork.Forms
                 return false;
             }
 
+            // Оброблення значення отриманого з об'єкта ComboBox
             switch (SizeComboBox.Text)
             {
                 case "B":
@@ -248,6 +265,7 @@ namespace CourseWork.Forms
             return true;
         }
 
+        // Скасування додавання нового об'єкта
         private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -255,6 +273,7 @@ namespace CourseWork.Forms
             Close();
         }
 
+        // Підтвердження додавання нового об'єкта
         private void ApplyButton_Click(object sender, EventArgs e)
         {
             if (TryParseTextBoxes())
@@ -265,6 +284,7 @@ namespace CourseWork.Forms
             }
         }
 
+        // Метод для повернення результуючого об'єкта в головну форму
         public VideoFile GetResultObject()
         {
             return resultObject;

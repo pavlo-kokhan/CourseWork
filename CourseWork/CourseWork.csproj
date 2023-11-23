@@ -120,5 +120,20 @@
   <ItemGroup>
     <None Include="Img\Apply2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\Remove1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Img\FilterForm.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

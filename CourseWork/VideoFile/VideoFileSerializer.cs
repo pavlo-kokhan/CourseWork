@@ -9,10 +9,12 @@ namespace SecondaryClasses
 {
     public static class VideoFileSerializer
     {
+        // Метод для сереалізації списку об'єктів VideoFile у файл .json
         public static void SerializeJson(List<VideoFile> objects, string filename)
         {
             try
             {
+                // Додаткові властивості для більш читабельного запису
                 var options = new JsonSerializerOptions();
 
                 options.WriteIndented = true;
@@ -31,11 +33,14 @@ namespace SecondaryClasses
             }
         }
 
+        // Метод для десерелізації списку об'єктів VideoFile
         public static List<VideoFile> DeserializeJson(string filename)
         {
             try
             {
+                // Такі ж властивості для десереалізації
                 var options = new JsonSerializerOptions();
+
                 options.Converters.Add(new EnumConverter<VideoFormat>());
                 options.Converters.Add(new EnumConverter<AudioCodec>());
                 options.Converters.Add(new EnumConverter<VideoCodec>());
