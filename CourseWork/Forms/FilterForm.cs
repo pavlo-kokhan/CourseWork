@@ -1,6 +1,6 @@
-﻿using Enums;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using Enums;
 
 namespace CourseWork.Forms
 {
@@ -30,6 +30,21 @@ namespace CourseWork.Forms
         }
 
         private void SecondsTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericTextBox_KeyPress(sender, e);
+        }
+
+        private void HoursTextBoxSecond_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericTextBox_KeyPress(sender, e);
+        }
+
+        private void MinutesTextBoxSecond_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericTextBox_KeyPress(sender, e);
+        }
+
+        private void SecondsTextBoxSecond_KeyPress(object sender, KeyPressEventArgs e)
         {
             NumericTextBox_KeyPress(sender, e);
         }
@@ -123,20 +138,28 @@ namespace CourseWork.Forms
 
         private void DurationButton_Click(object sender, EventArgs e)
         {
-            var hours = int.Parse(HoursTextBox.Text);
-            var minutes = int.Parse(MinutesTextBox.Text);
-            var seconds = int.Parse(SecondsTextBox.Text);
+            var hoursFirst = int.Parse(HoursTextBoxFirst.Text);
+            var minutesFirst = int.Parse(MinutesTextBoxFirst.Text);
+            var secondsFirst = int.Parse(SecondsTextBoxFirst.Text);
 
-            var duration = new TimeSpan(hours, minutes, seconds);
+            var hoursSecond = int.Parse(HoursTextBoxSecond.Text);
+            var minutesSecond = int.Parse(MinutesTextBoxSecond.Text);
+            var secondsSecond = int.Parse(SecondsTextBoxSecond.Text);
 
-            if (duration.TotalSeconds == 0)
+            TimeSpan[] range =
             {
-                MessageBox.Show("Invalid or empty duration property", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new TimeSpan(hoursFirst, minutesFirst, secondsFirst),
+                new TimeSpan(hoursSecond, minutesSecond, secondsSecond)
+            };
+
+            if (range[0].TotalSeconds > range[1].TotalSeconds)
+            {
+                MessageBox.Show("Invalid range of duration", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
 
-            SetResultAndClose(VideoFilter.Duration, new TimeSpan(hours, minutes, seconds), DialogResult.OK);
+            SetResultAndClose(VideoFilter.Duration, range, DialogResult.OK);
         }
 
         private void SubtitlesButton_Click(object sender, EventArgs e)

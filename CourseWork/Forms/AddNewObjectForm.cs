@@ -1,8 +1,8 @@
-﻿using Enums;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using VideoFileClass;
 using SecondaryClasses;
+using Enums;
 
 namespace CourseWork.Forms
 {

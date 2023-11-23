@@ -153,8 +153,10 @@ namespace CourseWork
 
                     case VideoFilter.Duration:
 
+                        var range = (TimeSpan[])property;
+
                         videoFiles = VideoFile.FindObjectsWithCorespondingProperties(videoFiles,
-                            file => file.Duration == (TimeSpan)property);
+                            file => (file.Duration >= range[0]) && (file.Duration <= range[1]));
 
                         break;
 
