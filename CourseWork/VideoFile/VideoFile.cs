@@ -10,6 +10,7 @@ namespace VideoFileClass
     [Serializable]
     public class VideoFile
     {
+        // Конструктор за замовчуванням
         public VideoFile()
         {
             Name = "Undefined";
@@ -23,6 +24,7 @@ namespace VideoFileClass
             Player = VideoPlayer.Undefined;
         }
 
+        // Конструктор з параметрами
         public VideoFile(
             string name, 
             string location, 
@@ -45,6 +47,7 @@ namespace VideoFileClass
             Player = player;
         }
 
+        // Конструктор копіювання
         public VideoFile(VideoFile other)
         {
             this.Name = other.Name;
@@ -58,6 +61,7 @@ namespace VideoFileClass
             this.Player = other.Player;
         }
 
+        // Метод для пошуку списку об'єктів, за допомогою предиката
         public static List<VideoFile> FindObjectsWithCorespondingProperties(
             List<VideoFile> objects,
             Func<VideoFile, bool> predicate)

@@ -235,6 +235,8 @@ namespace CourseWork
                     {
                         sourceVideoFiles = VideoFileSerializer.DeserializeJson(filePath);
 
+                        currentVideoFiles.Clear();
+
                         foreach (var file in sourceVideoFiles)
                         {
                             currentVideoFiles.Add(file);
