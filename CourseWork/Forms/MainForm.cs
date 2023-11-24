@@ -66,19 +66,6 @@ namespace CourseWork
             }
         }
 
-        // Метод для сортування списку і виводу у ListView
-        private void SortVideoFilesAndUpdate(Comparison<VideoFile> comparison, bool ascending)
-        {
-            currentVideoFiles.Sort(comparison);
-
-            if (!ascending)
-            {
-                currentVideoFiles.Reverse();
-            }
-
-            UpdateListView(currentVideoFiles);
-        }
-
         // Оброблення події кнопки додавання нового об'єкта VideoFile
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -217,6 +204,19 @@ namespace CourseWork
             lastSortedColumn = e.Column;
         }
 
+        // Метод для сортування списку і виводу у ListView
+        private void SortVideoFilesAndUpdate(Comparison<VideoFile> comparison, bool ascending)
+        {
+            currentVideoFiles.Sort(comparison);
+
+            if (!ascending)
+            {
+                currentVideoFiles.Reverse();
+            }
+
+            UpdateListView(currentVideoFiles);
+        }
+
         // Оброблення події натискання на кнопку відкриття файлу з об'єктами VideoFile
         // Використовується для отримання списку об'єктів з файлу
         private void OpenMenuStripButton_Click(object sender, EventArgs e)
@@ -282,6 +282,16 @@ namespace CourseWork
             }
         }
 
+        // Подія натискання на кнопку About в головному меню
+        // Виводить Прізвище, ім'я, групу розробника курсової роботи
+        private void AboutMenuStripButton_Click(object sender, EventArgs e)
+        {
+            string message = "Objective-oriented programming course work\n";
+            message += "Made by Pavlo Kokhan PZ-23";
+
+            MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         // Виведення на екран вхідного списку (того, що прочитаний з файлу)
         private void SourceButton_Click(object sender, EventArgs e)
         {
@@ -300,16 +310,6 @@ namespace CourseWork
             currentVideoFiles.Clear();
 
             UpdateListView(currentVideoFiles);
-        }
-
-        // Подія натискання на кнопку About в головному меню
-        // Виводить Прізвище, ім'я, групу розробника курсової роботи
-        private void AboutMenuStripButton_Click(object sender, EventArgs e)
-        {
-            string message = "Objective-oriented programming course work\n";
-            message += "Made by Pavlo Kokhan PZ-23";
-
-            MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // Оброблення події відкриття контекстного меню на панелі зі списком

@@ -293,7 +293,7 @@
             this.ApplyButton.Location = new System.Drawing.Point(371, 313);
             this.ApplyButton.Name = "ApplyButton";
             this.ApplyButton.Size = new System.Drawing.Size(87, 36);
-            this.ApplyButton.TabIndex = 30;
+            this.ApplyButton.TabIndex = 0;
             this.ApplyButton.Text = "Apply";
             this.ApplyButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ApplyButton.UseVisualStyleBackColor = true;
@@ -306,7 +306,7 @@
             this.CancelButton.Location = new System.Drawing.Point(278, 313);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(87, 36);
-            this.CancelButton.TabIndex = 29;
+            this.CancelButton.TabIndex = 1;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.CancelButton.UseVisualStyleBackColor = true;
@@ -323,7 +323,7 @@
             this.SizeComboBox.Location = new System.Drawing.Point(123, 216);
             this.SizeComboBox.Name = "SizeComboBox";
             this.SizeComboBox.Size = new System.Drawing.Size(67, 27);
-            this.SizeComboBox.TabIndex = 31;
+            this.SizeComboBox.TabIndex = 27;
             this.SizeComboBox.Text = "Select";
             // 
             // AddNewObjectForm

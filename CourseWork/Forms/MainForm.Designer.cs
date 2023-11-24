@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.CurrentButton = new System.Windows.Forms.Button();
             this.SourceButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.FilterButton = new System.Windows.Forms.Button();
@@ -76,7 +77,6 @@
             this.ToolStripRemove = new System.Windows.Forms.ToolStripButton();
             this.ToolStripFilter = new System.Windows.Forms.ToolStripButton();
             this.ToolStripClear = new System.Windows.Forms.ToolStripButton();
-            this.CurrentButton = new System.Windows.Forms.Button();
             this.ButtonsPanel.SuspendLayout();
             this.HeadMenuStrip.SuspendLayout();
             this.ContextMenuStrip.SuspendLayout();
@@ -99,7 +99,19 @@
             this.ButtonsPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(88, 388);
-            this.ButtonsPanel.TabIndex = 1;
+            this.ButtonsPanel.TabIndex = 4;
+            // 
+            // CurrentButton
+            // 
+            this.CurrentButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CurrentButton.Location = new System.Drawing.Point(3, 146);
+            this.CurrentButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CurrentButton.Name = "CurrentButton";
+            this.CurrentButton.Size = new System.Drawing.Size(80, 28);
+            this.CurrentButton.TabIndex = 4;
+            this.CurrentButton.Text = "Current";
+            this.CurrentButton.UseVisualStyleBackColor = true;
+            this.CurrentButton.Click += new System.EventHandler(this.CurrentButton_Click);
             // 
             // SourceButton
             // 
@@ -108,7 +120,7 @@
             this.SourceButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SourceButton.Name = "SourceButton";
             this.SourceButton.Size = new System.Drawing.Size(80, 28);
-            this.SourceButton.TabIndex = 4;
+            this.SourceButton.TabIndex = 3;
             this.SourceButton.Text = "Source";
             this.SourceButton.UseVisualStyleBackColor = true;
             this.SourceButton.Click += new System.EventHandler(this.SourceButton_Click);
@@ -120,7 +132,7 @@
             this.ClearButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(80, 28);
-            this.ClearButton.TabIndex = 3;
+            this.ClearButton.TabIndex = 5;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
@@ -217,7 +229,7 @@
             // AboutMenuStripButton
             // 
             this.AboutMenuStripButton.Name = "AboutMenuStripButton";
-            this.AboutMenuStripButton.Size = new System.Drawing.Size(108, 24);
+            this.AboutMenuStripButton.Size = new System.Drawing.Size(180, 24);
             this.AboutMenuStripButton.Text = "About";
             this.AboutMenuStripButton.Click += new System.EventHandler(this.AboutMenuStripButton_Click);
             // 
@@ -517,18 +529,6 @@
             this.ToolStripClear.Size = new System.Drawing.Size(24, 24);
             this.ToolStripClear.Text = "Clear list view";
             this.ToolStripClear.Click += new System.EventHandler(this.ToolStripClear_Click);
-            // 
-            // CurrentButton
-            // 
-            this.CurrentButton.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CurrentButton.Location = new System.Drawing.Point(3, 146);
-            this.CurrentButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.CurrentButton.Name = "CurrentButton";
-            this.CurrentButton.Size = new System.Drawing.Size(80, 28);
-            this.CurrentButton.TabIndex = 5;
-            this.CurrentButton.Text = "Current";
-            this.CurrentButton.UseVisualStyleBackColor = true;
-            this.CurrentButton.Click += new System.EventHandler(this.CurrentButton_Click);
             // 
             // MainForm
             // 

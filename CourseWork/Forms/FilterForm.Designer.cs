@@ -89,7 +89,7 @@
             this.DurationButton.Location = new System.Drawing.Point(12, 156);
             this.DurationButton.Name = "DurationButton";
             this.DurationButton.Size = new System.Drawing.Size(180, 30);
-            this.DurationButton.TabIndex = 2;
+            this.DurationButton.TabIndex = 4;
             this.DurationButton.Text = "Duration";
             this.DurationButton.UseVisualStyleBackColor = false;
             this.DurationButton.Click += new System.EventHandler(this.DurationButton_Click);
@@ -101,7 +101,7 @@
             this.VideoCodecButton.Location = new System.Drawing.Point(12, 84);
             this.VideoCodecButton.Name = "VideoCodecButton";
             this.VideoCodecButton.Size = new System.Drawing.Size(180, 30);
-            this.VideoCodecButton.TabIndex = 3;
+            this.VideoCodecButton.TabIndex = 2;
             this.VideoCodecButton.Text = "Video Codec";
             this.VideoCodecButton.UseVisualStyleBackColor = false;
             this.VideoCodecButton.Click += new System.EventHandler(this.VideoCodecButton_Click);
@@ -113,7 +113,7 @@
             this.AudioCodecButton.Location = new System.Drawing.Point(12, 120);
             this.AudioCodecButton.Name = "AudioCodecButton";
             this.AudioCodecButton.Size = new System.Drawing.Size(180, 30);
-            this.AudioCodecButton.TabIndex = 4;
+            this.AudioCodecButton.TabIndex = 3;
             this.AudioCodecButton.Text = "Audio Codec";
             this.AudioCodecButton.UseVisualStyleBackColor = false;
             this.AudioCodecButton.Click += new System.EventHandler(this.AudioCodecButton_Click);
@@ -157,7 +157,7 @@
             this.SecondsTextBoxFirst.MaxLength = 2;
             this.SecondsTextBoxFirst.Name = "SecondsTextBoxFirst";
             this.SecondsTextBoxFirst.Size = new System.Drawing.Size(42, 27);
-            this.SecondsTextBoxFirst.TabIndex = 27;
+            this.SecondsTextBoxFirst.TabIndex = 12;
             this.SecondsTextBoxFirst.Text = "0";
             this.SecondsTextBoxFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SecondsTextBox_KeyPress);
             // 
@@ -202,7 +202,7 @@
             this.MinutesTextBoxFirst.MaxLength = 2;
             this.MinutesTextBoxFirst.Name = "MinutesTextBoxFirst";
             this.MinutesTextBoxFirst.Size = new System.Drawing.Size(43, 27);
-            this.MinutesTextBoxFirst.TabIndex = 22;
+            this.MinutesTextBoxFirst.TabIndex = 11;
             this.MinutesTextBoxFirst.Text = "0";
             this.MinutesTextBoxFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MinutesTextBox_KeyPress);
             // 
@@ -212,7 +212,7 @@
             this.HoursTextBoxFirst.MaxLength = 10;
             this.HoursTextBoxFirst.Name = "HoursTextBoxFirst";
             this.HoursTextBoxFirst.Size = new System.Drawing.Size(45, 27);
-            this.HoursTextBoxFirst.TabIndex = 21;
+            this.HoursTextBoxFirst.TabIndex = 10;
             this.HoursTextBoxFirst.Text = "0";
             this.HoursTextBoxFirst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HoursTextBox_KeyPress);
             // 
@@ -236,7 +236,7 @@
             this.VCodecListBox.Location = new System.Drawing.Point(198, 88);
             this.VCodecListBox.Name = "VCodecListBox";
             this.VCodecListBox.Size = new System.Drawing.Size(92, 26);
-            this.VCodecListBox.TabIndex = 28;
+            this.VCodecListBox.TabIndex = 8;
             this.VCodecListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.VCodecListBox_ItemCheck);
             // 
             // ACodecListBox
@@ -250,7 +250,7 @@
             this.ACodecListBox.Location = new System.Drawing.Point(198, 124);
             this.ACodecListBox.Name = "ACodecListBox";
             this.ACodecListBox.Size = new System.Drawing.Size(92, 26);
-            this.ACodecListBox.TabIndex = 29;
+            this.ACodecListBox.TabIndex = 9;
             this.ACodecListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ACodecListBox_ItemCheck);
             // 
             // SubtitlesAvaliabilityCheckBox
@@ -259,7 +259,7 @@
             this.SubtitlesAvaliabilityCheckBox.Location = new System.Drawing.Point(198, 282);
             this.SubtitlesAvaliabilityCheckBox.Name = "SubtitlesAvaliabilityCheckBox";
             this.SubtitlesAvaliabilityCheckBox.Size = new System.Drawing.Size(138, 23);
-            this.SubtitlesAvaliabilityCheckBox.TabIndex = 30;
+            this.SubtitlesAvaliabilityCheckBox.TabIndex = 16;
             this.SubtitlesAvaliabilityCheckBox.Text = "Subtitles Avaliability";
             this.SubtitlesAvaliabilityCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -278,7 +278,7 @@
             this.SecondsTextBoxSecond.MaxLength = 2;
             this.SecondsTextBoxSecond.Name = "SecondsTextBoxSecond";
             this.SecondsTextBoxSecond.Size = new System.Drawing.Size(42, 27);
-            this.SecondsTextBoxSecond.TabIndex = 38;
+            this.SecondsTextBoxSecond.TabIndex = 15;
             this.SecondsTextBoxSecond.Text = "0";
             this.SecondsTextBoxSecond.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SecondsTextBoxSecond_KeyPress);
             // 
@@ -323,7 +323,7 @@
             this.MinutesTextBoxSecond.MaxLength = 2;
             this.MinutesTextBoxSecond.Name = "MinutesTextBoxSecond";
             this.MinutesTextBoxSecond.Size = new System.Drawing.Size(43, 27);
-            this.MinutesTextBoxSecond.TabIndex = 33;
+            this.MinutesTextBoxSecond.TabIndex = 14;
             this.MinutesTextBoxSecond.Text = "0";
             this.MinutesTextBoxSecond.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MinutesTextBoxSecond_KeyPress);
             // 
@@ -333,7 +333,7 @@
             this.HoursTextBoxSecond.MaxLength = 10;
             this.HoursTextBoxSecond.Name = "HoursTextBoxSecond";
             this.HoursTextBoxSecond.Size = new System.Drawing.Size(45, 27);
-            this.HoursTextBoxSecond.TabIndex = 32;
+            this.HoursTextBoxSecond.TabIndex = 13;
             this.HoursTextBoxSecond.Text = "0";
             this.HoursTextBoxSecond.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HoursTextBoxSecond_KeyPress);
             // 

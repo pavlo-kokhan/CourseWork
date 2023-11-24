@@ -157,7 +157,7 @@ namespace CourseWork.Forms
                 new TimeSpan(hoursSecond, minutesSecond, secondsSecond)
             };
 
-            if (range[0].TotalSeconds > range[1].TotalSeconds)
+            if (range[0] > range[1])
             {
                 MessageBox.Show("Invalid range of duration", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
