@@ -77,6 +77,7 @@
             this.ToolStripRemove = new System.Windows.Forms.ToolStripButton();
             this.ToolStripFilter = new System.Windows.Forms.ToolStripButton();
             this.ToolStripClear = new System.Windows.Forms.ToolStripButton();
+            this.ExitMenuStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ButtonsPanel.SuspendLayout();
             this.HeadMenuStrip.SuspendLayout();
             this.ContextMenuStrip.SuspendLayout();
@@ -196,7 +197,8 @@
             this.FileMenuStrip.BackColor = System.Drawing.Color.LightSlateGray;
             this.FileMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenMenuStripButton,
-            this.SaveMenuStripButton});
+            this.SaveMenuStripButton,
+            this.ExitMenuStripButton});
             this.FileMenuStrip.Name = "FileMenuStrip";
             this.FileMenuStrip.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.FileMenuStrip.Size = new System.Drawing.Size(40, 23);
@@ -206,7 +208,7 @@
             // 
             this.OpenMenuStripButton.Name = "OpenMenuStripButton";
             this.OpenMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.OpenMenuStripButton.Size = new System.Drawing.Size(145, 24);
+            this.OpenMenuStripButton.Size = new System.Drawing.Size(180, 24);
             this.OpenMenuStripButton.Text = "Open";
             this.OpenMenuStripButton.Click += new System.EventHandler(this.OpenMenuStripButton_Click);
             // 
@@ -214,7 +216,7 @@
             // 
             this.SaveMenuStripButton.Name = "SaveMenuStripButton";
             this.SaveMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.SaveMenuStripButton.Size = new System.Drawing.Size(145, 24);
+            this.SaveMenuStripButton.Size = new System.Drawing.Size(180, 24);
             this.SaveMenuStripButton.Text = "Save";
             this.SaveMenuStripButton.Click += new System.EventHandler(this.SaveMenuStripButton_Click);
             // 
@@ -229,7 +231,7 @@
             // AboutMenuStripButton
             // 
             this.AboutMenuStripButton.Name = "AboutMenuStripButton";
-            this.AboutMenuStripButton.Size = new System.Drawing.Size(180, 24);
+            this.AboutMenuStripButton.Size = new System.Drawing.Size(108, 24);
             this.AboutMenuStripButton.Text = "About";
             this.AboutMenuStripButton.Click += new System.EventHandler(this.AboutMenuStripButton_Click);
             // 
@@ -530,6 +532,14 @@
             this.ToolStripClear.Text = "Clear list view";
             this.ToolStripClear.Click += new System.EventHandler(this.ToolStripClear_Click);
             // 
+            // ExitMenuStripButton
+            // 
+            this.ExitMenuStripButton.Name = "ExitMenuStripButton";
+            this.ExitMenuStripButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.ExitMenuStripButton.Size = new System.Drawing.Size(180, 24);
+            this.ExitMenuStripButton.Text = "Exit";
+            this.ExitMenuStripButton.Click += new System.EventHandler(this.ExitMenuStripButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -549,6 +559,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CourseWork";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ButtonsPanel.ResumeLayout(false);
             this.HeadMenuStrip.ResumeLayout(false);
             this.HeadMenuStrip.PerformLayout();
@@ -608,6 +619,7 @@
         private System.Windows.Forms.ToolStripButton ToolStripFilter;
         private System.Windows.Forms.ToolStripButton ToolStripClear;
         private System.Windows.Forms.Button CurrentButton;
+        private System.Windows.Forms.ToolStripMenuItem ExitMenuStripButton;
     }
 }
 

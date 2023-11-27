@@ -282,6 +282,29 @@ namespace CourseWork
             }
         }
 
+        // Оброблення події натискання на кнопку закриття форми у верхній панелі
+        private void ExitMenuStripButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        // Оброблення події натискання на хрестик закривання форми
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ExitHandle(sender, e);
+        }
+
+        // Метод обробки закривання форми
+        private void ExitHandle(object sender, FormClosingEventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to exit?", "Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
+
         // Подія натискання на кнопку About в головному меню
         // Виводить Прізвище, ім'я, групу розробника курсової роботи
         private void AboutMenuStripButton_Click(object sender, EventArgs e)
