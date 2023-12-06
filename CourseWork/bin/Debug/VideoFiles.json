@@ -104,7 +104,7 @@
     "Player": "MPC"
   },
   {
-    "Name": "Schindler's List",
+    "Name": "Schindler\u0027s List",
     "Location": "C:\\Videos\\old",
     "Format": "MOV",
     "Duration": "03:15:22",
@@ -128,5 +128,44 @@
       "Bytes": 5432153409
     },
     "Player": "Kodi"
+  },
+  {
+    "Name": "Cats_1",
+    "Location": "C:\\Videos\\Funny",
+    "Format": "MP4",
+    "Duration": "00:14:22",
+    "ACodec": "MP3",
+    "VCodec": "AVC",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "Bytes": 275775488
+    },
+    "Player": "VLC"
+  },
+  {
+    "Name": "Cats_2",
+    "Location": "C:\\Videos\\Funny",
+    "Format": "MP4",
+    "Duration": "00:23:15",
+    "ACodec": "MP3",
+    "VCodec": "HEVC",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "Bytes": 376438784
+    },
+    "Player": "VLC"
+  },
+  {
+    "Name": "PresidentSpeech",
+    "Location": "C:\\Videos",
+    "Format": "MKV",
+    "Duration": "01:26:59",
+    "ACodec": "FLAC",
+    "VCodec": "AVI1",
+    "SubtitlesAvaliability": true,
+    "Size": {
+      "Bytes": 10157555712
+    },
+    "Player": "PotPlayer"
   }
 ]

@@ -9,6 +9,7 @@ namespace SecondaryClasses
     // Конвертує перелічувані типи для сереалізації/десереалізації у тип string
     public class EnumConverter<T> : JsonConverter<T> where T : Enum
     {
+
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType == JsonTokenType.Number)

@@ -244,7 +244,7 @@ namespace CourseWork
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("File openning error, make sure you open.json file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("File openning error, make sure you open .json file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         return;
                     }
@@ -318,12 +318,30 @@ namespace CourseWork
         // Виведення на екран вхідного списку (того, що прочитаний з файлу)
         private void SourceButton_Click(object sender, EventArgs e)
         {
+            if (sourceVideoFiles.Count == 0)
+            {
+                MessageBox.Show("List is empty. Open a file or make sure it is not empty", "Information", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            currentVideoFiles.Clear();
+
+            foreach (var item in sourceVideoFiles)
+            {
+                currentVideoFiles.Add(item);
+            }
+
             UpdateListView(sourceVideoFiles);
         }
 
         // Виведення на екран поточного списку (того, з яким зараз працює користувач)
         private void CurrentButton_Click(object sender, EventArgs e)
         {
+            if (currentVideoFiles.Count == 0)
+            {
+                MessageBox.Show("Current list is empty", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             UpdateListView(currentVideoFiles);
         }
 

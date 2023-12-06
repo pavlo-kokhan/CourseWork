@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "Name": "Inception",
+    "Location": "C:\\Videos\\movies",
+    "Format": "MP4",
+    "Duration": "02:28:30",
+    "ACodec": "MP3",
+    "VCodec": "HEVC",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "Bytes": 9876321543
+    },
+    "Player": "Kodi"
+  },
+  {
+    "Name": "The Dark Knight",
+    "Location": "C:\\Videos\\new",
+    "Format": "MP4",
+    "Duration": "02:32:18",
+    "ACodec": "AAC",
+    "VCodec": "AVC",
+    "SubtitlesAvaliability": true,
+    "Size": {
+      "Bytes": 5432123109
+    },
+    "Player": "PotPlayer"
+  },
+  {
+    "Name": "The Godfather",
+    "Location": "C:\\Videos",
+    "Format": "MP4",
+    "Duration": "02:55:30",
+    "ACodec": "MP3",
+    "VCodec": "HEVC",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "Bytes": 8765456432
+    },
+    "Player": "Kodi"
+  },
+  {
+    "Name": "The Lord of the Rings: The Fellowship of the Ring",
+    "Location": "C:\\Videos\\new",
+    "Format": "MP4",
+    "Duration": "03:48:10",
+    "ACodec": "MP3",
+    "VCodec": "MPEG",
+    "SubtitlesAvaliability": true,
+    "Size": {
+      "Bytes": 5432153409
+    },
+    "Player": "Kodi"
+  },
+  {
+    "Name": "Cats_1",
+    "Location": "C:\\Videos\\Funny",
+    "Format": "MP4",
+    "Duration": "00:14:22",
+    "ACodec": "MP3",
+    "VCodec": "AVC",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "Bytes": 275775488
+    },
+    "Player": "VLC"
+  },
+  {
+    "Name": "Cats_2",
+    "Location": "C:\\Videos\\Funny",
+    "Format": "MP4",
+    "Duration": "00:23:15",
+    "ACodec": "MP3",
+    "VCodec": "HEVC",
+    "SubtitlesAvaliability": false,
+    "Size": {
+      "Bytes": 376438784
+    },
+    "Player": "VLC"
+  }
+]
